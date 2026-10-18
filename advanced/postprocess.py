@@ -65,6 +65,10 @@ def analyze(h=1.7,design='Uniform',skin=.2,adhesive=.1,geometry='Supplied'):
     adhesive_mask=r==2
     aw=np.repeat(volume[adhesive_mask]/4,4)
     references=[ROOT/'references'/f'{geometry}_h{h:g}_{mode}' for mode in BASIS]
+    bare_mesh=np.load(ROOT/'meshes'/f'bare_{geometry}_h{h:g}.npz')
+    assert np.array_equal(bare_mesh['original_element_ids'],np.where(skin_mask)[0])
+    assert np.array_equal(bare_mesh['points'],p[bare_mesh['original_node_ids']])
+    assert np.array_equal(bare_mesh['original_node_ids'][bare_mesh['cells']],c[skin_mask])
     for path in references:
         assert json.loads((path/'checks.json').read_text())['accepted']
     ref=[np.load(path/'fields.npz')['strain'].reshape(-1,6) for path in references]

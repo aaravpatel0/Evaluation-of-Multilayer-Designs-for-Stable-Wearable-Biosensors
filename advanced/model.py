@@ -188,7 +188,7 @@ def check_fields(mesh,meta,fields):
     force_error = np.linalg.norm(reaction.sum(axis=0))/max(np.linalg.norm(reaction), 1e-30)
     moment = np.cross(p-p.mean(axis=0), reaction)
     moment_error = np.linalg.norm(moment.sum(axis=0))/max(np.linalg.norm(moment), 1e-30)
-    bc_error = float(np.max(abs(u[perimeter,:2]-affine_displacement(p,meta['loading'])[perimeter])))
+    bc_error = max(float(np.max(abs(u[perimeter,:2]-affine_displacement(p,meta['loading'])[perimeter]))),float(abs(u[pin,2])))
     checks = dict(checks_schema=2,internal_energy_Nmm=internal, external_work_Nmm=external,
                   free_DOF_force_relative_residual=float(free_residual),free_DOF_force_work_Nmm=residual_work,
                   relative_energy_error=energy_error, relative_force_error=float(force_error),
