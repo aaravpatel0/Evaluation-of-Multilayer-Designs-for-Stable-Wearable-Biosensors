@@ -1,0 +1,22 @@
+{
+  "mesh_h_mm": 1.2,
+  "design": "Graded",
+  "skin_E_MPa": 0.5,
+  "adhesive_E_MPa": 0.5,
+  "geometry_scenario": "Filled",
+  "coefficients": [
+    0.255,
+    0.255,
+    1.49
+  ],
+  "relative_field_errors": {
+    "displacement": 2.1494297018490085e-07,
+    "forces": 2.778339078813267e-07,
+    "stress": 2.1473086172847053e-07,
+    "strain": 1.941405200297587e-07
+  },
+  "tolerance": 2e-05,
+  "precision": "double",
+  "execution_backend": "WSL",
+  "accepted": true
+}
