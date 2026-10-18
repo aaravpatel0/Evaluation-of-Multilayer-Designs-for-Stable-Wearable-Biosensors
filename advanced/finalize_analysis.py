@@ -39,13 +39,14 @@ def main():
     required=[(1.7,'Supplied',d,.2,.1) for d in ['Uniform','Single','Graded']]
     required.extend((1.7,'Filled',d,s,a) for d,s,a in itertools.product(['Uniform','Single','Graded'],[.1,.2,.5],[.05,.1,.5]))
     required.extend((1.2,*target) for target in targets)
-    checks=[];correction_solves=0
+    checks=[];correction_solves=0;direct_reports=[]
     @lru_cache(maxsize=4)
     def load_mesh(path):
         return dict(np.load(path))
     for h,geometry,design,skin,adhesive in required:
         validation=json.loads((ROOT/'verification'/f'superposition_h{h:g}_{geometry}_{design}_S{skin:g}_A{adhesive:g}.json').read_text())
         assert validation['accepted'] and max(validation['relative_field_errors'].values())<2e-5
+        direct_reports.append(validation)
         prefix='' if geometry=='Supplied' else 'Filled_'
         for mode in ['XX','YY','XY','Direct45']:
             directory=ROOT/'runs'/f'WSL_h{h:g}_{prefix}{design}_S{skin:g}_A{adhesive:g}_{mode}'
@@ -91,6 +92,9 @@ def main():
     summary['maximum_bare_skin_reference_residual']=max(a['free_DOF_force_relative_residual'] for a in reference_checks)
     summary['maximum_free_DOF_force_residual']=max(c['free_DOF_force_relative_residual'] for c in checks)
     summary['maximum_relative_energy_error']=max(c['relative_energy_error'] for c in checks)
+    summary['maximum_direct_superposition_relative_errors']={
+        field:max(r['relative_field_errors'][field] for r in direct_reports)
+        for field in ['displacement','forces','stress','strain']}
     summary['scope']='Accepted medium-mesh material/direction screen with nominal and sampled-worst-case refined comparisons; no physical calibration'
     summary['supplied_contact_nominal']={design:responses(1.7,'Supplied',design,.2,.1) for design in ['Uniform','Single','Graded']}
     summary['filled_contact_nominal']={design:responses(1.7,'Filled',design,.2,.1) for design in ['Uniform','Single','Graded']}
