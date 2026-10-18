@@ -1,0 +1,7 @@
+{
+  "reference_cases": 12,
+  "mesh_mappings": 4,
+  "maximum_free_DOF_residual": 6.727544579776876e-12,
+  "maximum_energy_error": 9.373824141619624e-09,
+  "all_accepted": true
+}

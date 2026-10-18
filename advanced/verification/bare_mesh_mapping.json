@@ -1,0 +1,34 @@
+[
+  {
+    "scenario": "Supplied",
+    "h_mm": 1.7,
+    "nodes": 230159,
+    "elements": 126355,
+    "connected_components": 1,
+    "source_mesh_sha256": "35e074d35c7a88c32ab11f46139efeda80d09a8b0a27e6b44e54e17213357a14"
+  },
+  {
+    "scenario": "Supplied",
+    "h_mm": 1.2,
+    "nodes": 272283,
+    "elements": 152770,
+    "connected_components": 1,
+    "source_mesh_sha256": "0f019cbd3f2ac2e712eabc8d8212792a6dbd5f47bff66a963d823ca39ac32d63"
+  },
+  {
+    "scenario": "Filled",
+    "h_mm": 1.7,
+    "nodes": 229920,
+    "elements": 126156,
+    "connected_components": 1,
+    "source_mesh_sha256": "74da2597686ada366c957a0433f68137b81330b8efa5c86cbdcb4289b1af0182"
+  },
+  {
+    "scenario": "Filled",
+    "h_mm": 1.2,
+    "nodes": 273448,
+    "elements": 153515,
+    "connected_components": 1,
+    "source_mesh_sha256": "88fd2634d6aa68643824891528e5b95d8b2812d22f25ad981aadc30242b7ce3e"
+  }
+]
