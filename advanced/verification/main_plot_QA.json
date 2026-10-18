@@ -1,0 +1,23 @@
+{
+  "scope": "Internal layout QA of complete accepted medium-grid results; not a substitute for final refinement and field audit",
+  "plot_source_sha256": "3da63a39267a8d54069fc955688e4e7c2e89f2df8d4a37bf882b1804397fb7a1",
+  "medium_summary_sha256": "a4661d0d99e26d0f8f13a8dbc73c43a304582b6a376b38d34495d9a3bf310c8c",
+  "visually_inspected": true,
+  "checks": [
+    "Legends outside tradeoff plotting regions",
+    "Architecture colors retained inside separate black nondominance outlines",
+    "Circle and triangle markers identify near-overlapping directional curves",
+    "Line styles and marker fills remain identifiable in grayscale",
+    "Axes state strain percentages and fixed skin-disturbance normalization"
+  ],
+  "preview_png_sha256": {
+    "Directional_Wire_Strain": {
+      "color": "92936561942f2a9021e9296d657e4131edc12f6fa7a1ee4aa76d24a3d2003397",
+      "grayscale": "15e845065516f5cedafe1f16136db0603e7f1191758831fecd7f54d5d6b6df40"
+    },
+    "Mechanical_Tradeoffs": {
+      "color": "f295173ef6054bbcfd23c2edc56d09940b36c1c5e2faee9c2db0c64b969be00d",
+      "grayscale": "9fbebcc3ba91bf93d4da384ac8cc5a086108d9a8fc4f8718e6a36cfc0ff82ac4"
+    }
+  }
+}

@@ -36,7 +36,13 @@ def directional():
         angles=np.arange(0,181,5)
         a=np.array(profiles);a=np.column_stack((a,a[:,0]))
         ax.fill_between(angles,a.min(axis=0),a.max(axis=0),color=color,alpha=.15,linewidth=0)
-        ax.plot(angles,a[1],color=color,label=design,lw=1.4,linestyle=LINESTYLES[design])
+        style={}
+        if design in ['Single','Graded']:
+            style=dict(marker='o' if design=='Single' else '^',markersize=2.7,
+                       markevery=(0 if design=='Single' else 3,6),
+                       markerfacecolor='white',markeredgewidth=.6)
+        ax.plot(angles,a[1],color=color,label=design,lw=1.4,
+                linestyle=LINESTYLES[design],**style)
     ax.set(xlabel='Extension direction θ (degrees)',ylabel='Wire strain, 95th percentile (%)',xticks=[0,45,90,135,180])
     ax.legend(frameon=False,ncol=3,loc='upper center',fontsize=7)
     fig.tight_layout(pad=.7);save(fig,'Directional_Wire_Strain')
@@ -49,21 +55,27 @@ def tradeoffs(summary):
         kwargs=dict(marker=marker[option['adhesive_E_MPa']],markersize=6.5,linestyle='none',
                     markerfacecolor=COLORS[option['design']],markerfacecoloralt='white',
                     fillstyle=FILLSTYLES[option['design']],
-                    markeredgecolor='black' if option['sampled_Pareto_nondominated'] else '#999999',
-                    markeredgewidth=1.1 if option['sampled_Pareto_nondominated'] else .5)
-        axes[0].plot(100*option['worst_wire'],option['worst_skin'],**kwargs)
-        axes[1].plot(100*option['worst_wire'],100*option['worst_adhesive'],**kwargs)
+                    markeredgecolor=COLORS[option['design']],markeredgewidth=.7)
+        coordinates=[(100*option['worst_wire'],option['worst_skin']),
+                     (100*option['worst_wire'],100*option['worst_adhesive'])]
+        for ax,(x,y) in zip(axes,coordinates):
+            if option['sampled_Pareto_nondominated']:
+                ax.plot(x,y,marker=marker[option['adhesive_E_MPa']],markersize=7.8,
+                        linestyle='none',fillstyle='none',markeredgecolor='black',markeredgewidth=.85)
+            ax.plot(x,y,**kwargs)
     axes[0].set_ylabel('Worst skin disturbance / 1%')
     axes[1].set_ylabel('Worst adhesive distortion (%)')
     axes[1].set_xlabel('Worst wire strain, 95th percentile (%)')
     for design,color in COLORS.items():
         axes[0].plot([],[],marker='o',linestyle='none',color=color,label=design,
                      fillstyle=FILLSTYLES[design],markerfacecoloralt='white')
-    axes[0].legend(frameon=False,ncol=3,fontsize=7)
+    axes[0].legend(frameon=False,ncol=3,fontsize=7,loc='lower center',
+                   bbox_to_anchor=(.5,1.02),borderaxespad=0)
     for E,m in marker.items():
         axes[1].plot([],[],marker=m,linestyle='none',color='#777777',label=f'{E:g} MPa')
-    axes[1].legend(frameon=False,ncol=3,fontsize=7)
-    fig.tight_layout(pad=.6);save(fig,'Mechanical_Tradeoffs')
+    axes[1].legend(frameon=False,ncol=3,fontsize=7,loc='lower center',
+                   bbox_to_anchor=(.5,1.02),borderaxespad=0)
+    fig.tight_layout(pad=.6,h_pad=1.5);save(fig,'Mechanical_Tradeoffs')
 
 
 def assembly():
