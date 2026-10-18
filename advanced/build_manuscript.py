@@ -110,7 +110,7 @@ def main():
         values=[a['wire_p95_absolute_principal_strain'] for a in rows if a['angle_deg'] is not None]
         ranges.append(f'{design.lower()}: {100*min(values):.3g}–{100*max(values):.3g}%')
     para('At nominal skin and adhesive moduli in the filled-contact geometry, the sampled wire strain percentiles span '+ '; '.join(ranges)+'. Figure 3 shows the directional response at nominal adhesive modulus, with bands spanning the selected skin stiffnesses. The bands represent parameter dependence, not statistical confidence intervals or a patient population.')
-    figure('Directional_Wire_Strain','Figure 3. Wire absolute principal-strain 95th percentile versus extension direction for filled contact and adhesive modulus 0.10 MPa. Lines use skin modulus 0.20 MPa; shading spans 0.10–0.50 MPa. The end point repeats the equivalent 0° direction. All curves use 1% prescribed principal extension.')
+    figure('Directional_Wire_Strain','Figure 3. Wire absolute principal-strain 95th percentile versus extension direction for filled contact and adhesive modulus 0.10 MPa. Lines use skin modulus 0.20 MPa; shading encloses the three sampled skin-modulus curves at 0.10, 0.20, and 0.50 MPa. The end point repeats the equivalent 0° direction. All curves use 1% prescribed principal extension.')
     extra_ranges=[]
     for label,description in [('Equibiaxial_0.5percent','0.5% equal biaxial extension'),
                               ('Engineering_shear_1percent','1% engineering shear')]:
