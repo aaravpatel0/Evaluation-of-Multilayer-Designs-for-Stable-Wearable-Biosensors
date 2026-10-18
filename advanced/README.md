@@ -1,20 +1,22 @@
-# Advanced study in progress
+# Advanced three-dimensional mechanical study
 
 This separate extension preserves the supplied sixteen-body geometry and the three equal-thickness support architectures. It does not overwrite the earlier manuscript or simulation results.
 
-## Planned questions and decision metrics
+The medium-mesh screen is complete: 27 filled-contact material configurations, 972 reconstructed directional responses, and 54 additional biaxial/shear responses, with three supplied-contact nominal comparisons. Every configuration passed its own direct mixed-load validation. Seven configuration comparisons were selected for finer-mesh assessment; that stage and the new manuscript are still in progress. The main response tables are available under `output/`; `Final_Study_Summary.json` is written only after the full refinement and field audit pass.
+
+## Study questions and decision metrics
 
 1. Does support-design ranking depend on the direction of prescribed skin extension?
 2. Does a material choice remain favorable across assumed skin stiffnesses?
 3. Do reduced wire strains trade off against higher skin disturbance or adhesive-interface loading?
 
-The planned factorial inputs are support architecture (Uniform, Single, Graded), adhesive modulus (0.05, 0.10, 0.50 MPa), and skin modulus (0.10, 0.20, 0.50 MPa). These are analyst-selected sensitivity levels, not a patient population or probability distribution. Geometry, package surrogates, and perfect bonding remain fixed.
+The factorial inputs are support architecture (Uniform, Single, Graded), adhesive modulus (0.05, 0.10, 0.50 MPa), and skin modulus (0.10, 0.20, 0.50 MPa). These are analyst-selected sensitivity levels, not a patient population or probability distribution. Geometry, package surrogates, and perfect bonding remain fixed.
 
-Three independent linear kinematic basis problems prescribe epsilon_xx, epsilon_yy, and engineering gamma_xy on the projected outer contour of the skin through its thickness, with out-of-plane motion free except one reference displacement. The contour includes the rounded footprint; filleted edge nodes projected inside the contour remain free. Tensor fields, rather than scalar stresses or percentiles, will be combined to reconstruct directional extension. The same constrained degrees of freedom are used for every basis problem. Directional extension includes nominal transverse contraction at nu=0.49. Perimeter kinematics represent controlled fixtures rather than a particular anatomical site.
+Three independent linear kinematic basis problems prescribe epsilon_xx, epsilon_yy, and engineering gamma_xy on the projected outer contour of the skin through its thickness, with out-of-plane motion free except one reference displacement. The contour includes the rounded footprint; filleted edge nodes projected inside the contour remain free. Tensor fields, rather than scalar stresses or percentiles, are combined to reconstruct directional extension. The same constrained degrees of freedom are used for every basis problem. Directional extension includes nominal transverse contraction at nu=0.49. Perimeter kinematics represent controlled fixtures rather than a particular anatomical site.
 
 All reported cases must pass execution, final-load, force/moment balance, and internal-versus-external energy checks. A homogeneous cube checks the analytical strain and stress tensors, shear convention, and energies. Direct mixed-loading solves must check tensor-field superposition. Selected refined meshes will assess the sensitivity of new decision metrics.
 
-Metrics will include wire stress and principal strain, area-weighted skin–adhesive traction estimates without smoothing across materials, and the volume-weighted RMS perturbation of skin strain relative to a homogeneous skin reference. Interface metrics do not predict detachment without experimentally established strength/toughness. Skin disturbance is a mechanical metric, not a comfort, irritation, injury, or clinical-performance prediction.
+The three primary tradeoff metrics are wire volume-weighted 95th-percentile absolute principal strain, skin RMS tensor perturbation relative to matched device-free finite-element references, and adhesive RMS deviatoric strain. Wire stress and interface traction estimates are additional diagnostics. Interface metrics do not predict detachment without adequate recovery accuracy and experimentally established strength/toughness. Skin disturbance is a mechanical metric, not a comfort, irritation, injury, or clinical-performance prediction.
 
 ## Audited geometric issue and controlled comparison
 
@@ -22,7 +24,7 @@ The supplied skin has a broad planar top at z=2.00 mm. The adhesive has a broad 
 
 `mesh_contact.py` creates an explicit alternative by extruding the broad planar adhesive underside down by 0.01 mm and fusing that extension into the adhesive. It does not move or replace the skin, electronics, wires, or support partitions, and does not extend the textured protrusion tips. The filled adhesive adds 15.62998 mm3 before fragmentation. Its accepted h=1.7 mesh has 267146 quadratic tetrahedra, 412220 nodes, positive Jacobians, and 1659.0357 mm2 of shared skin–adhesive surface (including texture). Area exceeds projected footprint because it includes nonplanar features. This is a specified manufactured-contact scenario, not a correction asserted to describe the real device.
 
-The main material/direction matrix will use the explicitly filled scenario, with the supplied-contact geometry retained as a sensitivity comparison. No outcomes from these two scenarios will be pooled or silently relabeled.
+The main material/direction matrix uses the explicitly filled scenario, with the supplied-contact geometry retained as a sensitivity comparison. No outcomes from these two scenarios will be pooled or silently relabeled.
 
 ## Numerical pilot findings and acceptance gate
 
