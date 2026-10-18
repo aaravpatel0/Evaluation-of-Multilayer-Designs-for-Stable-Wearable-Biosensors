@@ -1,0 +1,22 @@
+{
+  "mesh_h_mm": 1.7,
+  "design": "Single",
+  "skin_E_MPa": 0.1,
+  "adhesive_E_MPa": 0.1,
+  "geometry_scenario": "Filled",
+  "coefficients": [
+    0.255,
+    0.255,
+    1.49
+  ],
+  "relative_field_errors": {
+    "displacement": 1.402199476287707e-07,
+    "forces": 5.881800347892181e-07,
+    "stress": 1.992847845943357e-07,
+    "strain": 2.0903724292478692e-07
+  },
+  "tolerance": 2e-05,
+  "precision": "double",
+  "execution_backend": "WSL",
+  "accepted": true
+}
