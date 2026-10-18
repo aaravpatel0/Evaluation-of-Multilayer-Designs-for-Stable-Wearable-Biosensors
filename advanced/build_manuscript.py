@@ -7,6 +7,7 @@ from docx.shared import Pt,Inches,Cm,RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.opc.constants import RELATIONSHIP_TYPE
 from model import ROOT,PROJECT
 import manuscript_content as text
 
@@ -154,6 +155,15 @@ def main():
     para(f'This study extends the same sixteen-body multilayer biosensor assembly to directional motion, selected skin and adhesive stiffnesses, and explicit attachment scenarios. Verified tensor-basis solutions support 972 sampled directional responses in the main material matrix. Wire strain, disturbance relative to matched bare skin, and adhesive distortion identify {nfront} sampled nondominated options and make component/interface tradeoffs reviewable. The result is a conditional mechanical screening framework for prototype selection, with retained inputs and numerical checks. It does not establish biomarker sensing accuracy, comfort, fatigue life, or clinical benefit.')
     h('Data and code availability')
     para('The accompanying research package retains the original CAD, specified gap-filled construction, source scripts, solver inputs and execution records, verification cases, response tables, refined comparisons, and selected field arrays. Rejected and corrected numerical outputs are distinguished. All results are computational; no human or animal experiments were performed in this study.')
+    repository='https://github.com/aaravpatel0/Evaluation-of-Multilayer-Designs-for-Stable-Wearable-Biosensors/tree/codex/advanced-biosensor-study'
+    p=para('Source code and scalar results: ',indent=False)
+    link=OxmlElement('w:hyperlink');link.set(qn('r:id'),doc.part.relate_to(repository,RELATIONSHIP_TYPE.HYPERLINK,is_external=True))
+    run=OxmlElement('w:r');properties=OxmlElement('w:rPr')
+    font=OxmlElement('w:rFonts');font.set(qn('w:ascii'),'Cambria');font.set(qn('w:hAnsi'),'Cambria');properties.append(font)
+    size=OxmlElement('w:sz');size.set(qn('w:val'),'22');properties.append(size)
+    underline=OxmlElement('w:u');underline.set(qn('w:val'),'single');properties.append(underline)
+    run.append(properties);value=OxmlElement('w:t');value.text='project repository';run.append(value);link.append(run);p._p.append(link)
+    body_text.append('project repository: '+repository)
     h('References')
     references=refs()
     for i,s in enumerate(references,1):
@@ -165,6 +175,14 @@ def main():
             hf._element.append(OxmlElement('w:p'))
         p=section.footer.paragraphs[0];p.alignment=WD_ALIGN_PARAGRAPH.CENTER
         field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');p._p.append(field)
+    # Keep prose hyphens portable while preserving native mathematical minus signs.
+    clean=lambda value:value.translate({0x2010:'-',0x2011:'-',0x2012:'-',0x2013:'-',0x2014:'-'})
+    all_paragraphs=list(doc.paragraphs)
+    all_paragraphs.extend(p for table in doc.tables for row in table.rows for cell in row.cells for p in cell.paragraphs)
+    for p in all_paragraphs:
+        for run in p.runs:
+            if run.text!=clean(run.text):run.text=clean(run.text)
+    body_text[:]=[clean(value) for value in body_text]
     doc.core_properties.title=text.TITLE;doc.core_properties.author=AUTHORS.replace('*','');doc.core_properties.comments=''
     doc.save(OUT/'Biosensor_Advanced_Proceeding.docx')
     (OUT/'Advanced_Manuscript_Text.txt').write_text('\n\n'.join(body_text),encoding='utf-8')
