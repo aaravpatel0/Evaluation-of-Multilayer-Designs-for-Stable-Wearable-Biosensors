@@ -1,0 +1,189 @@
+{
+  "material_configurations": 27,
+  "basis_cases": 81,
+  "directional_responses": 972,
+  "additional_biaxial_shear_responses": 54,
+  "options": [
+    {
+      "design": "Uniform",
+      "adhesive_E_MPa": 0.05,
+      "worst_wire": 0.00022254220187242017,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 165.0
+      },
+      "worst_skin": 0.9887005704304795,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.04623399688770478,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": true
+    },
+    {
+      "design": "Uniform",
+      "adhesive_E_MPa": 0.1,
+      "worst_wire": 0.00023749057474481647,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 165.0
+      },
+      "worst_skin": 1.0298854392563679,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.02801811507738281,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": true
+    },
+    {
+      "design": "Uniform",
+      "adhesive_E_MPa": 0.5,
+      "worst_wire": 0.0002492382348029936,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 165.0
+      },
+      "worst_skin": 1.0920814574297562,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.009945792616827799,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": true
+    },
+    {
+      "design": "Single",
+      "adhesive_E_MPa": 0.05,
+      "worst_wire": 0.00023455547913169787,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 170.0
+      },
+      "worst_skin": 0.8830309147468242,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.036632590807752045,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": true
+    },
+    {
+      "design": "Single",
+      "adhesive_E_MPa": 0.1,
+      "worst_wire": 0.0002466319443417932,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 170.0
+      },
+      "worst_skin": 0.9136806783932621,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.0218753127583745,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": true
+    },
+    {
+      "design": "Single",
+      "adhesive_E_MPa": 0.5,
+      "worst_wire": 0.00025537081549694996,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 170.0
+      },
+      "worst_skin": 0.9696820800368002,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.009133693595904891,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": true
+    },
+    {
+      "design": "Graded",
+      "adhesive_E_MPa": 0.05,
+      "worst_wire": 0.00023871875135906485,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 170.0
+      },
+      "worst_skin": 0.90892425417458,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.03933402048250205,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": false
+    },
+    {
+      "design": "Graded",
+      "adhesive_E_MPa": 0.1,
+      "worst_wire": 0.0002514786929565015,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 170.0
+      },
+      "worst_skin": 0.9420674680023873,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.02355959516937796,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": false
+    },
+    {
+      "design": "Graded",
+      "adhesive_E_MPa": 0.5,
+      "worst_wire": 0.0002614550360149798,
+      "worst_wire_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 165.0
+      },
+      "worst_skin": 1.0001379812486841,
+      "worst_skin_case": {
+        "skin_E_MPa": 0.1,
+        "angle_deg": 90.0
+      },
+      "worst_adhesive": 0.009346215380294237,
+      "worst_adhesive_case": {
+        "skin_E_MPa": 0.5,
+        "angle_deg": 85.0
+      },
+      "sampled_Pareto_nondominated": false
+    }
+  ],
+  "scope": "Filled-contact, medium mesh; sampled extrema; refinement not yet evaluated"
+}
