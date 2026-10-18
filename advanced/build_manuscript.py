@@ -117,6 +117,13 @@ def main():
     nominal_max={design:max_direction(rows,'wire_p95_absolute_principal_strain')['wire_p95_absolute_principal_strain']
                  for design,rows in result['filled_contact_nominal'].items()}
     para(f'Relative to uniform support at nominal materials, the sampled maximum wire strain percentile changes by {100*(nominal_max["Single"]/nominal_max["Uniform"]-1):+.1f}% for the single-compliant architecture and {100*(nominal_max["Graded"]/nominal_max["Uniform"]-1):+.1f}% for the graded architecture. The single-to-graded change is {100*(nominal_max["Graded"]/nominal_max["Single"]-1):+.2f}%; its magnitude must be judged against the refinement changes in Table 2.')
+    fine_nominal={a['design']:a for a in result['mesh_comparisons']
+                  if a['geometry']=='Filled' and a['skin_E_MPa']==.2 and a['adhesive_E_MPa']==.1}
+    fine_pair_change=100*(fine_nominal['Graded']['wire']['fine_sampled_max']/fine_nominal['Single']['wire']['fine_sampled_max']-1)
+    pair_mesh_changes=[fine_nominal[d]['wire']['relative_change_percent'] for d in ['Single','Graded']]
+    para(f'The refined nominal single-to-graded wire change is {fine_pair_change:+.2f}%, compared with individual wire-metric refinement changes of {min(pair_mesh_changes):.2f}–{max(pair_mesh_changes):.2f}% for those architectures. These are observed changes between two meshes, not certified error bounds.')
+    if abs(fine_pair_change)<min(pair_mesh_changes):
+        para('The small nominal wire advantage of grading is below both observed refinement changes and should not be interpreted as resolved design superiority.')
     figure('Directional_Wire_Strain','Figure 3. Wire absolute principal-strain 95th percentile versus extension direction for filled contact and adhesive modulus 0.10 MPa. Lines use skin modulus 0.20 MPa; shading encloses the three sampled skin-modulus curves at 0.10, 0.20, and 0.50 MPa. The end point repeats the equivalent 0° direction. All curves use 1% prescribed principal extension.')
     extra_ranges=[]
     for label,description in [('Equibiaxial_0.5percent','0.5% equal biaxial extension'),
