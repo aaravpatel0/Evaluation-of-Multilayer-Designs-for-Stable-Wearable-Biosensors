@@ -2,6 +2,8 @@
 
 Three-dimensional finite-element evaluation of a sixteen-body wearable biosensor assembly under prescribed skin motion. Gmsh generates quadratic tetrahedral meshes; CalculiX CrunchiX performs the structural solves; Python prepares inputs, checks numerical consistency, and produces component metrics, figures, and the manuscript.
 
+**Validation review in progress:** the [advanced extension](advanced/README.md) adds local free-DOF equilibrium and direct tensor-superposition checks. Its read-only audit identified earlier assembly cases that require verified reruns. Treat the earlier manuscript and design rankings below as provisional while that review is completed. The old files are preserved for traceability and are not silently replaced.
+
 ## Read and view
 
 - [Eight-page manuscript (PDF)](detailed/output/Biosensor_Proceeding_3D.pdf)

@@ -1,0 +1,6 @@
+{
+  "interface_faces": 21637,
+  "area_mm2": 1659.5565332882907,
+  "affine_strain_max_error": 7.318798345146149e-15,
+  "interface_stress_max_error_MPa": 1.0402269323694924e-14
+}

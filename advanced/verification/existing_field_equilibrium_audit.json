@@ -1,0 +1,158 @@
+[
+  {
+    "case": "detailed/runs/h1.2_Graded_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.004565873768700077,
+    "prescribed_DOF_work_Nmm": 0.094151178742377,
+    "free_DOF_work_Nmm": 1.4757475392857126e-06
+  },
+  {
+    "case": "detailed/runs/h1.2_Single_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.0048788614532258015,
+    "prescribed_DOF_work_Nmm": 0.09344747789696099,
+    "free_DOF_work_Nmm": 1.5556928513388193e-06
+  },
+  {
+    "case": "detailed/runs/h1.2_Uniform_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.0038795873524358725,
+    "prescribed_DOF_work_Nmm": 0.09676103499854428,
+    "free_DOF_work_Nmm": -7.86026086315572e-07
+  },
+  {
+    "case": "detailed/runs/h1.7_Graded_Bending_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.1748164532720138,
+    "prescribed_DOF_work_Nmm": 0.0006008825008127098,
+    "free_DOF_work_Nmm": -0.00025618150284055627
+  },
+  {
+    "case": "detailed/runs/h1.7_Graded_Compression_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.00714009184673514,
+    "prescribed_DOF_work_Nmm": 0.023893242427285497,
+    "free_DOF_work_Nmm": -8.43753340218838e-06
+  },
+  {
+    "case": "detailed/runs/h1.7_Graded_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.007016297843711122,
+    "prescribed_DOF_work_Nmm": 0.095575215293367,
+    "free_DOF_work_Nmm": -3.6689114485840466e-05
+  },
+  {
+    "case": "detailed/runs/h1.7_Single_Bending_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.16342086217401686,
+    "prescribed_DOF_work_Nmm": 0.00073226778387627,
+    "free_DOF_work_Nmm": -0.00029112560865483697
+  },
+  {
+    "case": "detailed/runs/h1.7_Single_Compression_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.007135601073568654,
+    "prescribed_DOF_work_Nmm": 0.023702147971044002,
+    "free_DOF_work_Nmm": -7.679924583871011e-06
+  },
+  {
+    "case": "detailed/runs/h1.7_Single_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.0070550196535231645,
+    "prescribed_DOF_work_Nmm": 0.094806924606336,
+    "free_DOF_work_Nmm": -2.9803534293849038e-05
+  },
+  {
+    "case": "detailed/runs/h1.7_Uniform_Bending_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.1925773714906398,
+    "prescribed_DOF_work_Nmm": 0.00045567649926747,
+    "free_DOF_work_Nmm": -0.000210611724431597
+  },
+  {
+    "case": "detailed/runs/h1.7_Uniform_Compression_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.0007981554912794539,
+    "prescribed_DOF_work_Nmm": 0.024547017183629997,
+    "free_DOF_work_Nmm": 6.342824255025153e-06
+  },
+  {
+    "case": "detailed/runs/h1.7_Uniform_Tension_LE_P10000_A0.05",
+    "free_DOF_relative_force_residual": 0.0016725872673330553,
+    "prescribed_DOF_work_Nmm": 0.092009149633995,
+    "free_DOF_work_Nmm": 1.116444326053194e-05
+  },
+  {
+    "case": "detailed/runs/h1.7_Uniform_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.0007686289549695184,
+    "prescribed_DOF_work_Nmm": 0.098189360120574,
+    "free_DOF_work_Nmm": 2.2159604256774194e-05
+  },
+  {
+    "case": "detailed/runs/h1.7_Uniform_Tension_LE_P10000_A0.5",
+    "free_DOF_relative_force_residual": 0.0007530321448566076,
+    "prescribed_DOF_work_Nmm": 0.10942425448990498,
+    "free_DOF_work_Nmm": 4.078368214181141e-05
+  },
+  {
+    "case": "detailed/runs/h1.7_Uniform_Tension_LE_P130000_A0.1",
+    "free_DOF_relative_force_residual": 0.0039808567618806355,
+    "prescribed_DOF_work_Nmm": 0.09828733531570799,
+    "free_DOF_work_Nmm": -1.9436360598232394e-05
+  },
+  {
+    "case": "detailed/runs/h1.7_Uniform_Tension_LE_P2000_A0.1",
+    "free_DOF_relative_force_residual": 0.0008292410832143923,
+    "prescribed_DOF_work_Nmm": 0.098141330721705,
+    "free_DOF_work_Nmm": 2.5374894603045046e-05
+  },
+  {
+    "case": "detailed/runs/h2.5_Graded_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.0039457915579620495,
+    "prescribed_DOF_work_Nmm": 0.09780711019188,
+    "free_DOF_work_Nmm": -1.0968612663730982e-05
+  },
+  {
+    "case": "detailed/runs/h2.5_Single_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.00445780353309309,
+    "prescribed_DOF_work_Nmm": 0.09701273731493999,
+    "free_DOF_work_Nmm": -2.550532461784669e-05
+  },
+  {
+    "case": "detailed/runs/h2.5_Uniform_Tension_LE_P10000_A0.1",
+    "free_DOF_relative_force_residual": 0.0006835051494662142,
+    "prescribed_DOF_work_Nmm": 0.10071235628652,
+    "free_DOF_work_Nmm": 1.812918459694869e-05
+  },
+  {
+    "case": "advanced/runs/D64_h1.7_Uniform_S0.2_A0.1_XX",
+    "free_DOF_relative_force_residual": 1.3565896927289347,
+    "prescribed_DOF_work_Nmm": 0.6325144033020297,
+    "free_DOF_work_Nmm": -0.010470396729139124
+  },
+  {
+    "case": "advanced/runs/D64_h1.7_Uniform_S0.2_A0.1_XY",
+    "free_DOF_relative_force_residual": 1.4425828832886347,
+    "prescribed_DOF_work_Nmm": 0.2837163858395726,
+    "free_DOF_work_Nmm": -0.005910454161247498
+  },
+  {
+    "case": "advanced/runs/D64_h1.7_Uniform_S0.2_A0.1_YY",
+    "free_DOF_relative_force_residual": 1.6826139450848203,
+    "prescribed_DOF_work_Nmm": 0.31750656956836765,
+    "free_DOF_work_Nmm": -0.01727345797962445
+  },
+  {
+    "case": "advanced/runs/h1.7_Uniform_S0.2_A0.1_Direct45",
+    "free_DOF_relative_force_residual": 0.0017309907774977476,
+    "prescribed_DOF_work_Nmm": 0.09908264627861481,
+    "free_DOF_work_Nmm": -9.31164434999952e-06
+  },
+  {
+    "case": "advanced/runs/h1.7_Uniform_S0.2_A0.1_XX",
+    "free_DOF_relative_force_residual": 0.0008570311886811111,
+    "prescribed_DOF_work_Nmm": 0.11869395382088943,
+    "free_DOF_work_Nmm": -2.267326450365885e-05
+  },
+  {
+    "case": "advanced/runs/h1.7_Uniform_S0.2_A0.1_XY",
+    "free_DOF_relative_force_residual": 0.0014521154349983957,
+    "prescribed_DOF_work_Nmm": 0.03501747217671533,
+    "free_DOF_work_Nmm": -3.251942594906085e-06
+  },
+  {
+    "case": "advanced/runs/h1.7_Uniform_S0.2_A0.1_YY",
+    "free_DOF_relative_force_residual": 0.0008417319324341943,
+    "prescribed_DOF_work_Nmm": 0.11996825686682201,
+    "free_DOF_work_Nmm": 9.14676716290522e-06
+  }
+]

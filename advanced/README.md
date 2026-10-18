@@ -1,0 +1,53 @@
+# Advanced study in progress
+
+This separate extension preserves the supplied sixteen-body geometry and the three equal-thickness support architectures. It does not overwrite the earlier manuscript or simulation results.
+
+## Planned questions and decision metrics
+
+1. Does support-design ranking depend on the direction of prescribed skin extension?
+2. Does a material choice remain favorable across assumed skin stiffnesses?
+3. Do reduced wire strains trade off against higher skin disturbance or adhesive-interface loading?
+
+The planned factorial inputs are support architecture (Uniform, Single, Graded), adhesive modulus (0.05, 0.10, 0.50 MPa), and skin modulus (0.10, 0.20, 0.50 MPa). These are analyst-selected sensitivity levels, not a patient population or probability distribution. Geometry, package surrogates, and perfect bonding remain fixed.
+
+Three independent linear kinematic basis problems prescribe epsilon_xx, epsilon_yy, and engineering gamma_xy on the projected outer contour of the skin through its thickness, with out-of-plane motion free except one reference displacement. The contour includes the rounded footprint; filleted edge nodes projected inside the contour remain free. Tensor fields, rather than scalar stresses or percentiles, will be combined to reconstruct directional extension. The same constrained degrees of freedom are used for every basis problem. Directional extension includes nominal transverse contraction at nu=0.49. Perimeter kinematics represent controlled fixtures rather than a particular anatomical site.
+
+All reported cases must pass execution, final-load, force/moment balance, and internal-versus-external energy checks. A homogeneous cube checks the analytical strain and stress tensors, shear convention, and energies. Direct mixed-loading solves must check tensor-field superposition. Selected refined meshes will assess the sensitivity of new decision metrics.
+
+Metrics will include wire stress and principal strain, area-weighted skin–adhesive traction estimates without smoothing across materials, and the volume-weighted RMS perturbation of skin strain relative to a homogeneous skin reference. Interface metrics do not predict detachment without experimentally established strength/toughness. Skin disturbance is a mechanical metric, not a comfort, irritation, injury, or clinical-performance prediction.
+
+## Audited geometric issue and controlled comparison
+
+The supplied skin has a broad planar top at z=2.00 mm. The adhesive has a broad planar underside at z=2.01 mm, leaving a 10 micrometre gap. Contact in the supplied geometry is restricted to textured shared surfaces: 93.9964 mm2 on the h=1.7 mesh. This is distinct from the roughly 1600 mm2 adhesive footprint.
+
+`mesh_contact.py` creates an explicit alternative by extruding the broad planar adhesive underside down by 0.01 mm and fusing that extension into the adhesive. It does not move or replace the skin, electronics, wires, or support partitions, and does not extend the textured protrusion tips. The filled adhesive adds 15.62998 mm3 before fragmentation. Its accepted h=1.7 mesh has 267146 quadratic tetrahedra, 412220 nodes, positive Jacobians, and 1659.0357 mm2 of shared skin–adhesive surface (including texture). Area exceeds projected footprint because it includes nonplanar features. This is a specified manufactured-contact scenario, not a correction asserted to describe the real device.
+
+The main material/direction matrix will use the explicitly filled scenario, with the supplied-contact geometry retained as a sensitivity comparison. No outcomes from these two scenarios will be pooled or silently relabeled.
+
+## Numerical pilot findings and acceptance gate
+
+The original affine-perimeter pilot using the bundled PaStiX default mixed precision passed force and energy checks but failed a direct mixed-load comparison: relative displacement discrepancy 0.1335, stress discrepancy 0.001884, and strain discrepancy 0.001317. These outputs are exploratory and are excluded from final design ranking. This shows why force balance and energy balance alone are insufficient acceptance tests for these stiffness contrasts.
+
+Setting `PASTIX_MIXED_PRECISION=0` did not change the precision reported by this particular binary on the tested linear path. An alternate symmetric PARDISO trial passed small benchmarks but failed assembly-level free-DOF equilibrium checks and is also excluded. That diagnostic trial used an existing Intel oneMKL runtime supplied with ANSYS Student's Lumerical installation; it did not run an ANSYS structural simulation. Neither that runtime nor its rejected fields are required for the accepted backend.
+
+The current backend is Ubuntu 22.04's `calculix-ccx` package (2.17-3), running the SPOOLES solver under WSL. Both Windows SPOOLES builds crashed on the large assembly and were replaced by the Linux build, not treated as completed solves. Runs execute in a native Linux directory and copy completed outputs to the project in bulk. The eight analytical/direct-mixed cube cases and independent high-contrast quadratic comparisons pass the revised checks. Full-assembly direct superposition remains a separate gate before accepting directional envelopes.
+
+Recovered pointwise traction mismatch between the skin and adhesive sides exceeded 100% in the unaccepted mixed-precision pilot. Such traction estimates are diagnostic only unless further accuracy and refinement checks support them; they will not automatically be treated as validated interface-load predictions. Adhesive strain-energy measures and skin-strain perturbation offer additional, explicitly mechanical comparison metrics.
+
+## Reproduction sequence in this environment
+
+Install the Python packages in `requirements.txt`. The accepted backend additionally needs WSL with an Ubuntu 22.04 installation and its `calculix-ccx` package. `BIOSENSOR_WSL_DISTRO` can override the distribution name; `BIOSENSOR_WSL_RUN_ROOT` can override the native temporary run directory. The Windows backend switches are retained for diagnostic provenance and do not constitute accepted replacement solvers.
+
+```powershell
+python advanced/verify_basis.py
+python advanced/verify_independent.py
+python advanced/mesh_contact.py --h 1.7 --wire .14
+python advanced/mesh_contact.py --h 1.2 --wire .10
+python advanced/run_study.py --phase pilot
+python advanced/run_expanded.py
+python advanced/summarize.py
+```
+
+The expanded runner first verifies the supplied-geometry direct gate, evaluates all three supplied-contact architectures at nominal materials, verifies the filled-geometry direct gate, and then evaluates its 27 material configurations with three basis loads each. This is 90 medium-mesh basis solves plus separate direct validation cases. Refined-mesh checks and the final new manuscript remain subsequent steps. The script stops at a failed numerical gate; it does not silently relax acceptance to finish the matrix.
+
+The proposed scope remains a computational mechanical design study. Material calibration, hidden chip internals, electrical drift, fatigue, and human outcomes are not invented. Advanced here means stronger questions, multiaxial boundary conditions, uncertainty exploration, and better verification; a favorable design result is not guaranteed.

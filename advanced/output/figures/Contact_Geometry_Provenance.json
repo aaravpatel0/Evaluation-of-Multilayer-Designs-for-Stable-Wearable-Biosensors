@@ -1,0 +1,10 @@
+{
+  "global_mesh_size_mm": 1.7,
+  "bin_width_mm": 1,
+  "shared_surface_areas_mm2": {
+    "Supplied": 93.99642833536407,
+    "Filled": 1659.0356731526085
+  },
+  "color": "Actual shared triangle areas accumulated by projected face centroid, divided by 1 mm2 bin area",
+  "limitation": "Geometric surface-area density, not pressure, adhesion strength, or a measured device contact map"
+}

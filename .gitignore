@@ -29,3 +29,7 @@ detailed/verification/
 detailed/output/ANSYS_Comparison/
 detailed/study_progress.json
 output/Package_Manifest.json
+advanced/runs/
+advanced/meshes/
+advanced/cache/
+advanced/verification/

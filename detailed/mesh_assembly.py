@@ -5,10 +5,30 @@ Internal cuts partition the original 1 mm PDMS for equal-thickness controls.
 from pathlib import Path
 import gmsh,numpy as np,json,re,time,argparse
 root=Path(__file__).parent
-def build(h=2.5,wire=.20):
-    start=time.time();dest=root/'meshes'/f'h{h:g}';dest.mkdir(parents=True,exist_ok=True)
+def build(h=2.5,wire=.20,contact_fill_mm=0.,dest_root=None):
+    start=time.time();dest=(root/'meshes' if dest_root is None else Path(dest_root))/f'h{h:g}';dest.mkdir(parents=True,exist_ok=True)
     gmsh.initialize();gmsh.option.setNumber('General.NumThreads',1);gmsh.option.setNumber('General.Terminal',1)
     gmsh.model.occ.importShapes(str(root/'sources/biosensor_original.step'));gmsh.model.occ.synchronize();original=gmsh.model.getEntities(3)
+    # Optional explicitly identified geometry scenario. Default preserves the original CAD.
+    adhesive_original_volume=gmsh.model.occ.getMass(*original[1])
+    if contact_fill_mm:
+        assert 0 < contact_fill_mm <= .01
+        # Extrude only the broad planar adhesive underside into the audited gap.
+        # Translating an entire textured solid would create unnecessary sliver faces.
+        skin_top=gmsh.model.occ.getBoundingBox(*original[0])[5]-1e-7
+        underside=[]
+        for dim,tag in gmsh.model.getBoundary([original[1]],oriented=False):
+            bb=gmsh.model.occ.getBoundingBox(dim,tag)
+            if abs(bb[5]-bb[2])<1e-5 and abs((bb[2]+bb[5])/2-(skin_top+contact_fill_mm))<1e-5:
+                underside.append((dim,tag))
+        assert underside,'No planar adhesive underside at the audited gap height.'
+        extrusion=gmsh.model.occ.extrude(gmsh.model.occ.copy(underside),0,0,-contact_fill_mm)
+        extension=[(d,t) for d,t in extrusion if d==3]
+        fused,_=gmsh.model.occ.fuse([original[1]],extension)
+        assert len(fused)==1 and fused[0][0]==3
+        original[1]=fused[0]
+        gmsh.model.occ.synchronize()
+    adhesive_scenario_volume=gmsh.model.occ.getMass(*original[1])
     names=re.findall(r"MANIFOLD_SOLID_BREP\('([^']*)'",(root/'sources/biosensor_original.step').read_text())
     planes=[(2,gmsh.model.occ.addRectangle(-40,-40,z,80,80)) for z in [2.56,2.81]]
     out,mapping=gmsh.model.occ.fragment(original,planes);gmsh.model.occ.synchronize();membership={}
@@ -51,7 +71,7 @@ def build(h=2.5,wire=.20):
     assert min(det)>0
     np.savez_compressed(dest/'mesh.npz',points=p,cells=c,region=np.array(regions))
     gmsh.option.setNumber('Mesh.MshFileVersion',4.1);gmsh.write(str(dest/'assembly.msh'))
-    report=dict(h_mm=h,wire_size_mm=wire,nodes=len(p),elements=len(c),dofs=3*len(p),minimum_quality=float(min(qual)),minimum_jacobian=float(min(det)),elapsed_seconds=time.time()-start,fragments=audit,part_names=names)
+    report=dict(h_mm=h,wire_size_mm=wire,nodes=len(p),elements=len(c),dofs=3*len(p),minimum_quality=float(min(qual)),minimum_jacobian=float(min(det)),elapsed_seconds=time.time()-start,fragments=audit,part_names=names,contact_fill_mm=contact_fill_mm,adhesive_original_volume_mm3=adhesive_original_volume,adhesive_scenario_volume_before_fragmentation_mm3=adhesive_scenario_volume)
     (dest/'mesh_audit.json').write_text(json.dumps(report,indent=2));gmsh.finalize();print(json.dumps({k:v for k,v in report.items() if k not in ['fragments','part_names']},indent=2));return dest
 if __name__=='__main__':
     a=argparse.ArgumentParser();a.add_argument('--h',type=float,default=2.5);a.add_argument('--wire',type=float,default=.2);args=a.parse_args();build(args.h,args.wire)

@@ -1,0 +1,26 @@
+{
+  "returncode": 0,
+  "elapsed_seconds": 0.4100375175476074,
+  "job_finished": true,
+  "deck_sha256": "0f40c7cb02fd2315620523f897facf929b5b110d805d988adab53fb137e01f6d",
+  "solver_environment": {
+    "OMP_NUM_THREADS": "4",
+    "CCX_NPROC_RESULTS": "4"
+  },
+  "execution_backend": "WSL",
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu-22.04",
+    "--cd",
+    "/home/aarav/.cache/biosensor_advanced_cases/nu0.3_XX_0f40c7cb02fd",
+    "--",
+    "env",
+    "OMP_NUM_THREADS=4",
+    "CCX_NPROC_RESULTS=4",
+    "ccx",
+    "-i",
+    "job"
+  ],
+  "error_lines": []
+}

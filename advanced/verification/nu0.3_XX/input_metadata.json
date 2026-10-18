@@ -1,0 +1,23 @@
+{
+  "mesh_path": "advanced\\verification\\cube.npz",
+  "design": "Uniform",
+  "geometry_scenario": "Supplied",
+  "loading": [
+    0.01,
+    0.0,
+    0.0
+  ],
+  "skin_E_MPa": 1,
+  "adhesive_E_MPa": 0.1,
+  "homogeneous": true,
+  "nu": 0.3,
+  "nodes": 423,
+  "elements": 184,
+  "perimeter_nodes": 232,
+  "z_reference_node": 2,
+  "mesh_sha256": "299a65adda0688f0b9c6096a79b1dbe3a883fcce6c499440ae2c9acd0deb16fd",
+  "linear_solver": "SPOOLES",
+  "executable_name": "/usr/bin/ccx",
+  "execution_backend": "WSL",
+  "deck_sha256": "0f40c7cb02fd2315620523f897facf929b5b110d805d988adab53fb137e01f6d"
+}

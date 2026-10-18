@@ -1,0 +1,26 @@
+{
+  "returncode": 0,
+  "elapsed_seconds": 0.49398183822631836,
+  "job_finished": true,
+  "deck_sha256": "ba0aca2e4c7b8ccb3febb8105718d0acda00eb5727a1ffb96c4cac8c70b972fc",
+  "solver_environment": {
+    "OMP_NUM_THREADS": "4",
+    "CCX_NPROC_RESULTS": "4"
+  },
+  "execution_backend": "WSL",
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu-22.04",
+    "--cd",
+    "/home/aarav/.cache/biosensor_advanced_cases/independent_contrast_392500_ba0aca2e4c7b",
+    "--",
+    "env",
+    "OMP_NUM_THREADS=4",
+    "CCX_NPROC_RESULTS=4",
+    "ccx",
+    "-i",
+    "job"
+  ],
+  "error_lines": []
+}
