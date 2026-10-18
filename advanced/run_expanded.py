@@ -13,6 +13,7 @@ def main():
     verified=json.loads((ROOT/'verification/independent_high_contrast.json').read_text())
     assert {r['contrast'] for r in verified}=={10.,392500.,1570000.}
     assert all(r['accepted'] and r['independent_displacement_relative_error']<2e-5 for r in verified)
+    assert all(max(r['independent_element_mean_tensor_relative_errors'].values())<2e-5 for r in verified)
     # Refresh the accepted direct gate using the current checker and cached solves.
     direct_gate(geometry='Supplied')
     completed=[]

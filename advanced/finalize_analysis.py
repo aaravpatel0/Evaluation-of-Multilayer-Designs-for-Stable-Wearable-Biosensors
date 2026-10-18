@@ -19,8 +19,10 @@ def main():
     independent=json.loads((ROOT/'verification/independent_high_contrast.json').read_text())
     assert {r['contrast'] for r in independent}=={10.,392500.,1570000.}
     assert all(r['accepted'] and r['independent_displacement_relative_error']<2e-5 for r in independent)
+    assert all(max(r['independent_element_mean_tensor_relative_errors'].values())<2e-5 for r in independent)
     summary['independent_verification_contrasts']=[r['contrast'] for r in independent]
     summary['maximum_independent_displacement_relative_error']=max(r['independent_displacement_relative_error'] for r in independent)
+    summary['maximum_independent_element_mean_tensor_error']=max(max(r['independent_element_mean_tensor_relative_errors'].values()) for r in independent)
     targets=json.loads((ROOT/'output/Refinement_Targets.json').read_text())
     assert len(targets)>=4
     comparisons=[]

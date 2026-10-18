@@ -4,6 +4,10 @@
     "nu": 0.49,
     "independent_displacement_relative_error": 7.730212462475344e-08,
     "displacement_max_absolute_error_mm": 4.986395671369159e-10,
+    "independent_element_mean_tensor_relative_errors": {
+      "strain": 7.014990606709456e-08,
+      "stress": 8.248013044103726e-08
+    },
     "checks_schema": 2,
     "internal_energy_Nmm": 4.1394467617978834e-05,
     "external_work_Nmm": 4.1394468120849935e-05,
@@ -21,6 +25,10 @@
     "nu": 0.49,
     "independent_displacement_relative_error": 8.174791737076665e-08,
     "displacement_max_absolute_error_mm": 6.882953174427997e-10,
+    "independent_element_mean_tensor_relative_errors": {
+      "strain": 8.063323710583888e-08,
+      "stress": 8.21327831900311e-08
+    },
     "checks_schema": 2,
     "internal_energy_Nmm": 1.1879621083750704,
     "external_work_Nmm": 1.1879621770248894,
@@ -38,6 +46,10 @@
     "nu": 0.49,
     "independent_displacement_relative_error": 1.1272874232448181e-07,
     "displacement_max_absolute_error_mm": 9.916238407660372e-10,
+    "independent_element_mean_tensor_relative_errors": {
+      "strain": 7.726723774842554e-08,
+      "stress": 1.1461349501590059e-07
+    },
     "checks_schema": 2,
     "internal_energy_Nmm": 4.751808257343617,
     "external_work_Nmm": 4.751808452146356,
