@@ -1,0 +1,18 @@
+{
+  "python": "3.12.14",
+  "host_system": "Windows",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.18.1",
+    "gmsh": "4.15.2",
+    "meshio": "5.3.5",
+    "scikit-fem": "12.0.2",
+    "matplotlib": "3.11.2",
+    "python-docx": "1.2.0",
+    "pymupdf": "1.28.2",
+    "plotly": "7.1.0"
+  },
+  "requirement_pins_match": true,
+  "solver_record": "advanced/sources/software_provenance.json",
+  "scope": "Tested local authoring and postprocessing environment; solver executes separately under WSL as recorded for each case."
+}
