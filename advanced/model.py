@@ -112,6 +112,17 @@ def execute(dest):
     env['PATH']=str(MKL_DIR)+os.pathsep+env.get('PATH','')
     start = time.time()
     if BACKEND=='WSL':
+        # WSL may stop between solves while Windows performs field processing.
+        # Re-enable only this study's existing task-owned swapfile for large
+        # assemblies. Do not create files or alter persistent system settings.
+        memory_support=None
+        if json.loads((dest/'input_metadata.json').read_text())['nodes']>=500000:
+            swap_setup=subprocess.run(['wsl','-d',WSL_DISTRO,'-u','root','--','sh','-c',
+                'if test -f /var/tmp/biosensor-advanced.swap; then '
+                'swapon --show=NAME --noheadings | grep -Fx /var/tmp/biosensor-advanced.swap >/dev/null '
+                '|| swapon /var/tmp/biosensor-advanced.swap; '
+                'swapon --show; fi'],check=True,capture_output=True,text=True)
+            memory_support=swap_setup.stdout.strip() or None
         absolute=dest.resolve().as_posix()
         linux_dest='/mnt/'+absolute[0].lower()+absolute[2:]
         native_dest=WSL_RUN_ROOT+'/'+dest.name+'_'+expected[:12]
@@ -133,6 +144,8 @@ def execute(dest):
                   job_finished='Job finished' in log, deck_sha256=expected,solver_environment=SOLVER_CONFIG,
                   execution_backend=BACKEND,command=command,
                   error_lines=[line for line in log.splitlines() if '*ERROR' in line])
+    if BACKEND=='WSL':
+        result['temporary_memory_support']=memory_support
     (dest/'execution.json').write_text(json.dumps(result, indent=2))
     assert result['job_finished'] and not result['error_lines'] and run.returncode == 0, log[-4000:]
     assert SOLVER_NAME in log.upper(),'Requested solver not confirmed in solver log.'
