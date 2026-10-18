@@ -18,6 +18,11 @@ def summarize():
         responses=json.loads(path.read_text())
         assert len(responses)==38
         assert {r['angle_deg'] for r in responses if r['angle_deg'] is not None}==set(range(0,180,5))
+        assert {r['loading'] for r in responses if r['angle_deg'] is None}=={
+            'Equibiaxial_0.5percent','Engineering_shear_1percent'}
+        assert all(r['design']==design and r['skin_E_MPa']==skin and
+                   r['adhesive_E_MPa']==adhesive and r['geometry_scenario']=='Filled' and
+                   r['mesh_h_mm']==1.7 for r in responses)
         rows.extend(responses)
     with (ROOT/'output/All_Directional_Responses.csv').open('w',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=rows[0]);writer.writeheader();writer.writerows(rows)

@@ -110,6 +110,13 @@ def main():
         ranges.append(f'{design.lower()}: {100*min(values):.3g}–{100*max(values):.3g}%')
     para('At nominal skin and adhesive moduli in the filled-contact geometry, the sampled wire strain percentiles span '+ '; '.join(ranges)+'. Figure 3 shows the directional response at nominal adhesive modulus, with bands spanning the selected skin stiffnesses. The bands represent parameter dependence, not statistical confidence intervals or a patient population.')
     figure('Directional_Wire_Strain','Figure 3. Wire absolute principal-strain 95th percentile versus extension direction for filled contact and adhesive modulus 0.10 MPa. Lines use skin modulus 0.20 MPa; shading spans 0.10–0.50 MPa. The end point repeats the equivalent 0° direction. All curves use 1% prescribed principal extension.')
+    extra_ranges=[]
+    for label,description in [('Equibiaxial_0.5percent','0.5% equal biaxial extension'),
+                              ('Engineering_shear_1percent','1% engineering shear')]:
+        values=[next(r for r in rows if r['loading']==label)['wire_p95_absolute_principal_strain']
+                for rows in result['filled_contact_nominal'].values()]
+        extra_ranges.append(f'{description}: {100*min(values):.3g}–{100*max(values):.3g}%')
+    para('For nominal materials, the additional loadings give wire strain percentiles across the three support architectures of '+ '; '.join(extra_ranges)+'. Both additional tensors have maximum absolute prescribed in-plane principal strain 0.5%, versus 1% in the directional screen. They are separate motion comparisons and do not enter its directional envelopes or worst-case Pareto coordinates.')
     h('3.3. Attachment and mechanical tradeoffs',True)
     for design in ['Uniform','Single','Graded']:
         key='wire_p95_absolute_principal_strain'
