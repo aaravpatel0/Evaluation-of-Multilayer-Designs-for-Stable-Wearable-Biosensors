@@ -1,0 +1,16 @@
+{
+  "case": "runs\\h1.2_Uniform_Tension_LE_P10000_A0.1",
+  "mesh": "h1.2",
+  "displacement_display_scale": 10,
+  "stress_measure": "Adjacent element mean of four integration-point von Mises values",
+  "stress_color_range_MPa": [
+    0,
+    5
+  ],
+  "stress_saturated_above_MPa": 5,
+  "hidden_regions": [
+    16
+  ],
+  "skin_and_supports": "Nominal material colors; stress not shown",
+  "rendering": "Orthographic projection of corner-node surface triangles; no cross-material stress smoothing"
+}

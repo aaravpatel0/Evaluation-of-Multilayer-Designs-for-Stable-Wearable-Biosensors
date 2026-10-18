@@ -1,0 +1,224 @@
+{
+  "mesh_h_mm": 1.7,
+  "design": "Uniform",
+  "mode": "Tension",
+  "nonlinear": false,
+  "package_E_MPa": 10000.0,
+  "adhesive_E_MPa": 0.5,
+  "nodes": 436391,
+  "elements": 272194,
+  "left_nodes": 1012,
+  "right_nodes": 988,
+  "material_assumptions": {
+    "Skin": {
+      "E_MPa": 0.2,
+      "nu": 0.49
+    },
+    "Adhesive": {
+      "E_MPa": 0.5,
+      "nu": 0.49
+    },
+    "ABS_sensor_housing": {
+      "E_MPa": 2300.0,
+      "nu": 0.35
+    },
+    "Sensor_1": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Sensor_2": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Sensor_3": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Sensor_4": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Gold_feature_1": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "RC_transmitter": {
+      "E_MPa": 20000.0,
+      "nu": 0.3
+    },
+    "Gold_feature_2": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "ABS_feature": {
+      "E_MPa": 2300.0,
+      "nu": 0.35
+    },
+    "Gold_wire_1": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "Gold_wire_2": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "Sensor_5": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "PDMS_cover": {
+      "E_MPa": 1.8,
+      "nu": 0.49
+    },
+    "Lower_PDMS": {
+      "E_MPa": 1.8,
+      "nu": 0.49
+    },
+    "Middle_PDMS": {
+      "E_MPa": 1.8,
+      "nu": 0.49
+    },
+    "Upper_PDMS": {
+      "E_MPa": 1.8,
+      "nu": 0.49
+    }
+  },
+  "part_metrics": [
+    {
+      "part": "ABS_sensor_housing",
+      "region": 4,
+      "gp_count": 58068,
+      "mesh_volume_mm3": 206.02854125388185,
+      "mean_vm_MPa": 0.06427133098948394,
+      "p95_vm_MPa": 0.1230951669634514,
+      "max_gp_vm_MPa": 6.714058443593466,
+      "mean_abs_principal_strain": 2.574444627342854e-05,
+      "max_abs_principal_strain": 0.0030023692719792078
+    },
+    {
+      "part": "Sensor_1",
+      "region": 5,
+      "gp_count": 344,
+      "mesh_volume_mm3": 1.0000000000000002,
+      "mean_vm_MPa": 0.1630736424516907,
+      "p95_vm_MPa": 0.26294213546002776,
+      "max_gp_vm_MPa": 0.3006095309706674,
+      "mean_abs_principal_strain": 1.437586980925225e-05,
+      "max_abs_principal_strain": 2.727481100446698e-05
+    },
+    {
+      "part": "Sensor_2",
+      "region": 6,
+      "gp_count": 328,
+      "mesh_volume_mm3": 1.0,
+      "mean_vm_MPa": 0.24948754847645788,
+      "p95_vm_MPa": 0.38505698361758467,
+      "max_gp_vm_MPa": 0.4364792934477866,
+      "mean_abs_principal_strain": 2.2024103191470778e-05,
+      "max_abs_principal_strain": 4.0847545553560366e-05
+    },
+    {
+      "part": "Sensor_3",
+      "region": 7,
+      "gp_count": 332,
+      "mesh_volume_mm3": 1.0000000000000004,
+      "mean_vm_MPa": 0.1516137975016243,
+      "p95_vm_MPa": 0.23961983306959653,
+      "max_gp_vm_MPa": 0.2928197932374556,
+      "mean_abs_principal_strain": 1.3928842282735664e-05,
+      "max_abs_principal_strain": 2.8041763191436133e-05
+    },
+    {
+      "part": "Sensor_4",
+      "region": 8,
+      "gp_count": 328,
+      "mesh_volume_mm3": 1.0000000000000013,
+      "mean_vm_MPa": 0.21296152902208837,
+      "p95_vm_MPa": 0.32269045309884975,
+      "max_gp_vm_MPa": 0.38450613186798116,
+      "mean_abs_principal_strain": 1.9770289426079723e-05,
+      "max_abs_principal_strain": 3.695811301989387e-05
+    },
+    {
+      "part": "Gold_feature_1",
+      "region": 9,
+      "gp_count": 5644,
+      "mesh_volume_mm3": 13.489066777116353,
+      "mean_vm_MPa": 1.4103052557126514,
+      "p95_vm_MPa": 2.8532012094120143,
+      "max_gp_vm_MPa": 9.599785359692621,
+      "mean_abs_principal_strain": 1.7182292473839312e-05,
+      "max_abs_principal_strain": 0.00012042582298005009
+    },
+    {
+      "part": "RC_transmitter",
+      "region": 10,
+      "gp_count": 8164,
+      "mesh_volume_mm3": 246.70184070456762,
+      "mean_vm_MPa": 0.06094456153633089,
+      "p95_vm_MPa": 0.1382933348864303,
+      "max_gp_vm_MPa": 9.674971133558234,
+      "mean_abs_principal_strain": 2.7146051780946934e-06,
+      "max_abs_principal_strain": 0.000517416479756041
+    },
+    {
+      "part": "Gold_feature_2",
+      "region": 11,
+      "gp_count": 12636,
+      "mesh_volume_mm3": 24.38772043027474,
+      "mean_vm_MPa": 1.771192725997991,
+      "p95_vm_MPa": 4.108119304775676,
+      "max_gp_vm_MPa": 13.064390301275244,
+      "mean_abs_principal_strain": 2.166435352029751e-05,
+      "max_abs_principal_strain": 0.0001700425668458376
+    },
+    {
+      "part": "ABS_feature",
+      "region": 12,
+      "gp_count": 2356,
+      "mesh_volume_mm3": 39.796758661598695,
+      "mean_vm_MPa": 0.23554017271649394,
+      "p95_vm_MPa": 0.5045817662512712,
+      "max_gp_vm_MPa": 0.6326462725891882,
+      "mean_abs_principal_strain": 0.00010016461702976288,
+      "max_abs_principal_strain": 0.00027358336384192207
+    },
+    {
+      "part": "Gold_wire_1",
+      "region": 13,
+      "gp_count": 17996,
+      "mesh_volume_mm3": 0.6145096511187932,
+      "mean_vm_MPa": 4.388278515096983,
+      "p95_vm_MPa": 9.155671352000839,
+      "max_gp_vm_MPa": 33.83588983379251,
+      "mean_abs_principal_strain": 5.358619362796353e-05,
+      "max_abs_principal_strain": 0.00043823533373291493
+    },
+    {
+      "part": "Gold_wire_2",
+      "region": 14,
+      "gp_count": 18148,
+      "mesh_volume_mm3": 0.6145096511200958,
+      "mean_vm_MPa": 4.523433923782799,
+      "p95_vm_MPa": 9.442323927358236,
+      "max_gp_vm_MPa": 35.7579946992043,
+      "mean_abs_principal_strain": 5.525146870141325e-05,
+      "max_abs_principal_strain": 0.0004630243705083187
+    },
+    {
+      "part": "Sensor_5",
+      "region": 15,
+      "gp_count": 17492,
+      "mesh_volume_mm3": 24.868694432230576,
+      "mean_vm_MPa": 0.14191645998281058,
+      "p95_vm_MPa": 0.2579860037878279,
+      "max_gp_vm_MPa": 0.6538925152749469,
+      "mean_abs_principal_strain": 1.2327735162623753e-05,
+      "max_abs_principal_strain": 6.64718134852337e-05
+    }
+  ],
+  "force_balance_N": 6.584834210887731e-09,
+  "relative_force_balance": 2.3171230714456214e-07,
+  "maximum_displacement_mm": 0.9830019216366123,
+  "minimum_element_volume_mm3": 1.6280405685441776e-08
+}

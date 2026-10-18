@@ -1,0 +1,9 @@
+# Preserve original geometry, outputs, and manifest hashes across Windows checkouts.
+* -text
+*.docx binary
+*.pdf binary
+*.png binary
+*.step -diff
+detailed/output/Biosensor_3D_Viewer.html -diff linguist-generated=true
+detailed/runs/** linguist-generated=true
+detailed/verification/** linguist-generated=true

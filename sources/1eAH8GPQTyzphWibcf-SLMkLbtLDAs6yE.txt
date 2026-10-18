@@ -1,0 +1,352 @@
+! =====================================================================
+! MODEL 3A: TWO-LAYER GRADED BUFFER WEARABLE SENSOR
+! LOAD CASE A: VERTICAL SKIN PULL
+!
+! Bottom-to-top arrangement:
+!   1. Skin
+!   2. Soft buffer       (0.10 mm, E = 0.10 MPa)
+!   3. Medium buffer     (0.10 mm, E = 0.50 MPa)
+!   4. PDMS substrate
+!   5. Gold sensor region / encapsulation outside sensor region
+!   6. Encapsulation layer
+!
+! Total buffer thickness = 0.20 mm
+!
+! Loading:
+!   Far-right skin nodes prescribed UY = -1.00 mm
+!
+! Units: mm, N, MPa
+! =====================================================================
+
+FINISH
+/CLEAR
+/FILNAME,model3a_graded_buffer_vertical_pull,1
+/TITLE,Model 3A - Two-Layer Graded Buffer Vertical Skin Pull
+
+/PREP7
+
+! ---------------------------------------------------------------------
+! PARAMETERS
+! ---------------------------------------------------------------------
+
+model_length  = 5.00
+sensor_length = 1.00
+
+t_skin        = 2.00
+t_buffer_soft = 0.10
+t_buffer_med  = 0.10
+t_pdms        = 0.20
+t_sensor      = 0.02
+t_encap       = 0.10
+
+tol = 1E-6
+applied_disp = 1.00
+
+! Layer-interface coordinates
+y0 = 0
+y1 = y0 + t_skin
+y2 = y1 + t_buffer_soft
+y3 = y2 + t_buffer_med
+y4 = y3 + t_pdms
+y5 = y4 + t_sensor
+y6 = y5 + t_encap
+
+! ---------------------------------------------------------------------
+! ELEMENT TYPE
+! ---------------------------------------------------------------------
+
+ET,1,PLANE183
+KEYOPT,1,3,2          ! Plane strain
+KEYOPT,1,6,1          ! Mixed u-P formulation for nearly incompressible layers
+
+! ---------------------------------------------------------------------
+! MATERIAL PROPERTIES
+! ---------------------------------------------------------------------
+
+! Material 1: Skin
+E_skin  = 0.20
+nu_skin = 0.49
+MP,EX,1,E_skin
+MP,PRXY,1,nu_skin
+
+! Material 2: Soft buffer
+E_buffer_soft  = 0.10
+nu_buffer_soft = 0.49
+MP,EX,2,E_buffer_soft
+MP,PRXY,2,nu_buffer_soft
+
+! Material 3: Medium buffer
+E_buffer_med  = 0.50
+nu_buffer_med = 0.49
+MP,EX,3,E_buffer_med
+MP,PRXY,3,nu_buffer_med
+
+! Material 4: PDMS
+E_pdms  = 1.80
+nu_pdms = 0.49
+MP,EX,4,E_pdms
+MP,PRXY,4,nu_pdms
+
+! Material 5: Gold sensor
+E_sensor  = 110000
+nu_sensor = 0.34
+MP,EX,5,E_sensor
+MP,PRXY,5,nu_sensor
+
+! Material 6: Encapsulation
+E_encap  = 1.80
+nu_encap = 0.49
+MP,EX,6,E_encap
+MP,PRXY,6,nu_encap
+
+! ---------------------------------------------------------------------
+! GEOMETRY
+!
+! Every layer is split at X = sensor_length. This preserves matching
+! mapped-mesh divisions through the full stack. In the sensor-height
+! region, the left area is gold and the right area is encapsulation.
+! ---------------------------------------------------------------------
+
+! Skin: y0 to y1
+RECTNG,0,sensor_length,y0,y1
+RECTNG,sensor_length,model_length,y0,y1
+
+! Soft buffer: y1 to y2
+RECTNG,0,sensor_length,y1,y2
+RECTNG,sensor_length,model_length,y1,y2
+
+! Medium buffer: y2 to y3
+RECTNG,0,sensor_length,y2,y3
+RECTNG,sensor_length,model_length,y2,y3
+
+! PDMS: y3 to y4
+RECTNG,0,sensor_length,y3,y4
+RECTNG,sensor_length,model_length,y3,y4
+
+! Sensor-height region: y4 to y5
+RECTNG,0,sensor_length,y4,y5
+RECTNG,sensor_length,model_length,y4,y5
+
+! Top encapsulation: y5 to y6
+RECTNG,0,sensor_length,y5,y6
+RECTNG,sensor_length,model_length,y5,y6
+
+! Connect coincident boundaries so displacement transfers through layers
+ALLSEL,ALL
+AGLUE,ALL
+NUMMRG,KP
+NUMCMP,KP
+NUMCMP,LINE
+NUMCMP,AREA
+
+SELTOL,tol
+
+! ---------------------------------------------------------------------
+! MATERIAL ASSIGNMENTS
+! ---------------------------------------------------------------------
+
+! Skin: Material 1
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y0+y1)/2
+AATT,1,,1
+
+! Soft buffer: Material 2
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y1+y2)/2
+AATT,2,,1
+
+! Medium buffer: Material 3
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y2+y3)/2
+AATT,3,,1
+
+! PDMS: Material 4
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y3+y4)/2
+AATT,4,,1
+
+! Gold sensor on left side only: Material 5
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y4+y5)/2
+ASEL,R,LOC,X,0,sensor_length
+AATT,5,,1
+
+! Encapsulation beside the sensor on right side: Material 6
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y4+y5)/2
+ASEL,R,LOC,X,sensor_length,model_length
+AATT,6,,1
+
+! Top encapsulation: Material 6
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y5+y6)/2
+AATT,6,,1
+
+! ---------------------------------------------------------------------
+! MAPPED MESH
+! ---------------------------------------------------------------------
+
+ALLSEL,ALL
+MSHAPE,0,2D
+MSHKEY,1
+
+! Keep the same in-plane mesh philosophy as Models 1A and 2A
+n_left        = 20
+n_right       = 80
+n_skin        = 20
+n_buffer_soft = 2
+n_buffer_med  = 2
+n_pdms        = 4
+n_sensor      = 3
+n_encap       = 6
+
+! X-direction divisions: left 1 mm region
+ALLSEL,ALL
+LSEL,S,LOC,X,sensor_length/2
+LESIZE,ALL,,,n_left
+
+! X-direction divisions: right 4 mm region
+ALLSEL,ALL
+LSEL,S,LOC,X,(sensor_length+model_length)/2
+LESIZE,ALL,,,n_right
+
+! Y-direction divisions: skin
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y0+y1)/2
+LESIZE,ALL,,,n_skin
+
+! Y-direction divisions: soft buffer
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y1+y2)/2
+LESIZE,ALL,,,n_buffer_soft
+
+! Y-direction divisions: medium buffer
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y2+y3)/2
+LESIZE,ALL,,,n_buffer_med
+
+! Y-direction divisions: PDMS
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y3+y4)/2
+LESIZE,ALL,,,n_pdms
+
+! Y-direction divisions: sensor-height region
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y4+y5)/2
+LESIZE,ALL,,,n_sensor
+
+! Y-direction divisions: top encapsulation
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y5+y6)/2
+LESIZE,ALL,,,n_encap
+
+ALLSEL,ALL
+AMESH,ALL
+
+! Merge coincident nodes after meshing as an additional connectivity check
+NUMMRG,NODE,1E-6
+NUMCMP,NODE
+NUMCMP,ELEM
+ALLSEL,ALL
+
+/ESHAPE,1
+EPLOT
+
+FINISH
+
+! =====================================================================
+! SOLUTION
+! =====================================================================
+
+/SOLU
+ANTYPE,STATIC
+NLGEOM,ON
+AUTOTS,ON
+NSUBST,20,100,1
+NEQIT,50
+OUTRES,ALL,ALL
+EQSLV,SPARSE
+
+! Remove any old loads or constraints
+ALLSEL,ALL
+DDELE,ALL,ALL
+FDELE,ALL,ALL
+SFDELE,ALL,ALL
+
+! Bottom-left stabilization node:
+! prevents rigid-body translation while preserving deformation elsewhere
+ALLSEL,ALL
+NSEL,S,LOC,X,-tol,tol
+NSEL,R,LOC,Y,y0-tol,y0+tol
+D,ALL,UX,0
+D,ALL,UY,0
+
+! Far-right skin nodes only: prescribed downward displacement
+ALLSEL,ALL
+NSEL,S,LOC,X,model_length-tol,model_length+tol
+NSEL,R,LOC,Y,y0-tol,y1+tol
+D,ALL,UY,-applied_disp
+
+ALLSEL,ALL
+CHECK
+SOLVE
+FINISH
+
+! =====================================================================
+! POSTPROCESSING
+! =====================================================================
+
+/POST1
+SET,LAST
+/PBC,ALL,0
+/GRAPHICS,POWER
+/EDGE,1,1
+/DSCALE,1,AUTO
+
+! Whole-model deformation and displacement
+ALLSEL,ALL
+PLDISP,2
+
+ALLSEL,ALL
+PLNSOL,U,SUM
+
+ALLSEL,ALL
+PLNSOL,U,Y
+
+! Whole-model element stress plots
+ALLSEL,ALL
+PLESOL,S,X
+
+ALLSEL,ALL
+PLESOL,S,Y
+
+ALLSEL,ALL
+PLESOL,S,XY
+
+ALLSEL,ALL
+PLESOL,S,EQV
+
+! Gold sensor only: Material 5
+ALLSEL,ALL
+ESEL,S,MAT,,5
+PLESOL,S,X
+
+ALLSEL,ALL
+ESEL,S,MAT,,5
+PLESOL,S,Y
+
+ALLSEL,ALL
+ESEL,S,MAT,,5
+PLESOL,S,XY
+
+ALLSEL,ALL
+ESEL,S,MAT,,5
+PLESOL,S,EQV
+
+! Reaction forces
+ALLSEL,ALL
+PRRSOL
+
+ALLSEL,ALL
+FINISH
+

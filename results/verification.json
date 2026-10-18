@@ -1,0 +1,9 @@
+{
+  "affine_patch_strain_error": 1.734723475976807e-18,
+  "rigid_rotation_strain_error": 0.0,
+  "assembled_affine_displacement_error_mm": 3.8163916471489756e-17,
+  "uniaxial_displacement_error_mm": 8.083811398051921e-16,
+  "uniaxial_reaction_N": 0.013159626266613749,
+  "analytical_reaction_N": 0.013159626266614028,
+  "reaction_relative_error": 2.1223283547255888e-14
+}

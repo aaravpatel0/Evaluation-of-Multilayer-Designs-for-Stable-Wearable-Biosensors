@@ -1,0 +1,70 @@
+﻿Comparative Stress Analysis of Buffer-Layer Designs in Flexible Biosensors
+Abstract
+Three flexible biosensor designs, differing only in buffer layer configuration, were simulated under three deformation modes: stretching, bending, and compression. All designs remained well below failure thresholds in every test, and no deformation was recorded at the sensing elements. A two-buffer gradient design reduced stress under stretching relative to a no-buffer design, but buffer configuration had little effect on stress under bending or compression.
+1. Introduction
+Wearable biosensors are subject to repeated mechanical deformation from the skin they are mounted on. Buffer layers, softer materials placed between the skin and the rigid sensor substrate, are commonly proposed to absorb this deformation before it reaches the sensor. This study compares three buffer configurations to determine whether adding buffer layers meaningfully reduces mechanical stress on the sensor body, and whether that benefit depends on the type of deformation applied.
+2. Materials and Methods
+2.1 Design and Simulation Workflow
+All sensor geometries were designed in-house using Fusion 360. The resulting 3D models were imported into ANSYS for finite element simulation of stress under each deformation mode.
+2.2 Material Model
+PDMS was modeled as a hyperelastic, Neo-Hookean material for all three layer types (soft buffer, substrate, hard buffer). Initial yield and incompressibility values used for each layer are listed below:
+Layer
+	Initial Yield
+	Incompressibility
+	Soft PDMS (buffer)
+	0.28 MPa
+	0.03 MPa
+	Substrate PDMS
+	0.32 MPa
+	0.03 MPa
+	Hard PDMS (buffer)
+	0.35 MPa
+	0.03 MPa
+	2.3 Sensor Designs
+Three designs were tested, all built on a 1 mm PDMS substrate:
+Design
+	Buffer Configuration
+	No buffer
+	1 mm PDMS substrate only
+	One buffer
+	1 mm substrate + 0.5 mm buffer layer (lower stiffness, intended to absorb stretch)
+	Two buffers
+	1 mm substrate + two 0.25 mm buffer layers in a stiffness gradient (soft near skin, hard near substrate)
+	2.4 Deformation Testing Conditions
+Each design was subjected to three deformation modes:
+Deformation
+	Applied Condition
+	Stretching
+	0.025 m outward displacement on both sides
+	Compression
+	0.015 m inward displacement on both sides
+	Bending
+	20 N force distributed evenly over the top surface
+	Average stress across the sensor body and maximum localized stress were recorded for each design under each condition.
+3. Results
+3.1 Average Stress by Design and Deformation Mode (Pa)
+Deformation
+	No Buffer
+	One Buffer
+	Two Buffers
+	Stretching
+	7.82 × 10⁶
+	6.50 × 10⁶
+	6.31 × 10⁶
+	Bending
+	6.10 × 10⁶
+	6.11 × 10⁶
+	6.02 × 10⁶
+	Compression
+	1.19 × 10⁶
+	1.28 × 10⁶
+	1.21 × 10⁶
+	3.2 Failure Analysis
+Maximum localized stress did not exceed 1 × 10⁸ Pa in any simulation, for any design or deformation mode. No deformation was measured at the sensing elements in any trial. Based on these results, none of the three designs would be expected to undergo critical failure under the tested conditions.
+4. Discussion
+Stretching produced the clearest separation between designs. The no-buffer design carried the highest stress (7.82 × 10⁶ Pa), while the one-buffer and two-buffer designs reduced this by roughly 17% and 19% respectively. The two-buffer gradient design performed marginally better than the single buffer.
+Bending and compression showed almost no variation across designs, with stress values clustered within about 2% and 8% of each other respectively. In these two modes, the buffer layers did not meaningfully change the stress experienced by the sensor body, and in compression the buffered designs were marginally worse than the no-buffer design, though the difference is small enough to fall within expected simulation noise.
+Overall durability, measured by whether any design approached the 1 × 10⁸ Pa failure threshold, was comparable across all three designs. None came close to failure under any tested condition.
+5. Conclusion
+Adding buffer layers, particularly a multi-layer stiffness gradient, provides a measurable benefit specifically under stretching deformation. This benefit does not extend to bending or compression, where buffer configuration has minimal to no effect on stress. Since all three designs remained far below failure thresholds under every condition tested, the choice of buffer configuration should be guided primarily by the dominant deformation mode expected in the sensor's intended use case rather than by durability concerns alone.
+Design 1 photos

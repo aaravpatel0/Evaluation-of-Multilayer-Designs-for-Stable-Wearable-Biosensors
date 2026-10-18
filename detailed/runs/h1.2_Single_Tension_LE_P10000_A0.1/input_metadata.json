@@ -1,0 +1,86 @@
+{
+  "mesh_h_mm": 1.2,
+  "design": "Single",
+  "mode": "Tension",
+  "nonlinear": false,
+  "package_E_MPa": 10000.0,
+  "adhesive_E_MPa": 0.1,
+  "nodes": 583486,
+  "elements": 374893,
+  "left_nodes": 1295,
+  "right_nodes": 1283,
+  "material_assumptions": {
+    "Skin": {
+      "E_MPa": 0.2,
+      "nu": 0.49
+    },
+    "Adhesive": {
+      "E_MPa": 0.1,
+      "nu": 0.49
+    },
+    "ABS_sensor_housing": {
+      "E_MPa": 2300.0,
+      "nu": 0.35
+    },
+    "Sensor_1": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Sensor_2": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Sensor_3": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Sensor_4": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "Gold_feature_1": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "RC_transmitter": {
+      "E_MPa": 20000.0,
+      "nu": 0.3
+    },
+    "Gold_feature_2": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "ABS_feature": {
+      "E_MPa": 2300.0,
+      "nu": 0.35
+    },
+    "Gold_wire_1": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "Gold_wire_2": {
+      "E_MPa": 78500.0,
+      "nu": 0.42
+    },
+    "Sensor_5": {
+      "E_MPa": 10000.0,
+      "nu": 0.3
+    },
+    "PDMS_cover": {
+      "E_MPa": 1.8,
+      "nu": 0.49
+    },
+    "Lower_PDMS": {
+      "E_MPa": 0.1,
+      "nu": 0.49
+    },
+    "Middle_PDMS": {
+      "E_MPa": 0.1,
+      "nu": 0.49
+    },
+    "Upper_PDMS": {
+      "E_MPa": 1.8,
+      "nu": 0.49
+    }
+  }
+}

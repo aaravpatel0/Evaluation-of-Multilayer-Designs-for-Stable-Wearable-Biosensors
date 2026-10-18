@@ -1,0 +1,2198 @@
+
+************************************************************
+
+CalculiX Version 2.23, Copyright(C) 1998-2025 Guido Dhondt
+CalculiX comes with ABSOLUTELY NO WARRANTY. This is free
+software, and you are welcome to redistribute it under
+certain conditions, see gpl.htm
+
+************************************************************
+
+You are using an executable made on Fri Oct 24 20:12:25     2025
+ Decascading the MPC's
+
+ Determining the structure of the matrix:
+ Using up to 4 cpu(s) for setting up the structure of the matrix.
+ number of equations
+ 1305149
+ number of nonzero lower triangular matrix elements
+ 49804144
+
+ increment 1 attempt 1 
+ increment size= 1.000000e+00
+ sum of previous increments=0.000000e+00
+ actual step time=1.000000e+00
+ actual total time=1.000000e+00
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Not reusing csc.
+IPARM_MIXED=1
+globDouble=0
++-------------------------------------------------+
++     PaStiX : Parallel Sparse matriX package     +
++-------------------------------------------------+
+  Version:                                   6.4.0
+  Schedulers:
+    sequential:                            Enabled
+    thread static:                         Started
+    thread dynamic:                       Disabled
+    PaRSEC:                               Disabled
+    StarPU:                               Disabled
+  Number of MPI processes:                       1
+  Number of threads per process:                 4
+  Number of GPUs:                                0
+  MPI communication support:              PastixMpiNone
+  Distribution level:                     2D( 128)
+  Blocking size (min/max):             1024 / 2048
+  Computational models
+    CPU:              AMD Opteron 6180 - Intel MKL
+    GPU:             Nvidia K40 GK1108L - CUDA 8.0
+  Low rank parameters:
+    Strategy                        No compression
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Ordering subtask :
+    Ordering method is: Scotch
+    Time to compute ordering              2.465355e+00 s
++-------------------------------------------------+
+  Symbolic factorization subtask:
+    Symbol factorization using: Fax Direct
+    Number of nonzeroes in L structure    706714809
+    Fill-in of L                          7.003178
+    Time to compute symbol matrix         2.567129e-01 s
++-------------------------------------------------+
+  Reordering subtask:
+    Split level                                  0
+    Stoping criterion                           -1
+    Time for reordering                   8.152609e-01 s
++-------------------------------------------------+
+  Mapping/Scheduling subtask:
+    Number of non-zeroes in blocked L     1413429618
+    Fill-in                               14.006357
+    Number of operations in full-rank: LU        2.51 TFlops
+    Prediction:
+      Model                              AMD 6180  MKL
+      Time to factorize                   1.289228e+02 s
+    Time for mapping/scheduling           3.876185e-02 s
++-------------------------------------------------+
+  Analyze task:
+    Total time for analyze                3.784532e+00 s
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.065770e+00 s
+    Time to initialize coeftab            4.452169e-01 s
+    Time to factorize                     5.035839e+00 s (510.01 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.660521e-01 s
+    - iteration 1 :
+         total iteration time                   0.193 s
+         error                                  0.00063097
+    - iteration 2 :
+         total iteration time                   0.195 s
+         error                                  0.0005909
+    - iteration 3 :
+         total iteration time                   0.196 s
+         error                                  0.0005362
+    - iteration 4 :
+         total iteration time                   0.195 s
+         error                                  0.00045557
+    - iteration 5 :
+         total iteration time                   0.196 s
+         error                                  0.00035148
+    - iteration 6 :
+         total iteration time                   0.196 s
+         error                                  0.00025892
+    - iteration 7 :
+         total iteration time                   0.197 s
+         error                                  0.00020535
+    - iteration 8 :
+         total iteration time                   0.196 s
+         error                                  0.00016843
+    - iteration 9 :
+         total iteration time                   0.199 s
+         error                                  0.00013569
+    - iteration 10 :
+         total iteration time                   0.198 s
+         error                                  0.00011066
+    - iteration 11 :
+         total iteration time                   0.198 s
+         error                                  9.1987e-05
+    - iteration 12 :
+         total iteration time                   0.2 s
+         error                                  7.4688e-05
+    - iteration 13 :
+         total iteration time                   0.197 s
+         error                                  4.9259e-05
+    - iteration 14 :
+         total iteration time                   0.199 s
+         error                                  3.8811e-05
+    - iteration 15 :
+         total iteration time                   0.198 s
+         error                                  3.1547e-05
+    - iteration 16 :
+         total iteration time                   0.199 s
+         error                                  2.9328e-05
+    - iteration 17 :
+         total iteration time                   0.199 s
+         error                                  2.8051e-05
+    - iteration 18 :
+         total iteration time                   0.199 s
+         error                                  2.7271e-05
+    - iteration 19 :
+         total iteration time                   0.201 s
+         error                                  2.5802e-05
+    - iteration 20 :
+         total iteration time                   0.2 s
+         error                                  2.4188e-05
+    - iteration 21 :
+         total iteration time                   0.2 s
+         error                                  2.2887e-05
+    - iteration 22 :
+         total iteration time                   0.2 s
+         error                                  2.199e-05
+    - iteration 23 :
+         total iteration time                   0.203 s
+         error                                  2.1552e-05
+    - iteration 24 :
+         total iteration time                   0.201 s
+         error                                  2.1255e-05
+    - iteration 25 :
+         total iteration time                   0.202 s
+         error                                  2.0823e-05
+    - iteration 26 :
+         total iteration time                   0.204 s
+         error                                  2.001e-05
+    - iteration 27 :
+         total iteration time                   0.202 s
+         error                                  1.9123e-05
+    - iteration 28 :
+         total iteration time                   0.202 s
+         error                                  1.7612e-05
+    - iteration 29 :
+         total iteration time                   0.204 s
+         error                                  1.6507e-05
+    - iteration 30 :
+         total iteration time                   0.205 s
+         error                                  1.5161e-05
+    - iteration 31 :
+         total iteration time                   0.206 s
+         error                                  1.3481e-05
+    - iteration 32 :
+         total iteration time                   0.204 s
+         error                                  1.1836e-05
+    - iteration 33 :
+         total iteration time                   0.205 s
+         error                                  1.0926e-05
+    - iteration 34 :
+         total iteration time                   0.205 s
+         error                                  1.0156e-05
+    - iteration 35 :
+         total iteration time                   0.208 s
+         error                                  8.9941e-06
+    - iteration 36 :
+         total iteration time                   0.206 s
+         error                                  8.3997e-06
+    - iteration 37 :
+         total iteration time                   0.206 s
+         error                                  8.2339e-06
+    - iteration 38 :
+         total iteration time                   0.206 s
+         error                                  8.0579e-06
+    - iteration 39 :
+         total iteration time                   0.206 s
+         error                                  7.6716e-06
+    - iteration 40 :
+         total iteration time                   0.208 s
+         error                                  6.285e-06
+    - iteration 41 :
+         total iteration time                   0.21 s
+         error                                  4.8789e-06
+    - iteration 42 :
+         total iteration time                   0.211 s
+         error                                  4.3659e-06
+    - iteration 43 :
+         total iteration time                   0.207 s
+         error                                  4.183e-06
+    - iteration 44 :
+         total iteration time                   0.209 s
+         error                                  4.1145e-06
+    - iteration 45 :
+         total iteration time                   0.209 s
+         error                                  4.0572e-06
+    - iteration 46 :
+         total iteration time                   0.21 s
+         error                                  3.9178e-06
+    - iteration 47 :
+         total iteration time                   0.211 s
+         error                                  3.2416e-06
+    - iteration 48 :
+         total iteration time                   0.214 s
+         error                                  1.5073e-06
+    - iteration 49 :
+         total iteration time                   0.217 s
+         error                                  5.4605e-07
+    - iteration 50 :
+         total iteration time                   0.212 s
+         error                                  3.9324e-07
+    Time for refinement                   1.021590e+01 s
+________________________________________
+
+CSC Conversion Time: 0.216699
+Init Time: 3.787294
+Factorize Time: 9.626802
+Solve Time: 10.473677
+Clean up Time: 0.000000
+---------------------------------
+Sum: 24.104472
+
+Total PaStiX Time: 24.104472
+CCX without PaStiX Time: 17.919775
+Share of PaStiX Time: 0.573585
+Total Time: 42.024247
+Reusability: 0 : 1 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.008596
+ time avg. forc= 0.008596
+ largest residual force= 60.999476 in node 102262 and dof 3
+ largest increment of disp= 6.067606e-01
+ largest correction to disp= 6.067606e-01 in node 26225 and dof 3
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.094463e+00 s
+    Time to initialize coeftab            8.527842e-01 s
+    Time to factorize                     4.958318e+00 s (517.98 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.783340e-01 s
+    - iteration 1 :
+         total iteration time                   0.203 s
+         error                                  2.0493e-06
+    - iteration 2 :
+         total iteration time                   0.21 s
+         error                                  1.4182e-06
+    - iteration 3 :
+         total iteration time                   0.239 s
+         error                                  1.0076e-06
+    - iteration 4 :
+         total iteration time                   0.214 s
+         error                                  7.8774e-07
+    - iteration 5 :
+         total iteration time                   0.208 s
+         error                                  6.953e-07
+    - iteration 6 :
+         total iteration time                   0.208 s
+         error                                  6.5963e-07
+    - iteration 7 :
+         total iteration time                   0.243 s
+         error                                  5.5292e-07
+    - iteration 8 :
+         total iteration time                   0.235 s
+         error                                  4.9045e-07
+    - iteration 9 :
+         total iteration time                   0.22 s
+         error                                  4.2654e-07
+    - iteration 10 :
+         total iteration time                   0.211 s
+         error                                  3.9548e-07
+    - iteration 11 :
+         total iteration time                   0.211 s
+         error                                  3.4563e-07
+    - iteration 12 :
+         total iteration time                   0.209 s
+         error                                  3.3116e-07
+    - iteration 13 :
+         total iteration time                   0.208 s
+         error                                  2.9796e-07
+    - iteration 14 :
+         total iteration time                   0.214 s
+         error                                  2.8784e-07
+    - iteration 15 :
+         total iteration time                   0.208 s
+         error                                  2.6829e-07
+    - iteration 16 :
+         total iteration time                   0.209 s
+         error                                  2.6601e-07
+    - iteration 17 :
+         total iteration time                   0.213 s
+         error                                  2.6266e-07
+    - iteration 18 :
+         total iteration time                   0.211 s
+         error                                  2.5962e-07
+    - iteration 19 :
+         total iteration time                   0.21 s
+         error                                  2.5535e-07
+    - iteration 20 :
+         total iteration time                   0.209 s
+         error                                  2.4965e-07
+    - iteration 21 :
+         total iteration time                   0.211 s
+         error                                  2.2583e-07
+    - iteration 22 :
+         total iteration time                   0.213 s
+         error                                  1.9379e-07
+    - iteration 23 :
+         total iteration time                   0.212 s
+         error                                  1.8689e-07
+    - iteration 24 :
+         total iteration time                   0.217 s
+         error                                  1.8675e-07
+    - iteration 25 :
+         total iteration time                   0.214 s
+         error                                  1.8429e-07
+    - iteration 26 :
+         total iteration time                   0.22 s
+         error                                  1.7869e-07
+    - iteration 27 :
+         total iteration time                   0.224 s
+         error                                  1.7844e-07
+    - iteration 28 :
+         total iteration time                   0.214 s
+         error                                  1.6756e-07
+    - iteration 29 :
+         total iteration time                   0.212 s
+         error                                  1.1733e-07
+    - iteration 30 :
+         total iteration time                   0.212 s
+         error                                  6.7724e-08
+    - iteration 31 :
+         total iteration time                   0.214 s
+         error                                  5.0753e-08
+    - iteration 32 :
+         total iteration time                   0.214 s
+         error                                  4.5341e-08
+    - iteration 33 :
+         total iteration time                   0.217 s
+         error                                  4.182e-08
+    - iteration 34 :
+         total iteration time                   0.213 s
+         error                                  3.8803e-08
+    - iteration 35 :
+         total iteration time                   0.215 s
+         error                                  3.332e-08
+    - iteration 36 :
+         total iteration time                   0.214 s
+         error                                  2.2427e-08
+    - iteration 37 :
+         total iteration time                   0.232 s
+         error                                  1.0429e-08
+    - iteration 38 :
+         total iteration time                   0.217 s
+         error                                  3.1852e-09
+    - iteration 39 :
+         total iteration time                   0.216 s
+         error                                  1.1885e-09
+    - iteration 40 :
+         total iteration time                   0.215 s
+         error                                  3.5041e-10
+    - iteration 41 :
+         total iteration time                   0.217 s
+         error                                  7.4648e-11
+    - iteration 42 :
+         total iteration time                   0.218 s
+         error                                  2.139e-11
+    - iteration 43 :
+         total iteration time                   0.219 s
+         error                                  6.239e-12
+    - iteration 44 :
+         total iteration time                   0.219 s
+         error                                  1.7551e-12
+    - iteration 45 :
+         total iteration time                   0.231 s
+         error                                  4.4453e-13
+    - iteration 46 :
+         total iteration time                   0.216 s
+         error                                  3.4141e-13
+    - iteration 47 :
+         total iteration time                   0.212 s
+         error                                  3.3041e-13
+    - iteration 48 :
+         total iteration time                   0.206 s
+         error                                  4.1639e-13
+    - iteration 49 :
+         total iteration time                   0.207 s
+         error                                  5.6222e-13
+    - iteration 50 :
+         total iteration time                   0.219 s
+         error                                  3.9658e-13
+    Time for refinement                   1.100777e+01 s
+________________________________________
+
+CSC Conversion Time: 0.208569
+Init Time: 0.000089
+Factorize Time: 10.093558
+Solve Time: 11.276324
+Clean up Time: 0.000000
+---------------------------------
+Sum: 21.578540
+
+Total PaStiX Time: 45.683011
+CCX without PaStiX Time: 20.431123
+Share of PaStiX Time: 0.690972
+Total Time: 66.114134
+Reusability: 1 : 2 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000201
+ time avg. forc= 0.000201
+ largest residual force= 21.402791 in node 387224 and dof 3
+ largest increment of disp= 6.067606e-01
+ largest correction to disp= 3.289982e-01 in node 58618 and dof 3
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.304163e+00 s
+    Time to initialize coeftab            8.791659e-01 s
+    Time to factorize                     5.548351e+00 s (462.90 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.855831e-01 s
+    - iteration 1 :
+         total iteration time                   0.209 s
+         error                                  0.0010572
+    - iteration 2 :
+         total iteration time                   0.215 s
+         error                                  0.00090916
+    - iteration 3 :
+         total iteration time                   0.215 s
+         error                                  0.00065386
+    - iteration 4 :
+         total iteration time                   0.221 s
+         error                                  0.00028479
+    - iteration 5 :
+         total iteration time                   0.215 s
+         error                                  0.00014944
+    - iteration 6 :
+         total iteration time                   0.213 s
+         error                                  6.3256e-05
+    - iteration 7 :
+         total iteration time                   0.209 s
+         error                                  5.2205e-05
+    - iteration 8 :
+         total iteration time                   0.215 s
+         error                                  3.2449e-05
+    - iteration 9 :
+         total iteration time                   0.215 s
+         error                                  2.9784e-05
+    - iteration 10 :
+         total iteration time                   0.216 s
+         error                                  2.9432e-05
+    - iteration 11 :
+         total iteration time                   0.216 s
+         error                                  2.9189e-05
+    - iteration 12 :
+         total iteration time                   0.224 s
+         error                                  2.8492e-05
+    - iteration 13 :
+         total iteration time                   0.216 s
+         error                                  2.2204e-05
+    - iteration 14 :
+         total iteration time                   0.215 s
+         error                                  1.8886e-05
+    - iteration 15 :
+         total iteration time                   0.215 s
+         error                                  1.5938e-05
+    - iteration 16 :
+         total iteration time                   0.219 s
+         error                                  1.5008e-05
+    - iteration 17 :
+         total iteration time                   0.22 s
+         error                                  1.4506e-05
+    - iteration 18 :
+         total iteration time                   0.219 s
+         error                                  1.4223e-05
+    - iteration 19 :
+         total iteration time                   0.209 s
+         error                                  1.4195e-05
+    - iteration 20 :
+         total iteration time                   0.22 s
+         error                                  1.3423e-05
+    - iteration 21 :
+         total iteration time                   0.221 s
+         error                                  1.2998e-05
+    - iteration 22 :
+         total iteration time                   0.219 s
+         error                                  1.2827e-05
+    - iteration 23 :
+         total iteration time                   0.222 s
+         error                                  1.2773e-05
+    - iteration 24 :
+         total iteration time                   0.214 s
+         error                                  1.2705e-05
+    - iteration 25 :
+         total iteration time                   0.229 s
+         error                                  1.2415e-05
+    - iteration 26 :
+         total iteration time                   0.219 s
+         error                                  1.1492e-05
+    - iteration 27 :
+         total iteration time                   0.23 s
+         error                                  1.0871e-05
+    - iteration 28 :
+         total iteration time                   0.227 s
+         error                                  1.0559e-05
+    - iteration 29 :
+         total iteration time                   0.22 s
+         error                                  1.0374e-05
+    - iteration 30 :
+         total iteration time                   0.22 s
+         error                                  1.0299e-05
+    - iteration 31 :
+         total iteration time                   0.231 s
+         error                                  1.0084e-05
+    - iteration 32 :
+         total iteration time                   0.231 s
+         error                                  9.7893e-06
+    - iteration 33 :
+         total iteration time                   0.233 s
+         error                                  9.5778e-06
+    - iteration 34 :
+         total iteration time                   0.233 s
+         error                                  9.2357e-06
+    - iteration 35 :
+         total iteration time                   0.234 s
+         error                                  8.5723e-06
+    - iteration 36 :
+         total iteration time                   0.234 s
+         error                                  7.8202e-06
+    - iteration 37 :
+         total iteration time                   0.225 s
+         error                                  7.4508e-06
+    - iteration 38 :
+         total iteration time                   0.224 s
+         error                                  7.116e-06
+    - iteration 39 :
+         total iteration time                   0.224 s
+         error                                  6.5906e-06
+    - iteration 40 :
+         total iteration time                   0.231 s
+         error                                  5.701e-06
+    - iteration 41 :
+         total iteration time                   0.238 s
+         error                                  4.7893e-06
+    - iteration 42 :
+         total iteration time                   0.234 s
+         error                                  4.3739e-06
+    - iteration 43 :
+         total iteration time                   0.244 s
+         error                                  4.1087e-06
+    - iteration 44 :
+         total iteration time                   0.231 s
+         error                                  3.9587e-06
+    - iteration 45 :
+         total iteration time                   0.247 s
+         error                                  3.8223e-06
+    - iteration 46 :
+         total iteration time                   0.241 s
+         error                                  3.6816e-06
+    - iteration 47 :
+         total iteration time                   0.248 s
+         error                                  3.5783e-06
+    - iteration 48 :
+         total iteration time                   0.249 s
+         error                                  3.5056e-06
+    - iteration 49 :
+         total iteration time                   0.246 s
+         error                                  3.4386e-06
+    - iteration 50 :
+         total iteration time                   0.235 s
+         error                                  3.3823e-06
+    Time for refinement                   1.133238e+01 s
+________________________________________
+
+CSC Conversion Time: 0.213362
+Init Time: 0.000019
+Factorize Time: 10.916487
+Solve Time: 11.611699
+Clean up Time: 0.000000
+---------------------------------
+Sum: 22.741567
+
+Total PaStiX Time: 68.424579
+CCX without PaStiX Time: 23.471321
+Share of PaStiX Time: 0.744588
+Total Time: 91.895900
+Reusability: 2 : 3 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000829
+ time avg. forc= 0.000829
+ largest residual force= 226.550617 in node 385383 and dof 2
+ largest increment of disp= 6.067606e-01
+ largest correction to disp= 4.332487e-01 in node 4266 and dof 1
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.177377e+00 s
+    Time to initialize coeftab            8.486540e-01 s
+    Time to factorize                     5.026381e+00 s (510.97 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         2.141042e-01 s
+    - iteration 1 :
+         total iteration time                   0.22 s
+         error                                  0.0016047
+    - iteration 2 :
+         total iteration time                   0.217 s
+         error                                  0.001595
+    - iteration 3 :
+         total iteration time                   0.219 s
+         error                                  0.0010874
+    - iteration 4 :
+         total iteration time                   0.218 s
+         error                                  0.00054091
+    - iteration 5 :
+         total iteration time                   0.22 s
+         error                                  0.00043484
+    - iteration 6 :
+         total iteration time                   0.217 s
+         error                                  0.00026951
+    - iteration 7 :
+         total iteration time                   0.212 s
+         error                                  0.00023462
+    - iteration 8 :
+         total iteration time                   0.216 s
+         error                                  0.00015507
+    - iteration 9 :
+         total iteration time                   0.217 s
+         error                                  0.00015396
+    - iteration 10 :
+         total iteration time                   0.222 s
+         error                                  0.0001512
+    - iteration 11 :
+         total iteration time                   0.219 s
+         error                                  0.00014849
+    - iteration 12 :
+         total iteration time                   0.219 s
+         error                                  7.5992e-05
+    - iteration 13 :
+         total iteration time                   0.23 s
+         error                                  6.4643e-05
+    - iteration 14 :
+         total iteration time                   0.219 s
+         error                                  6.2203e-05
+    - iteration 15 :
+         total iteration time                   0.216 s
+         error                                  4.7124e-05
+    - iteration 16 :
+         total iteration time                   0.229 s
+         error                                  3.9025e-05
+    - iteration 17 :
+         total iteration time                   0.222 s
+         error                                  3.7281e-05
+    - iteration 18 :
+         total iteration time                   0.22 s
+         error                                  3.7236e-05
+    - iteration 19 :
+         total iteration time                   0.236 s
+         error                                  3.5374e-05
+    - iteration 20 :
+         total iteration time                   0.23 s
+         error                                  3.4846e-05
+    - iteration 21 :
+         total iteration time                   0.221 s
+         error                                  3.3087e-05
+    - iteration 22 :
+         total iteration time                   0.224 s
+         error                                  2.59e-05
+    - iteration 23 :
+         total iteration time                   0.22 s
+         error                                  2.4827e-05
+    - iteration 24 :
+         total iteration time                   0.218 s
+         error                                  2.27e-05
+    - iteration 25 :
+         total iteration time                   0.222 s
+         error                                  2.1421e-05
+    - iteration 26 :
+         total iteration time                   0.222 s
+         error                                  1.2738e-05
+    - iteration 27 :
+         total iteration time                   0.223 s
+         error                                  8.9197e-06
+    - iteration 28 :
+         total iteration time                   0.225 s
+         error                                  3.3635e-06
+    - iteration 29 :
+         total iteration time                   0.221 s
+         error                                  2.6246e-06
+    - iteration 30 :
+         total iteration time                   0.225 s
+         error                                  2.4413e-06
+    - iteration 31 :
+         total iteration time                   0.231 s
+         error                                  2.4085e-06
+    - iteration 32 :
+         total iteration time                   0.234 s
+         error                                  2.4085e-06
+    - iteration 33 :
+         total iteration time                   0.235 s
+         error                                  2.4072e-06
+    - iteration 34 :
+         total iteration time                   0.233 s
+         error                                  2.3642e-06
+    - iteration 35 :
+         total iteration time                   0.232 s
+         error                                  2.2283e-06
+    - iteration 36 :
+         total iteration time                   0.234 s
+         error                                  2.1224e-06
+    - iteration 37 :
+         total iteration time                   0.235 s
+         error                                  2.0594e-06
+    - iteration 38 :
+         total iteration time                   0.234 s
+         error                                  2.0202e-06
+    - iteration 39 :
+         total iteration time                   0.236 s
+         error                                  1.9834e-06
+    - iteration 40 :
+         total iteration time                   0.232 s
+         error                                  1.9419e-06
+    - iteration 41 :
+         total iteration time                   0.238 s
+         error                                  1.8462e-06
+    - iteration 42 :
+         total iteration time                   0.236 s
+         error                                  1.6782e-06
+    - iteration 43 :
+         total iteration time                   0.234 s
+         error                                  1.5624e-06
+    - iteration 44 :
+         total iteration time                   0.235 s
+         error                                  1.5153e-06
+    - iteration 45 :
+         total iteration time                   0.248 s
+         error                                  1.4979e-06
+    - iteration 46 :
+         total iteration time                   0.238 s
+         error                                  1.489e-06
+    - iteration 47 :
+         total iteration time                   0.237 s
+         error                                  1.4811e-06
+    - iteration 48 :
+         total iteration time                   0.234 s
+         error                                  1.4667e-06
+    - iteration 49 :
+         total iteration time                   0.244 s
+         error                                  1.45e-06
+    - iteration 50 :
+         total iteration time                   0.248 s
+         error                                  1.4396e-06
+    Time for refinement                   1.144933e+01 s
+________________________________________
+
+CSC Conversion Time: 0.225234
+Init Time: 0.000102
+Factorize Time: 10.243869
+Solve Time: 11.757756
+Clean up Time: 0.000000
+---------------------------------
+Sum: 22.226961
+
+Total PaStiX Time: 90.651540
+CCX without PaStiX Time: 26.701480
+Share of PaStiX Time: 0.772469
+Total Time: 117.353019
+Reusability: 3 : 4 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.044299
+ time avg. forc= 0.044299
+ largest residual force= 21212.648697 in node 387224 and dof 3
+ largest increment of disp= 2.003303e+00
+ largest correction to disp= 2.003303e+00 in node 4257 and dof 3
+
+ divergence; the increment size is decreased to 2.500000e-01
+ the increment is reattempted
+
+ increment 1 attempt 2 
+ increment size= 2.500000e-01
+ sum of previous increments=0.000000e+00
+ actual step time=2.500000e-01
+ actual total time=2.500000e-01
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.324608e+00 s
+    Time to initialize coeftab            9.014850e-01 s
+    Time to factorize                     4.953338e+00 s (518.50 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.757281e-01 s
+    - iteration 1 :
+         total iteration time                   0.255 s
+         error                                  0.00063227
+    - iteration 2 :
+         total iteration time                   0.245 s
+         error                                  0.00059428
+    - iteration 3 :
+         total iteration time                   0.233 s
+         error                                  0.00053919
+    - iteration 4 :
+         total iteration time                   0.223 s
+         error                                  0.0004555
+    - iteration 5 :
+         total iteration time                   0.258 s
+         error                                  0.00034328
+    - iteration 6 :
+         total iteration time                   0.225 s
+         error                                  0.00025753
+    - iteration 7 :
+         total iteration time                   0.286 s
+         error                                  0.00020476
+    - iteration 8 :
+         total iteration time                   0.225 s
+         error                                  0.00016952
+    - iteration 9 :
+         total iteration time                   0.219 s
+         error                                  0.00013226
+    - iteration 10 :
+         total iteration time                   0.222 s
+         error                                  0.00010838
+    - iteration 11 :
+         total iteration time                   0.223 s
+         error                                  9.3321e-05
+    - iteration 12 :
+         total iteration time                   0.22 s
+         error                                  7.7357e-05
+    - iteration 13 :
+         total iteration time                   0.235 s
+         error                                  5.3261e-05
+    - iteration 14 :
+         total iteration time                   0.227 s
+         error                                  3.9378e-05
+    - iteration 15 :
+         total iteration time                   0.225 s
+         error                                  3.1768e-05
+    - iteration 16 :
+         total iteration time                   0.225 s
+         error                                  2.8969e-05
+    - iteration 17 :
+         total iteration time                   0.224 s
+         error                                  2.7411e-05
+    - iteration 18 :
+         total iteration time                   0.226 s
+         error                                  2.6485e-05
+    - iteration 19 :
+         total iteration time                   0.225 s
+         error                                  2.5593e-05
+    - iteration 20 :
+         total iteration time                   0.236 s
+         error                                  2.4338e-05
+    - iteration 21 :
+         total iteration time                   0.214 s
+         error                                  2.3123e-05
+    - iteration 22 :
+         total iteration time                   0.227 s
+         error                                  2.2245e-05
+    - iteration 23 :
+         total iteration time                   0.228 s
+         error                                  2.1444e-05
+    - iteration 24 :
+         total iteration time                   0.223 s
+         error                                  2.1167e-05
+    - iteration 25 :
+         total iteration time                   0.22 s
+         error                                  2.0823e-05
+    - iteration 26 :
+         total iteration time                   0.218 s
+         error                                  2.0376e-05
+    - iteration 27 :
+         total iteration time                   0.227 s
+         error                                  1.953e-05
+    - iteration 28 :
+         total iteration time                   0.223 s
+         error                                  1.8505e-05
+    - iteration 29 :
+         total iteration time                   0.244 s
+         error                                  1.6997e-05
+    - iteration 30 :
+         total iteration time                   0.242 s
+         error                                  1.5838e-05
+    - iteration 31 :
+         total iteration time                   0.243 s
+         error                                  1.4344e-05
+    - iteration 32 :
+         total iteration time                   0.244 s
+         error                                  1.2831e-05
+    - iteration 33 :
+         total iteration time                   0.232 s
+         error                                  1.1945e-05
+    - iteration 34 :
+         total iteration time                   0.243 s
+         error                                  1.0872e-05
+    - iteration 35 :
+         total iteration time                   0.245 s
+         error                                  9.6693e-06
+    - iteration 36 :
+         total iteration time                   0.244 s
+         error                                  8.7598e-06
+    - iteration 37 :
+         total iteration time                   0.243 s
+         error                                  8.4974e-06
+    - iteration 38 :
+         total iteration time                   0.229 s
+         error                                  8.2601e-06
+    - iteration 39 :
+         total iteration time                   0.228 s
+         error                                  7.9055e-06
+    - iteration 40 :
+         total iteration time                   0.23 s
+         error                                  7.0238e-06
+    - iteration 41 :
+         total iteration time                   0.238 s
+         error                                  5.2595e-06
+    - iteration 42 :
+         total iteration time                   0.227 s
+         error                                  4.4976e-06
+    - iteration 43 :
+         total iteration time                   0.248 s
+         error                                  4.2021e-06
+    - iteration 44 :
+         total iteration time                   0.241 s
+         error                                  4.1207e-06
+    - iteration 45 :
+         total iteration time                   0.246 s
+         error                                  4.0308e-06
+    - iteration 46 :
+         total iteration time                   0.231 s
+         error                                  3.9272e-06
+    - iteration 47 :
+         total iteration time                   0.24 s
+         error                                  3.5506e-06
+    - iteration 48 :
+         total iteration time                   0.232 s
+         error                                  2.1614e-06
+    - iteration 49 :
+         total iteration time                   0.23 s
+         error                                  8.1695e-07
+    - iteration 50 :
+         total iteration time                   0.24 s
+         error                                  4.2125e-07
+    Time for refinement                   1.175956e+01 s
+________________________________________
+
+CSC Conversion Time: 0.213257
+Init Time: 0.000099
+Factorize Time: 10.364795
+Solve Time: 12.031847
+Clean up Time: 0.000000
+---------------------------------
+Sum: 22.609998
+
+Total PaStiX Time: 113.261538
+CCX without PaStiX Time: 29.493098
+Share of PaStiX Time: 0.793400
+Total Time: 142.754636
+Reusability: 4 : 5 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000551
+ time avg. forc= 0.000551
+ largest residual force= 3.812254 in node 102262 and dof 3
+ largest increment of disp= 1.516871e-01
+ largest correction to disp= 1.516871e-01 in node 26225 and dof 3
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.239518e+00 s
+    Time to initialize coeftab            8.894329e-01 s
+    Time to factorize                     5.427672e+00 s (473.19 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.918600e-01 s
+    - iteration 1 :
+         total iteration time                   0.224 s
+         error                                  3.3037e-06
+    - iteration 2 :
+         total iteration time                   0.221 s
+         error                                  2.8989e-06
+    - iteration 3 :
+         total iteration time                   0.229 s
+         error                                  2.4419e-06
+    - iteration 4 :
+         total iteration time                   0.234 s
+         error                                  2.086e-06
+    - iteration 5 :
+         total iteration time                   0.225 s
+         error                                  1.6865e-06
+    - iteration 6 :
+         total iteration time                   0.219 s
+         error                                  1.4283e-06
+    - iteration 7 :
+         total iteration time                   0.228 s
+         error                                  1.3349e-06
+    - iteration 8 :
+         total iteration time                   0.223 s
+         error                                  1.3013e-06
+    - iteration 9 :
+         total iteration time                   0.228 s
+         error                                  1.2789e-06
+    - iteration 10 :
+         total iteration time                   0.229 s
+         error                                  1.2496e-06
+    - iteration 11 :
+         total iteration time                   0.227 s
+         error                                  1.1544e-06
+    - iteration 12 :
+         total iteration time                   0.219 s
+         error                                  1.0459e-06
+    - iteration 13 :
+         total iteration time                   0.218 s
+         error                                  9.3552e-07
+    - iteration 14 :
+         total iteration time                   0.224 s
+         error                                  8.0603e-07
+    - iteration 15 :
+         total iteration time                   0.224 s
+         error                                  6.9696e-07
+    - iteration 16 :
+         total iteration time                   0.222 s
+         error                                  5.6e-07
+    - iteration 17 :
+         total iteration time                   0.225 s
+         error                                  4.0383e-07
+    - iteration 18 :
+         total iteration time                   0.231 s
+         error                                  3.4572e-07
+    - iteration 19 :
+         total iteration time                   0.221 s
+         error                                  3.081e-07
+    - iteration 20 :
+         total iteration time                   0.224 s
+         error                                  2.5732e-07
+    - iteration 21 :
+         total iteration time                   0.229 s
+         error                                  2.2096e-07
+    - iteration 22 :
+         total iteration time                   0.242 s
+         error                                  1.8129e-07
+    - iteration 23 :
+         total iteration time                   0.228 s
+         error                                  1.4137e-07
+    - iteration 24 :
+         total iteration time                   0.229 s
+         error                                  1.1538e-07
+    - iteration 25 :
+         total iteration time                   0.259 s
+         error                                  9.7727e-08
+    - iteration 26 :
+         total iteration time                   0.229 s
+         error                                  7.8996e-08
+    - iteration 27 :
+         total iteration time                   0.226 s
+         error                                  5.617e-08
+    - iteration 28 :
+         total iteration time                   0.239 s
+         error                                  3.9266e-08
+    - iteration 29 :
+         total iteration time                   0.226 s
+         error                                  2.7846e-08
+    - iteration 30 :
+         total iteration time                   0.232 s
+         error                                  2.1312e-08
+    - iteration 31 :
+         total iteration time                   0.238 s
+         error                                  1.7601e-08
+    - iteration 32 :
+         total iteration time                   0.229 s
+         error                                  1.2319e-08
+    - iteration 33 :
+         total iteration time                   0.222 s
+         error                                  4.7853e-09
+    - iteration 34 :
+         total iteration time                   0.226 s
+         error                                  1.6784e-09
+    - iteration 35 :
+         total iteration time                   0.233 s
+         error                                  9.0319e-10
+    - iteration 36 :
+         total iteration time                   0.234 s
+         error                                  7.2273e-10
+    - iteration 37 :
+         total iteration time                   0.225 s
+         error                                  6.5776e-10
+    - iteration 38 :
+         total iteration time                   0.232 s
+         error                                  6.3098e-10
+    - iteration 39 :
+         total iteration time                   0.228 s
+         error                                  6.2109e-10
+    - iteration 40 :
+         total iteration time                   0.234 s
+         error                                  6.1747e-10
+    - iteration 41 :
+         total iteration time                   0.238 s
+         error                                  6.1218e-10
+    - iteration 42 :
+         total iteration time                   0.224 s
+         error                                  5.8195e-10
+    - iteration 43 :
+         total iteration time                   0.229 s
+         error                                  4.1134e-10
+    - iteration 44 :
+         total iteration time                   0.237 s
+         error                                  2.8091e-10
+    - iteration 45 :
+         total iteration time                   0.243 s
+         error                                  2.5438e-10
+    - iteration 46 :
+         total iteration time                   0.241 s
+         error                                  2.4414e-10
+    - iteration 47 :
+         total iteration time                   0.228 s
+         error                                  2.401e-10
+    - iteration 48 :
+         total iteration time                   0.244 s
+         error                                  2.3661e-10
+    - iteration 49 :
+         total iteration time                   0.246 s
+         error                                  2.3381e-10
+    - iteration 50 :
+         total iteration time                   0.238 s
+         error                                  2.2214e-10
+    Time for refinement                   1.159147e+01 s
+________________________________________
+
+CSC Conversion Time: 0.220145
+Init Time: 0.000111
+Factorize Time: 10.744476
+Solve Time: 11.878350
+Clean up Time: 0.000000
+---------------------------------
+Sum: 22.843083
+
+Total PaStiX Time: 136.104620
+CCX without PaStiX Time: 32.697170
+Share of PaStiX Time: 0.806298
+Total Time: 168.801791
+Reusability: 5 : 6 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000038
+ time avg. forc= 0.000038
+ largest residual force= 0.000830 in node 102743 and dof 3
+ largest increment of disp= 1.516871e-01
+ largest correction to disp= 1.635037e-02 in node 2715 and dof 3
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.287787e+00 s
+    Time to initialize coeftab            9.252369e-01 s
+    Time to factorize                     5.415637e+00 s (474.24 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.837142e-01 s
+    - iteration 1 :
+         total iteration time                   0.241 s
+         error                                  0.02241
+    - iteration 2 :
+         total iteration time                   0.224 s
+         error                                  0.020745
+    - iteration 3 :
+         total iteration time                   0.219 s
+         error                                  0.018768
+    - iteration 4 :
+         total iteration time                   0.211 s
+         error                                  0.015695
+    - iteration 5 :
+         total iteration time                   0.22 s
+         error                                  0.011431
+    - iteration 6 :
+         total iteration time                   0.225 s
+         error                                  0.0088312
+    - iteration 7 :
+         total iteration time                   0.227 s
+         error                                  0.0078816
+    - iteration 8 :
+         total iteration time                   0.216 s
+         error                                  0.0074803
+    - iteration 9 :
+         total iteration time                   0.218 s
+         error                                  0.0073038
+    - iteration 10 :
+         total iteration time                   0.227 s
+         error                                  0.0072568
+    - iteration 11 :
+         total iteration time                   0.228 s
+         error                                  0.0072414
+    - iteration 12 :
+         total iteration time                   0.222 s
+         error                                  0.0072235
+    - iteration 13 :
+         total iteration time                   0.229 s
+         error                                  0.0071526
+    - iteration 14 :
+         total iteration time                   0.222 s
+         error                                  0.0071108
+    - iteration 15 :
+         total iteration time                   0.219 s
+         error                                  0.0070538
+    - iteration 16 :
+         total iteration time                   0.227 s
+         error                                  0.0069619
+    - iteration 17 :
+         total iteration time                   0.219 s
+         error                                  0.0068619
+    - iteration 18 :
+         total iteration time                   0.223 s
+         error                                  0.0067847
+    - iteration 19 :
+         total iteration time                   0.227 s
+         error                                  0.0065672
+    - iteration 20 :
+         total iteration time                   0.229 s
+         error                                  0.0060864
+    - iteration 21 :
+         total iteration time                   0.225 s
+         error                                  0.0052459
+    - iteration 22 :
+         total iteration time                   0.228 s
+         error                                  0.0045404
+    - iteration 23 :
+         total iteration time                   0.229 s
+         error                                  0.0040569
+    - iteration 24 :
+         total iteration time                   0.225 s
+         error                                  0.0036829
+    - iteration 25 :
+         total iteration time                   0.229 s
+         error                                  0.0031766
+    - iteration 26 :
+         total iteration time                   0.229 s
+         error                                  0.0024744
+    - iteration 27 :
+         total iteration time                   0.23 s
+         error                                  0.0021534
+    - iteration 28 :
+         total iteration time                   0.23 s
+         error                                  0.0020577
+    - iteration 29 :
+         total iteration time                   0.224 s
+         error                                  0.0020199
+    - iteration 30 :
+         total iteration time                   0.23 s
+         error                                  0.0020145
+    - iteration 31 :
+         total iteration time                   0.219 s
+         error                                  0.0020133
+    - iteration 32 :
+         total iteration time                   0.224 s
+         error                                  0.0019964
+    - iteration 33 :
+         total iteration time                   0.232 s
+         error                                  0.0019339
+    - iteration 34 :
+         total iteration time                   0.228 s
+         error                                  0.0019019
+    - iteration 35 :
+         total iteration time                   0.234 s
+         error                                  0.0018892
+    - iteration 36 :
+         total iteration time                   0.221 s
+         error                                  0.0018879
+    - iteration 37 :
+         total iteration time                   0.234 s
+         error                                  0.0018835
+    - iteration 38 :
+         total iteration time                   0.236 s
+         error                                  0.001874
+    - iteration 39 :
+         total iteration time                   0.234 s
+         error                                  0.0018739
+    - iteration 40 :
+         total iteration time                   0.232 s
+         error                                  0.001873
+    - iteration 41 :
+         total iteration time                   0.235 s
+         error                                  0.0018716
+    - iteration 42 :
+         total iteration time                   0.236 s
+         error                                  0.0018716
+    - iteration 43 :
+         total iteration time                   0.226 s
+         error                                  0.0018705
+    - iteration 44 :
+         total iteration time                   0.234 s
+         error                                  0.0018668
+    - iteration 45 :
+         total iteration time                   0.239 s
+         error                                  0.0018575
+    - iteration 46 :
+         total iteration time                   0.236 s
+         error                                  0.0018037
+    - iteration 47 :
+         total iteration time                   0.232 s
+         error                                  0.0015285
+    - iteration 48 :
+         total iteration time                   0.23 s
+         error                                  0.0013814
+    - iteration 49 :
+         total iteration time                   0.244 s
+         error                                  0.0013473
+    - iteration 50 :
+         total iteration time                   0.242 s
+         error                                  0.0013405
+    Time for refinement                   1.148939e+01 s
+________________________________________
+
+CSC Conversion Time: 0.220126
+Init Time: 0.000040
+Factorize Time: 10.823456
+Solve Time: 11.766934
+Clean up Time: 0.000000
+---------------------------------
+Sum: 22.810556
+
+Total PaStiX Time: 158.915176
+CCX without PaStiX Time: 35.510564
+Share of PaStiX Time: 0.817357
+Total Time: 194.425740
+Reusability: 6 : 7 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000040
+ time avg. forc= 0.000040
+ largest residual force= 0.050369 in node 102262 and dof 3
+ largest increment of disp= 1.516871e-01
+ largest correction to disp= 1.652203e-02 in node 112767 and dof 3
+
+ no convergence
+
+ iteration 4
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.205535e+00 s
+    Time to initialize coeftab            9.291830e-01 s
+    Time to factorize                     5.552716e+00 s (462.53 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.847131e-01 s
+    - iteration 1 :
+         total iteration time                   0.224 s
+         error                                  3.1727e-05
+    - iteration 2 :
+         total iteration time                   0.221 s
+         error                                  3.149e-05
+    - iteration 3 :
+         total iteration time                   0.232 s
+         error                                  3.1108e-05
+    - iteration 4 :
+         total iteration time                   0.225 s
+         error                                  3.0469e-05
+    - iteration 5 :
+         total iteration time                   0.219 s
+         error                                  3.0462e-05
+    - iteration 6 :
+         total iteration time                   0.213 s
+         error                                  3.0223e-05
+    - iteration 7 :
+         total iteration time                   0.224 s
+         error                                  2.993e-05
+    - iteration 8 :
+         total iteration time                   0.219 s
+         error                                  2.9905e-05
+    - iteration 9 :
+         total iteration time                   0.222 s
+         error                                  2.9877e-05
+    - iteration 10 :
+         total iteration time                   0.228 s
+         error                                  2.985e-05
+    - iteration 11 :
+         total iteration time                   0.228 s
+         error                                  2.9843e-05
+    - iteration 12 :
+         total iteration time                   0.223 s
+         error                                  2.9747e-05
+    - iteration 13 :
+         total iteration time                   0.227 s
+         error                                  2.9696e-05
+    - iteration 14 :
+         total iteration time                   0.228 s
+         error                                  2.9669e-05
+    - iteration 15 :
+         total iteration time                   0.225 s
+         error                                  2.9655e-05
+    - iteration 16 :
+         total iteration time                   0.228 s
+         error                                  2.9647e-05
+    - iteration 17 :
+         total iteration time                   0.229 s
+         error                                  2.964e-05
+    - iteration 18 :
+         total iteration time                   0.223 s
+         error                                  2.9637e-05
+    - iteration 19 :
+         total iteration time                   0.219 s
+         error                                  2.9615e-05
+    - iteration 20 :
+         total iteration time                   0.226 s
+         error                                  2.9537e-05
+    - iteration 21 :
+         total iteration time                   0.23 s
+         error                                  2.95e-05
+    - iteration 22 :
+         total iteration time                   0.223 s
+         error                                  2.95e-05
+    - iteration 23 :
+         total iteration time                   0.224 s
+         error                                  2.9409e-05
+    - iteration 24 :
+         total iteration time                   0.225 s
+         error                                  2.9266e-05
+    - iteration 25 :
+         total iteration time                   0.224 s
+         error                                  2.9119e-05
+    - iteration 26 :
+         total iteration time                   0.226 s
+         error                                  2.8949e-05
+    - iteration 27 :
+         total iteration time                   0.223 s
+         error                                  2.8892e-05
+    - iteration 28 :
+         total iteration time                   0.227 s
+         error                                  2.8885e-05
+    - iteration 29 :
+         total iteration time                   0.226 s
+         error                                  2.8882e-05
+    - iteration 30 :
+         total iteration time                   0.227 s
+         error                                  2.8881e-05
+    - iteration 31 :
+         total iteration time                   0.226 s
+         error                                  2.8881e-05
+    - iteration 32 :
+         total iteration time                   0.23 s
+         error                                  2.8875e-05
+    - iteration 33 :
+         total iteration time                   0.231 s
+         error                                  2.887e-05
+    - iteration 34 :
+         total iteration time                   0.235 s
+         error                                  2.8867e-05
+    - iteration 35 :
+         total iteration time                   0.228 s
+         error                                  2.8858e-05
+    - iteration 36 :
+         total iteration time                   0.239 s
+         error                                  2.8784e-05
+    - iteration 37 :
+         total iteration time                   0.234 s
+         error                                  2.8732e-05
+    - iteration 38 :
+         total iteration time                   0.232 s
+         error                                  2.8716e-05
+    - iteration 39 :
+         total iteration time                   0.233 s
+         error                                  2.8688e-05
+    - iteration 40 :
+         total iteration time                   0.228 s
+         error                                  2.8564e-05
+    - iteration 41 :
+         total iteration time                   0.231 s
+         error                                  2.842e-05
+    - iteration 42 :
+         total iteration time                   0.225 s
+         error                                  2.8321e-05
+    - iteration 43 :
+         total iteration time                   0.235 s
+         error                                  2.8133e-05
+    - iteration 44 :
+         total iteration time                   0.237 s
+         error                                  2.7385e-05
+    - iteration 45 :
+         total iteration time                   0.237 s
+         error                                  2.3724e-05
+    - iteration 46 :
+         total iteration time                   0.238 s
+         error                                  1.8395e-05
+    - iteration 47 :
+         total iteration time                   0.229 s
+         error                                  1.6175e-05
+    - iteration 48 :
+         total iteration time                   0.242 s
+         error                                  1.5361e-05
+    - iteration 49 :
+         total iteration time                   0.245 s
+         error                                  1.5001e-05
+    - iteration 50 :
+         total iteration time                   0.239 s
+         error                                  1.4782e-05
+    Time for refinement                   1.150474e+01 s
+________________________________________
+
+CSC Conversion Time: 0.216388
+Init Time: 0.000043
+Factorize Time: 10.872867
+Solve Time: 11.774688
+Clean up Time: 0.000000
+---------------------------------
+Sum: 22.863985
+
+Total PaStiX Time: 181.779161
+CCX without PaStiX Time: 38.586015
+Share of PaStiX Time: 0.824900
+Total Time: 220.365176
+Reusability: 7 : 8 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000055
+ time avg. forc= 0.000055
+ largest residual force= 0.096967 in node 102262 and dof 3
+ largest increment of disp= 1.516871e-01
+ largest correction to disp= 4.287684e-02 in node 114001 and dof 3
+
+ divergence; the increment size is decreased to 6.250000e-02
+ the increment is reattempted
+
+ increment 1 attempt 3 
+ increment size= 6.250000e-02
+ sum of previous increments=0.000000e+00
+ actual step time=6.250000e-02
+ actual total time=6.250000e-02
+
+ iteration 1
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.198314e+00 s
+    Time to initialize coeftab            8.456931e-01 s
+    Time to factorize                     5.432427e+00 s (472.78 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.824479e-01 s
+    - iteration 1 :
+         total iteration time                   0.204 s
+         error                                  0.00063242
+    - iteration 2 :
+         total iteration time                   0.211 s
+         error                                  0.00058577
+    - iteration 3 :
+         total iteration time                   0.205 s
+         error                                  0.0005293
+    - iteration 4 :
+         total iteration time                   0.208 s
+         error                                  0.00045895
+    - iteration 5 :
+         total iteration time                   0.209 s
+         error                                  0.00035063
+    - iteration 6 :
+         total iteration time                   0.213 s
+         error                                  0.00026023
+    - iteration 7 :
+         total iteration time                   0.222 s
+         error                                  0.00020465
+    - iteration 8 :
+         total iteration time                   0.23 s
+         error                                  0.00017003
+    - iteration 9 :
+         total iteration time                   0.234 s
+         error                                  0.00013327
+    - iteration 10 :
+         total iteration time                   0.25 s
+         error                                  0.00010659
+    - iteration 11 :
+         total iteration time                   0.225 s
+         error                                  9.1314e-05
+    - iteration 12 :
+         total iteration time                   0.246 s
+         error                                  7.2668e-05
+    - iteration 13 :
+         total iteration time                   0.22 s
+         error                                  5.1033e-05
+    - iteration 14 :
+         total iteration time                   0.227 s
+         error                                  3.7921e-05
+    - iteration 15 :
+         total iteration time                   0.218 s
+         error                                  3.197e-05
+    - iteration 16 :
+         total iteration time                   0.221 s
+         error                                  2.9669e-05
+    - iteration 17 :
+         total iteration time                   0.23 s
+         error                                  2.7872e-05
+    - iteration 18 :
+         total iteration time                   0.215 s
+         error                                  2.6942e-05
+    - iteration 19 :
+         total iteration time                   0.227 s
+         error                                  2.5476e-05
+    - iteration 20 :
+         total iteration time                   0.228 s
+         error                                  2.3995e-05
+    - iteration 21 :
+         total iteration time                   0.228 s
+         error                                  2.3011e-05
+    - iteration 22 :
+         total iteration time                   0.219 s
+         error                                  2.1965e-05
+    - iteration 23 :
+         total iteration time                   0.228 s
+         error                                  2.154e-05
+    - iteration 24 :
+         total iteration time                   0.229 s
+         error                                  2.1355e-05
+    - iteration 25 :
+         total iteration time                   0.225 s
+         error                                  2.1142e-05
+    - iteration 26 :
+         total iteration time                   0.23 s
+         error                                  2.071e-05
+    - iteration 27 :
+         total iteration time                   0.228 s
+         error                                  2.0017e-05
+    - iteration 28 :
+         total iteration time                   0.23 s
+         error                                  1.9254e-05
+    - iteration 29 :
+         total iteration time                   0.225 s
+         error                                  1.7363e-05
+    - iteration 30 :
+         total iteration time                   0.229 s
+         error                                  1.5599e-05
+    - iteration 31 :
+         total iteration time                   0.229 s
+         error                                  1.4149e-05
+    - iteration 32 :
+         total iteration time                   0.223 s
+         error                                  1.3179e-05
+    - iteration 33 :
+         total iteration time                   0.234 s
+         error                                  1.2338e-05
+    - iteration 34 :
+         total iteration time                   0.232 s
+         error                                  1.0999e-05
+    - iteration 35 :
+         total iteration time                   0.226 s
+         error                                  9.3782e-06
+    - iteration 36 :
+         total iteration time                   0.228 s
+         error                                  8.6431e-06
+    - iteration 37 :
+         total iteration time                   0.236 s
+         error                                  8.3495e-06
+    - iteration 38 :
+         total iteration time                   0.235 s
+         error                                  8.1999e-06
+    - iteration 39 :
+         total iteration time                   0.247 s
+         error                                  7.7186e-06
+    - iteration 40 :
+         total iteration time                   0.233 s
+         error                                  6.3317e-06
+    - iteration 41 :
+         total iteration time                   0.229 s
+         error                                  4.9205e-06
+    - iteration 42 :
+         total iteration time                   0.233 s
+         error                                  4.2439e-06
+    - iteration 43 :
+         total iteration time                   0.234 s
+         error                                  4.0541e-06
+    - iteration 44 :
+         total iteration time                   0.239 s
+         error                                  3.9752e-06
+    - iteration 45 :
+         total iteration time                   0.237 s
+         error                                  3.8973e-06
+    - iteration 46 :
+         total iteration time                   0.23 s
+         error                                  3.8014e-06
+    - iteration 47 :
+         total iteration time                   0.228 s
+         error                                  3.4218e-06
+    - iteration 48 :
+         total iteration time                   0.227 s
+         error                                  1.9413e-06
+    - iteration 49 :
+         total iteration time                   0.235 s
+         error                                  7.5214e-07
+    - iteration 50 :
+         total iteration time                   0.235 s
+         error                                  4.1575e-07
+    Time for refinement                   1.145218e+01 s
+________________________________________
+
+CSC Conversion Time: 0.218092
+Init Time: 0.000047
+Factorize Time: 10.672224
+Solve Time: 11.730981
+Clean up Time: 0.000000
+---------------------------------
+Sum: 22.621343
+
+Total PaStiX Time: 204.400504
+CCX without PaStiX Time: 41.342980
+Share of PaStiX Time: 0.831764
+Total Time: 245.743484
+Reusability: 8 : 9 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000039
+ time avg. forc= 0.000039
+ largest residual force= 0.237020 in node 102262 and dof 3
+ largest increment of disp= 3.777162e-02
+ largest correction to disp= 3.777162e-02 in node 26225 and dof 3
+
+ no convergence
+
+ iteration 2
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.237406e+00 s
+    Time to initialize coeftab            9.249630e-01 s
+    Time to factorize                     5.609965e+00 s (457.81 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         1.834540e-01 s
+    - iteration 1 :
+         total iteration time                   0.214 s
+         error                                  4.0694e-06
+    - iteration 2 :
+         total iteration time                   0.208 s
+         error                                  3.8133e-06
+    - iteration 3 :
+         total iteration time                   0.212 s
+         error                                  3.7508e-06
+    - iteration 4 :
+         total iteration time                   0.212 s
+         error                                  3.61e-06
+    - iteration 5 :
+         total iteration time                   0.209 s
+         error                                  3.2344e-06
+    - iteration 6 :
+         total iteration time                   0.211 s
+         error                                  2.6636e-06
+    - iteration 7 :
+         total iteration time                   0.217 s
+         error                                  2.4364e-06
+    - iteration 8 :
+         total iteration time                   0.211 s
+         error                                  2.374e-06
+    - iteration 9 :
+         total iteration time                   0.212 s
+         error                                  2.3434e-06
+    - iteration 10 :
+         total iteration time                   0.212 s
+         error                                  2.3342e-06
+    - iteration 11 :
+         total iteration time                   0.213 s
+         error                                  2.3281e-06
+    - iteration 12 :
+         total iteration time                   0.212 s
+         error                                  2.3141e-06
+    - iteration 13 :
+         total iteration time                   0.214 s
+         error                                  2.2841e-06
+    - iteration 14 :
+         total iteration time                   0.213 s
+         error                                  2.2512e-06
+    - iteration 15 :
+         total iteration time                   0.212 s
+         error                                  2.2103e-06
+    - iteration 16 :
+         total iteration time                   0.215 s
+         error                                  2.1326e-06
+    - iteration 17 :
+         total iteration time                   0.214 s
+         error                                  1.9386e-06
+    - iteration 18 :
+         total iteration time                   0.22 s
+         error                                  1.7397e-06
+    - iteration 19 :
+         total iteration time                   0.215 s
+         error                                  1.6248e-06
+    - iteration 20 :
+         total iteration time                   0.221 s
+         error                                  1.4708e-06
+    - iteration 21 :
+         total iteration time                   0.253 s
+         error                                  1.3651e-06
+    - iteration 22 :
+         total iteration time                   0.277 s
+         error                                  1.3192e-06
+    - iteration 23 :
+         total iteration time                   0.248 s
+         error                                  1.2644e-06
+    - iteration 24 :
+         total iteration time                   0.225 s
+         error                                  1.2108e-06
+    - iteration 25 :
+         total iteration time                   0.231 s
+         error                                  1.1906e-06
+    - iteration 26 :
+         total iteration time                   0.23 s
+         error                                  1.1838e-06
+    - iteration 27 :
+         total iteration time                   0.225 s
+         error                                  1.1675e-06
+    - iteration 28 :
+         total iteration time                   0.236 s
+         error                                  1.1252e-06
+    - iteration 29 :
+         total iteration time                   0.234 s
+         error                                  1.0951e-06
+    - iteration 30 :
+         total iteration time                   0.226 s
+         error                                  1.0759e-06
+    - iteration 31 :
+         total iteration time                   0.284 s
+         error                                  1.0354e-06
+    - iteration 32 :
+         total iteration time                   0.226 s
+         error                                  9.7086e-07
+    - iteration 33 :
+         total iteration time                   0.261 s
+         error                                  8.8209e-07
+    - iteration 34 :
+         total iteration time                   0.231 s
+         error                                  8.2814e-07
+    - iteration 35 :
+         total iteration time                   0.285 s
+         error                                  7.9084e-07
+    - iteration 36 :
+         total iteration time                   0.256 s
+         error                                  7.2702e-07
+    - iteration 37 :
+         total iteration time                   0.225 s
+         error                                  6.6667e-07
+    - iteration 38 :
+         total iteration time                   0.25 s
+         error                                  6.4374e-07
+    - iteration 39 :
+         total iteration time                   0.243 s
+         error                                  6.3858e-07
+    - iteration 40 :
+         total iteration time                   0.246 s
+         error                                  6.3845e-07
+    - iteration 41 :
+         total iteration time                   0.243 s
+         error                                  6.3114e-07
+    - iteration 42 :
+         total iteration time                   0.503 s
+         error                                  6.2263e-07
+    - iteration 43 :
+         total iteration time                   0.251 s
+         error                                  6.1863e-07
+    - iteration 44 :
+         total iteration time                   0.231 s
+         error                                  6.1839e-07
+    - iteration 45 :
+         total iteration time                   0.238 s
+         error                                  6.1739e-07
+    - iteration 46 :
+         total iteration time                   0.231 s
+         error                                  5.9296e-07
+    - iteration 47 :
+         total iteration time                   0.232 s
+         error                                  4.8623e-07
+    - iteration 48 :
+         total iteration time                   0.243 s
+         error                                  4.3502e-07
+    - iteration 49 :
+         total iteration time                   0.24 s
+         error                                  4.1738e-07
+    - iteration 50 :
+         total iteration time                   0.27 s
+         error                                  4.1281e-07
+    Time for refinement                   1.192594e+01 s
+________________________________________
+
+CSC Conversion Time: 0.211512
+Init Time: 0.000056
+Factorize Time: 10.958284
+Solve Time: 12.204052
+Clean up Time: 0.000000
+---------------------------------
+Sum: 23.373904
+
+Total PaStiX Time: 227.774408
+CCX without PaStiX Time: 44.611862
+Share of PaStiX Time: 0.836218
+Total Time: 272.386270
+Reusability: 9 : 10 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ average force= 0.000009
+ time avg. forc= 0.000009
+ largest residual force= 0.000135 in node 102262 and dof 3
+ largest increment of disp= 3.777162e-02
+ largest correction to disp= 2.485998e-03 in node 114029 and dof 3
+
+ no convergence
+
+ iteration 3
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Reusing csc.!
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1305149
+  nnz:          100913437
+
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.181460e+00 s
+    Time to initialize coeftab            9.115880e-01 s
+    Time to factorize                     5.181220e+00 s (495.70 GFlop/s)
+    Number of operations                       -1368424964545.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                       5.96 Go
+    Time to solve                         2.146850e-01 s
+    - iteration 1 :
+         total iteration time                   0.233 s
+         error                                  0.0061758
+    - iteration 2 :
+         total iteration time                   0.21 s
+         error                                  0.0055892
+    - iteration 3 :
+         total iteration time                   0.207 s
+         error                                  0.005137
+    - iteration 4 :
+         total iteration time                   0.21 s
+         error                                  0.0046325
+    - iteration 5 :
+         total iteration time                   0.211 s
+         error                                  0.0036857
+    - iteration 6 :
+         total iteration time                   0.208 s
+         error                                  0.0029886
+    - iteration 7 :
+         total iteration time                   0.207 s
+         error                                  0.0025487
+    - iteration 8 :
+         total iteration time                   0.211 s
+         error                                  0.0023608
+    - iteration 9 :
+         total iteration time                   0.207 s
+         error                                  0.0022768
+    - iteration 10 :
+         total iteration time                   0.209 s
+         error                                  0.0022607
+    - iteration 11 :
+         total iteration time                   0.21 s
+         error                                  0.0022586
+    - iteration 12 :
+         total iteration time                   0.209 s
+         error                                  0.002245
+    - iteration 13 :
+         total iteration time                   0.209 s
+         error                                  0.0022228
+    - iteration 14 :
+         total iteration time                   0.21 s
+         error                                  0.0022215
+    - iteration 15 :
+         total iteration time                   0.214 s
+         error                                  0.0022191
+    - iteration 16 :
+         total iteration time                   0.21 s
+         error                                  0.0022112
+    - iteration 17 :
+         total iteration time                   0.215 s
+         error                                  0.0022012
+    - iteration 18 :
+         total iteration time                   0.214 s
+         error                                  0.0022003
+    - iteration 19 :
+         total iteration time                   0.216 s
+         error                                  0.0021994
+    - iteration 20 :
+         total iteration time                   0.216 s
+         error                                  0.0021834
+    - iteration 21 :
+         total iteration time                   0.228 s
+         error                                  0.002006
+    - iteration 22 :
+         total iteration time                   0.233 s
+         error                                  0.0015605
+    - iteration 23 :
+         total iteration time                   0.229 s
+         error                                  0.0013872
+    - iteration 24 :
+         total iteration time                   0.227 s
+         error                                  0.0013158
+    - iteration 25 :
+         total iteration time                   0.228 s
+         error                                  0.0012873
+    - iteration 26 :
+         total iteration time                   0.225 s
+         error                                  0.0012474
+    - iteration 27 :
+         total iteration time                   0.23 s

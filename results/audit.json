@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "solved_cases": 69,
+  "mesh_changes_percent": {
+    "Uniform": {
+      "gold_mean_vm_MPa": 4.4415549169803485,
+      "gold_p95_vm_MPa": 1.7512318153497899,
+      "gold_max_cell_vm_MPa": 5.4304145503023165,
+      "gold_mean_abs_exx": 4.456140925204086,
+      "energy_Nmm": 1.0875377048998351
+    },
+    "Single": {
+      "gold_mean_vm_MPa": 1.227320450155633,
+      "gold_p95_vm_MPa": 6.171658577548464,
+      "gold_max_cell_vm_MPa": 8.323050972523337,
+      "gold_mean_abs_exx": 7.400972544980914,
+      "energy_Nmm": 0.062431806829679574
+    },
+    "Graded": {
+      "gold_mean_vm_MPa": 1.3881060606171445,
+      "gold_p95_vm_MPa": 5.695614219576389,
+      "gold_max_cell_vm_MPa": 8.178207508868907,
+      "gold_mean_abs_exx": 7.253025961472171,
+      "energy_Nmm": 0.07849555803683649
+    }
+  },
+  "maximum_relative_free_residual": 1.1411140317882266e-06,
+  "maximum_force_balance_N": 1.7451075369466136e-08,
+  "compression_scaling_error": 0.0,
+  "fields": [
+    {
+      "design": "Uniform",
+      "max_cell_stress_centroid_mm": [
+        0.49062500000000003,
+        2.4003125
+      ]
+    },
+    {
+      "design": "Single",
+      "max_cell_stress_centroid_mm": [
+        0.540625,
+        2.4003125
+      ]
+    },
+    {
+      "design": "Graded",
+      "max_cell_stress_centroid_mm": [
+        0.534375,
+        2.4003125
+      ]
+    }
+  ]
+}

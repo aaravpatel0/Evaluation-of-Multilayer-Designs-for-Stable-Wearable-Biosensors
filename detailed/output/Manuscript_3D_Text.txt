@@ -1,0 +1,165 @@
+Evaluation of Multilayer Designs for Stable Wearable Biosensors
+
+Joel Whaling, Aarav Patel*, Mandy Hung*, Yuancheng Fang*, Leona Cai*, Zenan Li*, Advik Raja*, Nathan Xu*, Linda Shi
+
+Institute of Engineering in Medicine, University of California San Diego, USA
+
+9500 Gilman Drive, La Jolla, CA 92093, USA
+
+*High school students participating in the IEM OPALS program
+
+Abstract - The mechanical performance of a wearable biosensor depends on the load paths through its individual components and interconnects. We evaluated a sixteen-body STEP assembly containing skin, adhesive, PDMS, ABS bodies, five sensor components, a transmitter, patterned gold features, two routed gold wires, and a protective cover. Three equal-thickness support architectures were compared using Gmsh meshes and CalculiX 2.23 structural simulations, with Python post-processing. Unidentified component properties were assigned as explicit mechanical surrogates and varied in sensitivity cases. Quadratic tetrahedral meshes reached 374,893 elements and 1,750,458 displacement degrees of freedom. Analytical cube benchmarks and an independent scikit-fem implementation verified basic solver consistency. At 1% prescribed skin extension in the linear model, combined wire mean von Mises stresses were 3.344, 4.155, and 4.084 MPa for uniform, single-buffer, and graded supports. The buffered cases increased this wire metric by 24.2% and 22.1% relative to uniform PDMS. Wire means changed by up to 3.9% between the last two meshes, while local maxima were more sensitive. Stiffness perturbations assessed material dependence; exploratory nonlinear attempts did not establish full-load equilibrium. The supplied ABS stem crosses the support and partly enters the adhesive, providing a distinct local load path. These results do not establish a general benefit from compliant grading. They support component-specific assessment with explicit geometric, material, and numerical assumptions. No electrical function, fatigue life, or equivalence to an ANSYS model was validated.
+
+Keywords: Wearable biosensors, three-dimensional finite elements, gold interconnects, compliant supports, verification.
+
+1. Introduction
+
+Wearable biosensors experience deformation transmitted through the skin, adhesive, substrate, and protective package. Mechanical compliance at the skin interface can support conformal integration, as illustrated by epidermal electronics [1]. Stretchable systems also rely on the interaction between stiff functional regions and softer supports [2]. A layered cross-section can help screen support materials, but it cannot resolve the distinct load paths associated with a sensor housing, individual component blocks, a transmitter, and routed metal conductors.
+
+Component geometry matters because a package is not mechanically uniform. Thin wires may deform differently from thick chip-like bodies even when both are attached to the same substrate. Island and interconnect mechanics provides a useful framework for considering such differences [3]. A design that lowers stress in one component can leave another unchanged or increase its stress. Accordingly, a package-level average is insufficient for deciding whether a compliant layer protects the parts most likely to limit mechanical performance.
+
+This study evaluates a supplied sixteen-body wearable-biosensor CAD assembly. Its skin, adhesive, PDMS support, ABS sensor body, five additional sensor components, radio-transmitter body, patterned gold features, two routed gold wires, ABS feature, and PDMS cover are retained as separate material regions. Three equal-thickness support architectures are compared: uniform PDMS, a single compliant region, and a soft-to-medium graded region. Geometry is fixed across those comparisons, so effects of material substitution can be assessed without simultaneously changing package thickness.
+
+The objectives are to quantify stress and strain for each electronic body, measure the sensitivity of wire and sensor responses to mesh refinement, and examine uncertainty associated with unidentified component materials. An established three-dimensional solver performs the assembly calculations. Independent finite-element benchmarks and analytical checks address numerical verification. The results are conditional mechanical predictions; no electrical sensing, radio-frequency function, fatigue life, or clinical performance is inferred.
+
+2. Methods
+
+2.1. Assembly and controlled support variants
+
+The input is the original STEP assembly, whose length unit is millimetres. Figure 1 presents a cutaway view of its electronic bodies. The skin spans approximately 60 by 60 mm and 2 mm in thickness. The adhesive occupies a textured footprint within approximately 40 by 40 mm, and the PDMS support spans approximately 38 by 38 mm with thickness 1 mm. Native CAD interfaces, component shapes, and the two routed wire solids are preserved rather than replaced by a single rectangular sensing inclusion.
+
+The main sensor body is labeled ABS in the CAD. Four small sensor components occupy nominal 2 by 2 by 0.25 mm envelopes near its corners; a fifth, larger sensor component sits above the central region. The transmitter and other auxiliary parts retain their supplied shapes. The two gold wires each span approximately 5 mm in x, occupy routed paths within approximately 2.5 mm in y, and are 0.10 mm thick. These are geometric descriptions of the supplied model, not confirmation of a manufactured bill of materials.
+
+Boolean fragmentation produces conforming material interfaces. The CAD contains an ABS stem overlapping the adhesive by 3.770 mm cubed and the PDMS by 12.566 mm cubed. Those shared volumes are assigned to ABS, removing adhesive or PDMS from the same space. This avoids superposed elements carrying two materials at one physical location. All remaining interfaces are treated as perfectly bonded through shared nodes. No adhesive debonding, solder failure, or frictional contact law is introduced.
+
+To compare supports at fixed thickness, the original 1 mm PDMS support is partitioned into lower 0.25 mm, middle 0.25 mm, and upper 0.50 mm regions. Uniform support assigns 1.8 MPa to all three. The single-buffer case assigns 0.10 MPa to the lower half and retains 1.8 MPa above. The graded case assigns 0.10 MPa to the bottom quarter, 0.50 MPa to the next quarter, and 1.8 MPa to the upper half. The ABS stem remains unchanged and can provide a local route through the compliant region.
+
+Figure 1. Three-dimensional views of the accepted finest mesh: (a) assembly on the modeled skin slab; (b) uniform-support case at 1% prescribed skin extension. Displacements are enlarged 10 times; no nonlinear equilibrium is implied. Only electronic bodies carry the stress colors, using adjacent-element mean integration-point von Mises values. Values above 5 MPa are saturated. Skin and supports retain material colors; the top cover is hidden in both views.
+
+2.2. Material definitions
+
+Table 1 lists the nominal isotropic inputs. PDMS stiffness depends on processing and is not a universal material constant [4]; skin is also anisotropic and site-dependent [5]. Here, skin, adhesive, and support properties define representative screening conditions, without subject-specific calibration. The CAD does not identify the grades or part numbers of the five sensor components or the transmitter. Their properties are explicitly assigned as homogeneous surrogates: 10 GPa for sensor packages and 20 GPa for the transmitter body. These bodies are not claimed to be bare silicon chips or resolved multilayer circuit boards.
+
+For the gold-labeled solids, the nominal modulus is 78.5 GPa and Poisson ratio is 0.42, consistent with supplier bulk-gold property data [6]. This does not establish thin-film or fabricated-wire properties. The ABS modulus of 2.3 GPa is representative of published ABS grades [7]; its Poisson ratio of 0.35 is assumed. The remaining Poisson ratios and unidentified-body moduli are engineering assumptions. A sensor-package stiffness sweep from 2 to 130 GPa and an adhesive sweep from 0.05 to 0.50 MPa assess selected uncertainties. The sensitivity cases use uniform PDMS support.
+
+Table 1. Representative isotropic inputs. Unidentified package and transmitter properties are surrogate assumptions.
+
+2.3. Software and loading
+
+Gmsh 4.15.2 imports and fragments the STEP geometry and generates conforming ten-node tetrahedral meshes [8]. CalculiX CrunchiX 2.23 performs the three-dimensional structural solves using C3D10 elements and the PaStiX sparse solver [9]. Python 3.12.14 scripts control the workflow and use NumPy for extraction and integration-point post-processing. Independent benchmark assembly uses scikit-fem 12.0.2 [10]. ANSYS was not used to produce these results, and no numerical equivalence to an ANSYS model is claimed.
+
+The primary study uses small-strain isotropic elasticity without body forces. Displacement is resolved in all three spatial directions; no plane-strain constraint is imposed. The left skin edge at x = -30 mm is fixed in all directions. For extension, the right skin edge at x = +30 mm receives ux = +0.60 mm, corresponding to 1% nominal span strain, while its other components remain free. For shortening, ux = -0.30 mm is prescribed. The transverse case prescribes uz = -0.60 mm on the right skin edge, leaving its other components free. All other external surfaces are traction-free.
+
+These are skin-driven fixtures. Electronic bodies, wires, and the cover receive no direct displacement constraint. The transverse case includes bending and shear and is not a pure-moment test. The fixed left edge also restricts local transverse contraction. Fixture choices are held constant across architectures, but they should not be taken as a measured distribution of physiological skin motion.
+
+An exploratory uniform-support extension trial activates finite geometry and replaces skin, adhesive, and PDMS with compressible Neo-Hookean materials. The strain energy is W = C10 times (I1-bar minus 3) plus (J minus 1) squared divided by D1, where J is volume ratio and I1-bar is the first isochoric invariant. Constants use C10 = E/[4(1 + nu)] and D1 = 6(1 - 2nu)/E. Both zero-displacement and corresponding linear-field initializations are attempted with the undeformed CAD reference retained. A separate hyperelastic cube verifies that the two initialization methods reach the same equilibrium in that benchmark. The assembly trial is exploratory, and the law is not experimentally calibrated.
+
+2.4. Discretization and verification
+
+The three meshes use global maximum sizes of 2.5, 1.7, and 1.2 mm, with targeted wire sizes of 0.20, 0.14, and 0.10 mm. CAD interfaces and small faces impose additional local resolution. Midside nodes are placed linearly on element edges, so curved boundaries are approximated by the refined surface triangulation. Positive element Jacobians are required, and full-assembly connectivity is checked. Mesh-volume fidelity is retained in the accompanying audit. Element-quality limits and changes in component results are reported rather than assuming that a larger element count alone establishes accuracy.
+
+Stress and strain are read directly from the four integration points of each C3D10 element. Von Mises stress includes all normal and shear components. Mean component stress is weighted by undeformed element volume; each integration point contributes one quarter of its element volume. The 95th percentile is a volume-weighted integration-point quantile. Maxima refer to integration points, without extrapolation or smoothing across material interfaces. Mean and maximum absolute principal strain provide component-level deformation measures. Reported component metrics use the primary small-strain formulation.
+
+Combined wire means are volume-weighted over the two wire solids. The five sensor-package means can likewise be combined by volume, but each package remains separately available in the data. Aggregation does not imply common functionality or a shared failure mechanism. No universal allowable stress is applied across gold, ABS, surrogate packages, and interfaces.
+
+Numerical verification uses a quadratic-tetrahedral cube in uniaxial extension, with free transverse contraction and isotropic Poisson ratios of 0.30 and 0.49. Its analytical displacement and reaction are compared with CalculiX. A heterogeneous-modulus cube is additionally solved with CalculiX and independently assembled scikit-fem equations on the same tetrahedra. These tests check element ordering, material assignment, constraints, and solution consistency. They do not validate the unidentified materials or establish complete-assembly agreement with another commercial solver.
+
+Table 2. Quadratic tetrahedral mesh sequence. Dimensions are in mm.
+
+3. Results
+
+3.1. Numerical verification and refinement
+
+The homogeneous benchmark reactions agreed with the analytical value of 0.010000 N to within 5e-08 relative error. The independent CalculiX and scikit-fem displacement vectors differed by at most 5.8e-08 in relative Euclidean norm across the homogeneous and heterogeneous benchmark cases. These comparisons use printed solver output and are limited by its precision. They verify the selected benchmark problems, not a physical device.
+
+All accepted assembly meshes had positive Jacobians. The finest mesh contained one connected finite-element assembly. Across the completed assembly cases, the largest normalized total-force imbalance was 2.3e-07. Figure 2 shows the wire mesh histories. The combined mean wire stress changed by 3.4%, 3.9%, and 3.8% from the intermediate to finest mesh for uniform, single-buffer, and graded supports.
+
+Figure 2. Linear-extension mesh histories. Wire means combine both wire volumes; maxima are the largest wire integration-point values. Local wire resolution is refined together with global mesh size.
+
+The minimum Gmsh element-quality statistic, minSICN, was 0.0074, 0.0156, and 0.0263 across the three meshes. Positive Jacobians do not eliminate element-shape error. Successive-mesh differences measure numerical sensitivity, not certified error bounds. Component-level changes, including upper-tail metrics, are retained in the audit. Wire maxima and junction stresses require particular caution because their convergence can differ from that of volume means.
+
+3.2. Component stresses under extension
+
+Table 3 reports the finest-mesh mean equivalent stress for every electronic body. The two-wire mean was 3.344 MPa with uniform PDMS, 4.155 MPa with the single compliant region, and 4.084 MPa with grading. Thus the nominal buffered designs increased this measure by 24.2% and 22.1%, respectively. A ranking based on a homogeneous sensing layer would not characterize this routed-wire response.
+
+Table 3. Finest-mesh component mean von Mises stress in linear extension (MPa).
+
+The single-to-graded wire difference was 1.7%, smaller than the measured changes on the last mesh refinement. That small separation is insufficient by itself to establish a robust advantage for grading. Some sensor-package means decreased with compliant supports even as wire means increased, so the assembly exhibits a component-level tradeoff. Several package means changed more than wire means during refinement; Table 3 should not be interpreted as a uniformly converged stress field.
+
+Figure 3. Plan views of gold wire 1 under extension, colored by the adjacent element mean integration-point stress. The common scale spans 0-15 MPa; higher values are saturated. No cross-material nodal smoothing is used.
+
+Maximum wire integration-point stresses were 31.66, 40.41, and 39.56 MPa. Figure 3 resolves spatial variation along the routed conductor, including its turns and attachment regions. These maxima are reported as numerical diagnostics and are not compared with an assumed universal yield or failure threshold.
+
+Mean and maximum principal-strain measures for both wires and all sensor packages accompany the stress data. A small strain in a stiff package does not imply zero displacement or a motion-free package, since rigid translation and rotation do not produce the same response as internal deformation.
+
+3.3. Loading and nonlinear checks
+
+Figure 4 compares mean wire stress in the three prescribed skin-edge fixtures on the intermediate mesh. The exact linear shortening solution is proportional to extension with reversed sign and half the amplitude. Calculated component mean equivalent stresses followed this halving relation with a maximum discrepancy of 0.104%. This is a numerical consistency observation, not independent evidence about compression stability.
+
+Figure 4. Mean wire stress for the intermediate-mesh fixtures. Extension, shortening, and transverse motion use the prescribed displacements stated in Methods. The transverse case is not pure bending.
+
+Exploratory finite-geometry attempts on the uniform-support intermediate mesh showed growing equilibrium residuals from both zero and linear-field initializations. The attempts were halted without establishing full-load nonlinear equilibrium; their stress fields are excluded from all tables and figures. This outcome does not verify the linear approximation at 1% nominal extension. It identifies a need for further load continuation, constitutive validation, and independent nonlinear reconstruction before finite-deformation predictions can be made.
+
+3.4. Unidentified-material sensitivity
+
+Table 4. Uniform-support stiffness sensitivity in linear extension on the intermediate mesh. Mean stresses are in MPa.
+
+The sensitivity cases alter one assumed input at a time. They quantify model dependence within the selected ranges, while preserving the original CAD. They are not a distribution of manufactured devices or a replacement for identifying the actual package and adhesive materials.
+
+Across the adhesive sweep, combined wire means ranged from 2.752 to 4.456 MPa. The package-stiffness sweep produced combined sensor-package means from 0.070 to 0.330 MPa. These ranges show why the assigned nominal properties must remain visible alongside the architecture comparison.
+
+4. Discussion
+
+The detailed assembly changes the interpretation of mechanical isolation. A gold wire, a patterned gold feature, a package block, and a plastic housing have different geometries and different routes for receiving load. The appropriate comparison is therefore component-specific. Treating all stiff bodies as one sensing inclusion would suppress the wire bends and attachment regions, while a whole-assembly stress average would dilute their response with the much larger volume of soft material.
+
+The central ABS stem is especially consequential. In the supplied CAD it extends through the PDMS and partly into the adhesive. A compliant support layer therefore does not form a continuous isolation barrier beneath every stiff part. The retained stem provides a mechanically distinct path whose response can compete with distributed support compliance. This geometry is a reason to avoid transferring the ranking or stress reductions of a simple layered cross-section directly to the assembled device.
+
+Buffer comparisons should be evaluated at equal support thickness and for the intended fixture. The present cases change material assignment within the existing support rather than add a new layer outside the assembly. This controls the outer geometry but also means that the study addresses material substitution. A fabricated design with an added buffer below the complete package, a different stem, or a different adhesive footprint is a separate mechanical problem.
+
+Average and upper-tail metrics answer different questions. A stable volume-weighted wire mean can support an architecture comparison even when a local maximum continues to increase with refinement. It cannot establish a failure margin at an attachment or corner. Conversely, a single integration-point maximum does not describe the deformation of an entire component. Both are retained so that screening conclusions can be separated from local reliability claims.
+
+The exploratory nonlinear attempts did not establish an assembly equilibrium at the full target displacement. Their failure to converge within the attempted protocol neither confirms nor disproves the linear ranking. It limits the present work to the stated linear boundary-value problem and motivates improved continuation and independent nonlinear reconstruction. The converged cube benchmark shows that the initialization method can be valid, but it cannot establish convergence or physical validity for the complete assembly. Modulus-derived Neo-Hookean parameters also cannot replace measured stress-strain curves.
+
+ANSYS and CalculiX are numerical solution tools, while the engineering accuracy of this model also depends on geometry, constitutive data, interfaces, fixtures, and discretization. The benchmark and refinement evidence makes the computation inspectable, but it is not a certificate of equivalence to ANSYS or a physical prototype. The supplied CalculiX decks and material definitions permit an independent reconstruction of the same problem in another solver.
+
+5. Limitations
+
+The greatest physical uncertainty is the unverified material identity of several bodies. A homogeneous package or transmitter surrogate omits silicon dies, molding compounds, multilayer boards, copper traces, solder, bond pads, and internal joints unless they are already explicit CAD solids. The two routed gold wires and the supplied outer components are modeled, but electrical continuity, contact resistance, radio-frequency behavior, and biomarker sensing are not simulated.
+
+Perfect bonds preclude interfacial sliding and peeling. Gold and ABS remain elastic, with no plasticity, fracture, or fatigue law. Shortening results are linear-elastic responses, not buckling or collapse predictions. No converged finite-deformation assembly result is available. Surface texture, sharp corners, and component junctions can make local extrema sensitive to mesh and geometric detail.
+
+The nominal skin and adhesive properties are not measurements, and skin anisotropy, prestretch, and viscoelasticity are absent. Only selected independent stiffness perturbations are tested. Temperature, residual stress, manufacturing tolerances, loading rate, and cyclic motion are not included. The boundary conditions do not identify an anatomical location or a validated wear scenario.
+
+Further work should independently reconstruct the same assembly in a second structural solver, calibrate each important material and interface, and compare predicted wire and package strain with optical or electrical measurements during controlled deformation. Direct ANSYS comparison requires identical geometry, constraints, materials, and result definitions. Device-specific reliability or signal-drift conclusions should await those checks.
+
+6. Conclusion
+
+A sixteen-body three-dimensional biosensor assembly was meshed and simulated with explicit sensor bodies, transmitter geometry, gold features, and two routed wire solids. Under the specified linear 1% skin extension, the finest-mesh wire mean equivalent stress was 3.344 MPa for uniform PDMS and increased to 4.155 and 4.084 MPa for the single and graded compliant supports. The supplied assembly therefore does not support a general claim that adding compliance reduces interconnect stress. Results for each electronic body, rather than a whole-package average, are needed to assess the tradeoffs.
+
+Analytical and independent numerical benchmarks support implementation consistency, and three mesh levels quantify response sensitivity. Material perturbations expose additional dependence on assumed properties. Exploratory nonlinear attempts did not establish full-load equilibrium, so the quantitative findings remain conditional on the linear formulation. These computations provide a traceable screening study, with no claim of validated electrical performance, component reliability, or ANSYS-equivalent predictive accuracy.
+
+Data and code availability
+
+The accompanying package includes the original STEP geometry, material assignments, meshing and post-processing scripts, CalculiX input decks and logs, component tables, numerical audits, and selected full displacement and integration-point fields. An interactive mesh viewer permits inspection of the separate CAD bodies. All results are computational; no human or animal experiments were performed.
+
+References
+
+[1] D.-H. Kim, N. Lu, R. Ma, Y.-S. Kim, R.-H. Kim, S. Wang, J. Wu, S. M. Won, H. Tao, A. Islam, K. J. Yu, T.-i. Kim, R. Chowdhury, M. Ying, L. Xu, M. Li, H.-J. Chung, H. Keum, M. McCormick, P. Liu, Y.-W. Zhang, F. G. Omenetto, Y. Huang, T. Coleman, and J. A. Rogers, "Epidermal electronics," Science, vol. 333, no. 6044, pp. 838-843, 2011, doi: 10.1126/science.1206157.
+
+[2] J. A. Rogers, T. Someya, and Y. Huang, "Materials and mechanics for stretchable electronics," Science, vol. 327, no. 5973, pp. 1603-1607, 2010, doi: 10.1126/science.1182383.
+
+[3] N. Lu and S. Yang, "Mechanics for stretchable sensors," Current Opinion in Solid State and Materials Science, vol. 19, no. 3, pp. 149-159, 2015, doi: 10.1016/j.cossms.2014.12.007.
+
+[4] I. D. Johnston, D. K. McCluskey, C. K. L. Tan, and M. C. Tracey, "Mechanical characterization of bulk Sylgard 184 for microfluidics and microengineering," Journal of Micromechanics and Microengineering, vol. 24, no. 3, article 035017, 2014, doi: 10.1088/0960-1317/24/3/035017.
+
+[5] A. Ni Annaidh, K. Bruyere, M. Destrade, M. D. Gilchrist, and M. Ottenio, "Characterization of the anisotropic mechanical properties of excised human skin," Journal of the Mechanical Behavior of Biomedical Materials, vol. 5, no. 1, pp. 139-148, 2012, doi: 10.1016/j.jmbbm.2011.08.016.
+
+[6] Goodfellow, "Gold pellets," material-property data: tensile modulus 78.5 GPa and Poisson ratio 0.42. [Online]. Available: https://www.goodfellow.com/usa/gold-pellets-group. Accessed: Oct. 17, 2026.
+
+[7] INEOS Styrolution, "Styrenics product portfolio EMEA," 2026. [Online]. Available: https://www.ineos.com/contentassets/8ca5460f3c3049c3b7337f35ba8dc1ae/2026_styrenics_product_presentation_emea.pdf. Accessed: Oct. 17, 2026.
+
+[8] C. Geuzaine and J.-F. Remacle, "Gmsh: A 3-D finite element mesh generator with built-in pre- and post-processing facilities," International Journal for Numerical Methods in Engineering, vol. 79, no. 11, pp. 1309-1331, 2009, doi: 10.1002/nme.2579.
+
+[9] G. Dhondt, CalculiX CrunchiX User's Manual, version 2.23. [Online]. Available: https://www.dhondt.de/ccx_2.23.pdf. Accessed: Oct. 17, 2026.
+
+[10] T. Gustafsson and G. D. McBain, "scikit-fem: A Python package for finite element assembly," Journal of Open Source Software, vol. 5, no. 52, article 2369, 2020, doi: 10.21105/joss.02369.

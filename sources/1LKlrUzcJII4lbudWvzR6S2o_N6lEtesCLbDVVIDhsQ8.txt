@@ -1,0 +1,27 @@
+﻿Layer Architectures
+Model 1A – Uniform PDMS Reference
+* Skin: 2.00 mm
+* PDMS: 0.40 mm
+* Gold: 0.02 mm
+* Encapsulation: 0.10 mm
+Model 2A – Single Compliant Layer
+* Skin: 2.00 mm
+* PDMS: 0.20 mm
+* Soft Buffer: 0.20 mm
+* Gold: 0.02 mm
+* Encapsulation: 0.10 mm
+Model 3A – Graded Compliant Layer
+* Skin: 2.00 mm
+* PDMS: 0.20 mm
+* Soft Buffer: 0.10 mm
+* Medium Buffer: 0.10 mm
+* Gold: 0.02 mm
+* Encapsulation: 0.10 mm
+Uniform PDMS:
+* Lowest gold stress
+Single soft layer:
+* Highest gold stress
+Graded layer:
+* Better than a single soft layer
+* Still higher than uniform PDMS
+That means, for this loading condition, the uniform PDMS support performed best.

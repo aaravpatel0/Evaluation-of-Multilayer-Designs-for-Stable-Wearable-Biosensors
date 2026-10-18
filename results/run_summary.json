@@ -1,0 +1,11 @@
+{
+  "verification": {
+    "affine_patch_strain_error": 1.734723475976807e-18,
+    "rigid_rotation_strain_error": 0.0
+  },
+  "elapsed_seconds": 24.642202615737915,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.18.1",
+  "cases": 43
+}

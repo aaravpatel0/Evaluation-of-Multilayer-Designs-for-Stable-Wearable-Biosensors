@@ -1,0 +1,33 @@
+[
+  {
+    "nu": 0.3,
+    "heterogeneous": false,
+    "nodes": 423,
+    "elements": 184,
+    "independent_displacement_relative_error": 5.8285391518265775e-08,
+    "reaction_N": 0.010000000500000224,
+    "expected_reaction_N": 0.01,
+    "analytical_displacement_max_error_mm": 4.965175432261604e-10,
+    "analytical_reaction_relative_error": 5.0000022344676154e-08
+  },
+  {
+    "nu": 0.49,
+    "heterogeneous": false,
+    "nodes": 423,
+    "elements": 184,
+    "independent_displacement_relative_error": 5.3201196760234587e-08,
+    "reaction_N": 0.010000000500000036,
+    "expected_reaction_N": 0.01,
+    "analytical_displacement_max_error_mm": 4.739923314955874e-10,
+    "analytical_reaction_relative_error": 5.000000369292934e-08
+  },
+  {
+    "nu": 0.3,
+    "heterogeneous": true,
+    "nodes": 423,
+    "elements": 184,
+    "independent_displacement_relative_error": 4.269791140154716e-08,
+    "reaction_N": 0.01903134993014,
+    "expected_reaction_N": null
+  }
+]

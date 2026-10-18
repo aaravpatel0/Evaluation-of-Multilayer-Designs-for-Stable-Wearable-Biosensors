@@ -1,0 +1,5 @@
+{
+  "job_finished": false,
+  "status": "interrupted",
+  "reason": "Divergent initial load attempts; use a verified linear displacement field as the initial nonlinear iterate."
+}

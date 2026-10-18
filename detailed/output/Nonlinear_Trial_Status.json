@@ -1,0 +1,8 @@
+{
+  "status": "not_converged",
+  "included_in_quantitative_results": false,
+  "reason": "Exploratory attempts from zero and linear displacement initializations showed growing nonlinear equilibrium residuals and were halted. Full-load nonlinear equilibrium was not demonstrated.",
+  "verified_linear_cases": 15,
+  "nonlinear_protocol": "Finite geometry and Neo-Hookean soft constituents, intermediate mesh, 1 percent target skin extension",
+  "required_followup": "Load continuation, nonlinear solver controls, constitutive calibration and independent reconstruction"
+}

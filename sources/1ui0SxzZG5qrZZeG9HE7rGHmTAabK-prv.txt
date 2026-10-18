@@ -1,0 +1,227 @@
+! =====================================================================
+! MODEL 1A: BUFFERLESS WEARABLE SENSOR
+! LOAD CASE A: VERTICAL SKIN PULL
+!
+! Bottom-to-top arrangement:
+!   1. Skin
+!   2. PDMS substrate
+!   3. Gold sensor region / encapsulation outside sensor region
+!   4. Encapsulation layer
+!
+! Loading:
+!   Far-right skin nodes prescribed UY = -1.00 mm
+!
+! Units: mm, N, MPa
+! =====================================================================
+
+FINISH
+/CLEAR
+/FILNAME,model1a_bufferless_vertical_pull,1
+/TITLE,Model 1A - Bufferless Vertical Skin Pull
+
+/PREP7
+
+model_length  = 5.00
+sensor_length = 1.00
+
+t_skin   = 2.00
+t_pdms   = 0.20
+t_sensor = 0.02
+t_encap  = 0.10
+
+tol = 1E-6
+applied_disp = 1.00
+
+y0 = 0
+y1 = y0 + t_skin
+y2 = y1 + t_pdms
+y3 = y2 + t_sensor
+y4 = y3 + t_encap
+
+ET,1,PLANE183
+KEYOPT,1,3,2
+KEYOPT,1,6,1
+
+E_skin  = 0.20
+nu_skin = 0.49
+MP,EX,1,E_skin
+MP,PRXY,1,nu_skin
+
+E_pdms  = 1.80
+nu_pdms = 0.49
+MP,EX,2,E_pdms
+MP,PRXY,2,nu_pdms
+
+E_sensor  = 110000
+nu_sensor = 0.34
+MP,EX,3,E_sensor
+MP,PRXY,3,nu_sensor
+
+E_encap  = 1.80
+nu_encap = 0.49
+MP,EX,4,E_encap
+MP,PRXY,4,nu_encap
+
+RECTNG,0,sensor_length,y0,y1
+RECTNG,sensor_length,model_length,y0,y1
+RECTNG,0,sensor_length,y1,y2
+RECTNG,sensor_length,model_length,y1,y2
+RECTNG,0,sensor_length,y2,y3
+RECTNG,sensor_length,model_length,y2,y3
+RECTNG,0,sensor_length,y3,y4
+RECTNG,sensor_length,model_length,y3,y4
+
+ALLSEL,ALL
+AGLUE,ALL
+NUMMRG,KP
+NUMCMP,KP
+NUMCMP,LINE
+NUMCMP,AREA
+
+SELTOL,tol
+
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y0+y1)/2
+AATT,1,,1
+
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y1+y2)/2
+AATT,2,,1
+
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y2+y3)/2
+ASEL,R,LOC,X,0,sensor_length
+AATT,3,,1
+
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y2+y3)/2
+ASEL,R,LOC,X,sensor_length,model_length
+AATT,4,,1
+
+ALLSEL,ALL
+ASEL,S,LOC,Y,(y3+y4)/2
+AATT,4,,1
+
+ALLSEL,ALL
+MSHAPE,0,2D
+MSHKEY,1
+
+n_left   = 20
+n_right  = 80
+n_skin   = 20
+n_pdms   = 4
+n_sensor = 3
+n_encap  = 6
+
+ALLSEL,ALL
+LSEL,S,LOC,X,sensor_length/2
+LESIZE,ALL,,,n_left
+
+ALLSEL,ALL
+LSEL,S,LOC,X,(sensor_length+model_length)/2
+LESIZE,ALL,,,n_right
+
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y0+y1)/2
+LESIZE,ALL,,,n_skin
+
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y1+y2)/2
+LESIZE,ALL,,,n_pdms
+
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y2+y3)/2
+LESIZE,ALL,,,n_sensor
+
+ALLSEL,ALL
+LSEL,S,LOC,Y,(y3+y4)/2
+LESIZE,ALL,,,n_encap
+
+ALLSEL,ALL
+AMESH,ALL
+NUMMRG,NODE,1E-6
+NUMCMP,NODE
+NUMCMP,ELEM
+ALLSEL,ALL
+
+/ESHAPE,1
+EPLOT
+
+FINISH
+/SOLU
+ANTYPE,STATIC
+NLGEOM,ON
+AUTOTS,ON
+NSUBST,20,100,1
+NEQIT,50
+OUTRES,ALL,ALL
+EQSLV,SPARSE
+
+ALLSEL,ALL
+DDELE,ALL,ALL
+FDELE,ALL,ALL
+SFDELE,ALL,ALL
+
+! Bottom-left stabilization node
+ALLSEL,ALL
+NSEL,S,LOC,X,-tol,tol
+NSEL,R,LOC,Y,y0-tol,y0+tol
+D,ALL,UX,0
+D,ALL,UY,0
+
+! Far-right skin nodes: UY = -1 mm
+ALLSEL,ALL
+NSEL,S,LOC,X,model_length-tol,model_length+tol
+NSEL,R,LOC,Y,y0-tol,y1+tol
+D,ALL,UY,-applied_disp
+
+ALLSEL,ALL
+CHECK
+SOLVE
+FINISH
+
+/POST1
+SET,LAST
+/PBC,ALL,0
+/PSF,ALL,0
+/GRAPHICS,POWER
+/EDGE,1,1
+/DSCALE,1,AUTO
+
+! Whole model
+ALLSEL,ALL
+PLDISP,2
+ALLSEL,ALL
+PLNSOL,U,SUM
+ALLSEL,ALL
+PLNSOL,U,Y
+ALLSEL,ALL
+PLESOL,S,X
+ALLSEL,ALL
+PLESOL,S,Y
+ALLSEL,ALL
+PLESOL,S,XY
+ALLSEL,ALL
+PLESOL,S,EQV
+
+! Gold sensor only: MAT 3
+ALLSEL,ALL
+ESEL,S,MAT,,3
+PLESOL,S,X
+ALLSEL,ALL
+ESEL,S,MAT,,3
+PLESOL,S,Y
+ALLSEL,ALL
+ESEL,S,MAT,,3
+PLESOL,S,XY
+ALLSEL,ALL
+ESEL,S,MAT,,3
+PLESOL,S,EQV
+
+! Reaction forces
+ALLSEL,ALL
+PRRSOL
+
+ALLSEL,ALL
+FINISH
+

@@ -1,0 +1,312 @@
+
+************************************************************
+
+CalculiX Version 2.23, Copyright(C) 1998-2025 Guido Dhondt
+CalculiX comes with ABSOLUTELY NO WARRANTY. This is free
+software, and you are welcome to redistribute it under
+certain conditions, see gpl.htm
+
+************************************************************
+
+You are using an executable made on Fri Oct 24 20:12:25     2025
+ Decascading the MPC's
+
+ Determining the structure of the matrix:
+ Using up to 4 cpu(s) for setting up the structure of the matrix.
+ number of equations
+ 1034420
+ number of nonzero lower triangular matrix elements
+ 38950522
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+ Using up to 4 cpu(s) for the symmetric stiffness/mass contributions.
+
+Not reusing csc.
+IPARM_MIXED=1
+globDouble=0
++-------------------------------------------------+
++     PaStiX : Parallel Sparse matriX package     +
++-------------------------------------------------+
+  Version:                                   6.4.0
+  Schedulers:
+    sequential:                            Enabled
+    thread static:                         Started
+    thread dynamic:                       Disabled
+    PaRSEC:                               Disabled
+    StarPU:                               Disabled
+  Number of MPI processes:                       1
+  Number of threads per process:                 4
+  Number of GPUs:                                0
+  MPI communication support:              PastixMpiNone
+  Distribution level:                     2D( 128)
+  Blocking size (min/max):             1024 / 2048
+  Computational models
+    CPU:              AMD Opteron 6180 - Intel MKL
+    GPU:             Nvidia K40 GK1108L - CUDA 8.0
+  Low rank parameters:
+    Strategy                        No compression
+
+  Matrix type:  General
+  Arithmetic:   Double
+  Format:       CSC
+  N:            1034420
+  nnz:          78935464
+
++-------------------------------------------------+
+  Ordering subtask :
+    Ordering method is: Scotch
+    Time to compute ordering              2.551256e+00 s
++-------------------------------------------------+
+  Symbolic factorization subtask:
+    Symbol factorization using: Fax Direct
+    Number of nonzeroes in L structure    444443251
+    Fill-in of L                          5.630464
+    Time to compute symbol matrix         2.485731e-01 s
++-------------------------------------------------+
+  Reordering subtask:
+    Split level                                  0
+    Stoping criterion                           -1
+    Time for reordering                   6.239891e-01 s
++-------------------------------------------------+
+  Mapping/Scheduling subtask:
+    Number of non-zeroes in blocked L     888886502
+    Fill-in                               11.260927
+    Number of operations in full-rank: LU        1.24 TFlops
+    Prediction:
+      Model                              AMD 6180  MKL
+      Time to factorize                   7.411757e+01 s
+    Time for mapping/scheduling           4.072309e-02 s
++-------------------------------------------------+
+  Analyze task:
+    Total time for analyze                3.731133e+00 s
++-------------------------------------------------+
+  Factorization task:
+    Factorization used: LU
+    Time to initialize internal csc       4.186588e+00 s
+    Time to initialize coeftab            6.038020e-01 s
+    Time to factorize                     2.995831e+00 s (425.45 GFlop/s)
+    Number of operations                       -866829406729.00  Flops
+    Number of static pivots                      0
+    Memory usage of coeftab                        3.8 Go
+    Time to solve                         1.334560e-01 s
+    - iteration 1 :
+         total iteration time                   0.157 s
+         error                                  0.00072683
+    - iteration 2 :
+         total iteration time                   0.154 s
+         error                                  0.00065365
+    - iteration 3 :
+         total iteration time                   0.166 s
+         error                                  0.0005479
+    - iteration 4 :
+         total iteration time                   0.171 s
+         error                                  0.00046376
+    - iteration 5 :
+         total iteration time                   0.157 s
+         error                                  0.00037088
+    - iteration 6 :
+         total iteration time                   0.171 s
+         error                                  0.00026141
+    - iteration 7 :
+         total iteration time                   0.163 s
+         error                                  0.00017857
+    - iteration 8 :
+         total iteration time                   0.159 s
+         error                                  0.00013305
+    - iteration 9 :
+         total iteration time                   0.157 s
+         error                                  0.00010761
+    - iteration 10 :
+         total iteration time                   0.162 s
+         error                                  7.9471e-05
+    - iteration 11 :
+         total iteration time                   0.162 s
+         error                                  6.2879e-05
+    - iteration 12 :
+         total iteration time                   0.159 s
+         error                                  5.7815e-05
+    - iteration 13 :
+         total iteration time                   0.16 s
+         error                                  5.0278e-05
+    - iteration 14 :
+         total iteration time                   0.166 s
+         error                                  4.6261e-05
+    - iteration 15 :
+         total iteration time                   0.185 s
+         error                                  4.3151e-05
+    - iteration 16 :
+         total iteration time                   0.171 s
+         error                                  4.0019e-05
+    - iteration 17 :
+         total iteration time                   0.167 s
+         error                                  3.6682e-05
+    - iteration 18 :
+         total iteration time                   0.164 s
+         error                                  3.347e-05
+    - iteration 19 :
+         total iteration time                   0.168 s
+         error                                  3.115e-05
+    - iteration 20 :
+         total iteration time                   0.162 s
+         error                                  2.9297e-05
+    - iteration 21 :
+         total iteration time                   0.169 s
+         error                                  2.8358e-05
+    - iteration 22 :
+         total iteration time                   0.166 s
+         error                                  2.77e-05
+    - iteration 23 :
+         total iteration time                   0.164 s
+         error                                  2.6409e-05
+    - iteration 24 :
+         total iteration time                   0.164 s
+         error                                  2.5236e-05
+    - iteration 25 :
+         total iteration time                   0.164 s
+         error                                  2.4447e-05
+    - iteration 26 :
+         total iteration time                   0.166 s
+         error                                  2.408e-05
+    - iteration 27 :
+         total iteration time                   0.169 s
+         error                                  2.3779e-05
+    - iteration 28 :
+         total iteration time                   0.174 s
+         error                                  2.2944e-05
+    - iteration 29 :
+         total iteration time                   0.177 s
+         error                                  1.901e-05
+    - iteration 30 :
+         total iteration time                   0.185 s
+         error                                  1.6274e-05
+    - iteration 31 :
+         total iteration time                   0.188 s
+         error                                  1.4841e-05
+    - iteration 32 :
+         total iteration time                   0.174 s
+         error                                  1.3891e-05
+    - iteration 33 :
+         total iteration time                   0.174 s
+         error                                  1.2891e-05
+    - iteration 34 :
+         total iteration time                   0.169 s
+         error                                  1.1894e-05
+    - iteration 35 :
+         total iteration time                   0.173 s
+         error                                  1.0847e-05
+    - iteration 36 :
+         total iteration time                   0.171 s
+         error                                  1.0007e-05
+    - iteration 37 :
+         total iteration time                   0.179 s
+         error                                  9.3958e-06
+    - iteration 38 :
+         total iteration time                   0.184 s
+         error                                  8.9678e-06
+    - iteration 39 :
+         total iteration time                   0.196 s
+         error                                  8.4761e-06
+    - iteration 40 :
+         total iteration time                   0.169 s
+         error                                  7.1998e-06
+    - iteration 41 :
+         total iteration time                   0.172 s
+         error                                  5.4508e-06
+    - iteration 42 :
+         total iteration time                   0.169 s
+         error                                  4.5522e-06
+    - iteration 43 :
+         total iteration time                   0.207 s
+         error                                  3.9647e-06
+    - iteration 44 :
+         total iteration time                   0.189 s
+         error                                  3.6237e-06
+    - iteration 45 :
+         total iteration time                   0.175 s
+         error                                  3.4238e-06
+    - iteration 46 :
+         total iteration time                   0.171 s
+         error                                  3.3806e-06
+    - iteration 47 :
+         total iteration time                   0.173 s
+         error                                  3.36e-06
+    - iteration 48 :
+         total iteration time                   0.173 s
+         error                                  3.3514e-06
+    - iteration 49 :
+         total iteration time                   0.176 s
+         error                                  3.301e-06
+    - iteration 50 :
+         total iteration time                   0.194 s
+         error                                  2.8639e-06
+    Time for refinement                   8.640312e+00 s
+________________________________________
+
+CSC Conversion Time: 0.205500
+Init Time: 3.734403
+Factorize Time: 7.858841
+Solve Time: 8.845054
+Clean up Time: 0.000000
+---------------------------------
+Sum: 20.643798
+
+Total PaStiX Time: 20.643798
+CCX without PaStiX Time: 17.502910
+Share of PaStiX Time: 0.541169
+Total Time: 38.146708
+Reusability: 0 : 1 
+________________________________________
+
+ Using up to 4 cpu(s) for the stress calculation.
+
+
+  The numbers below are estimated upper bounds
+
+  number of:
+
+   nodes:       345775
+   elements:       210774
+   one-dimensional elements:            0
+   two-dimensional elements:            0
+   integration points per element:            4
+   degrees of freedom per node:            3
+   layers per element:            1
+
+   distributed facial loads:            0
+   distributed volumetric loads:            0
+   concentrated loads:            0
+   single point constraints:         2905
+   multiple point constraints:            1
+   terms in all multiple point constraints:            1
+   tie constraints:            0
+   dependent nodes tied by cyclic constraints:            0
+   dependent nodes in pre-tension constraints:            0
+
+   sets:           23
+   terms in all sets:      1143169
+
+   materials:           18
+   constants per material and temperature:            2
+   temperature points per material:            1
+   plastic data points per material:            0
+
+   orientations:            0
+   amplitudes:            1
+   data points in all amplitudes:            1
+   print requests:            4
+   transformations:            0
+   property cards:            0
+
+
+ STEP            1
+
+ Static analysis was selected
+
+
+ Job finished
+
+________________________________________
+
+Total CalculiX Time: 44.383204
+________________________________________

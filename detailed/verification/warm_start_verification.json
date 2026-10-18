@@ -1,0 +1,6 @@
+{
+  "benchmark": "Neo-Hookean cube at 1% extension, identical reference geometry and final boundary conditions",
+  "cold_vs_linear_initialized_displacement_relative_error": 0.0,
+  "cold_vs_linear_initialized_force_relative_error": 4.6209143190557175e-11,
+  "passed": true
+}

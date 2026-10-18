@@ -1,0 +1,245 @@
+{
+  "solved_assembly_cases": 19,
+  "connected_components": 1,
+  "maximum_relative_force_balance": 2.3171230714456214e-07,
+  "compression_scaling_relative_error": 0.001042541170203637,
+  "mesh_volume_fidelity": {
+    "1": {
+      "fragmented_CAD_volume_mm3": 7134.425715665002,
+      "mesh_volume_mm3": 7135.258878719779,
+      "relative_volume_error_percent": 0.0116780675555761
+    },
+    "2": {
+      "fragmented_CAD_volume_mm3": 485.27037513873023,
+      "mesh_volume_mm3": 484.5854721460409,
+      "relative_volume_error_percent": -0.14113843081674515
+    },
+    "3": {
+      "fragmented_CAD_volume_mm3": 1423.708005928001,
+      "mesh_volume_mm3": 1423.6927265407517,
+      "relative_volume_error_percent": -0.001073210741653341
+    },
+    "4": {
+      "fragmented_CAD_volume_mm3": 207.62918611322388,
+      "mesh_volume_mm3": 206.92711928417762,
+      "relative_volume_error_percent": -0.3381349424851132
+    },
+    "5": {
+      "fragmented_CAD_volume_mm3": 1.0,
+      "mesh_volume_mm3": 1.0,
+      "relative_volume_error_percent": 0.0
+    },
+    "6": {
+      "fragmented_CAD_volume_mm3": 1.0,
+      "mesh_volume_mm3": 0.9999999999999999,
+      "relative_volume_error_percent": -1.1102230246251565e-14
+    },
+    "7": {
+      "fragmented_CAD_volume_mm3": 1.0,
+      "mesh_volume_mm3": 1.0,
+      "relative_volume_error_percent": 0.0
+    },
+    "8": {
+      "fragmented_CAD_volume_mm3": 1.0,
+      "mesh_volume_mm3": 1.0,
+      "relative_volume_error_percent": 0.0
+    },
+    "9": {
+      "fragmented_CAD_volume_mm3": 13.520702687744935,
+      "mesh_volume_mm3": 13.48906732716625,
+      "relative_volume_error_percent": -0.23397719267475026
+    },
+    "10": {
+      "fragmented_CAD_volume_mm3": 246.71348104406604,
+      "mesh_volume_mm3": 246.7017307634125,
+      "relative_volume_error_percent": -0.004762723384144074
+    },
+    "11": {
+      "fragmented_CAD_volume_mm3": 24.473104125424165,
+      "mesh_volume_mm3": 24.387721255349994,
+      "relative_volume_error_percent": -0.3488845127147977
+    },
+    "12": {
+      "fragmented_CAD_volume_mm3": 39.82831972281077,
+      "mesh_volume_mm3": 39.796758661598666,
+      "relative_volume_error_percent": -0.07924276352041515
+    },
+    "13": {
+      "fragmented_CAD_volume_mm3": 0.6152344959511269,
+      "mesh_volume_mm3": 0.6146549598788417,
+      "relative_volume_error_percent": -0.09419759069089206
+    },
+    "14": {
+      "fragmented_CAD_volume_mm3": 0.6152344959511276,
+      "mesh_volume_mm3": 0.6146549622460411,
+      "relative_volume_error_percent": -0.09419720592723779
+    },
+    "15": {
+      "fragmented_CAD_volume_mm3": 24.892699410461486,
+      "mesh_volume_mm3": 24.867974230102902,
+      "relative_volume_error_percent": -0.09932703541261079
+    },
+    "16": {
+      "fragmented_CAD_volume_mm3": 1263.4880621797104,
+      "mesh_volume_mm3": 1254.9901051389534,
+      "relative_volume_error_percent": -0.6725791319386665
+    }
+  },
+  "mesh_changes": {
+    "Uniform": {
+      "ABS_sensor_housing": {
+        "mean_stress_change_percent": 6.88530273596788,
+        "maximum_stress_change_percent": 11.167195086752258
+      },
+      "Sensor_1": {
+        "mean_stress_change_percent": 3.39984891384999,
+        "maximum_stress_change_percent": 6.472882795390101
+      },
+      "Sensor_2": {
+        "mean_stress_change_percent": 13.645732629365314,
+        "maximum_stress_change_percent": 14.494847917216102
+      },
+      "Sensor_3": {
+        "mean_stress_change_percent": 6.113527163993515,
+        "maximum_stress_change_percent": 5.816056926645741
+      },
+      "Sensor_4": {
+        "mean_stress_change_percent": 7.242075056456654,
+        "maximum_stress_change_percent": 7.8683778334432635
+      },
+      "Gold_feature_1": {
+        "mean_stress_change_percent": 8.990407139583677,
+        "maximum_stress_change_percent": 9.822634809735364
+      },
+      "RC_transmitter": {
+        "mean_stress_change_percent": 6.77240056799433,
+        "maximum_stress_change_percent": 7.459890135400727
+      },
+      "Gold_feature_2": {
+        "mean_stress_change_percent": 8.364822272742744,
+        "maximum_stress_change_percent": 2.716403829760128
+      },
+      "ABS_feature": {
+        "mean_stress_change_percent": 1.3614343822482278,
+        "maximum_stress_change_percent": 0.1257048404731398
+      },
+      "Gold_wire_1": {
+        "mean_stress_change_percent": 3.342925012810416,
+        "maximum_stress_change_percent": 14.140299528244316
+      },
+      "Gold_wire_2": {
+        "mean_stress_change_percent": 3.5035072103113185,
+        "maximum_stress_change_percent": 13.761317378756566
+      },
+      "Sensor_5": {
+        "mean_stress_change_percent": 6.572610427144077,
+        "maximum_stress_change_percent": 14.040241625653561
+      }
+    },
+    "Single": {
+      "ABS_sensor_housing": {
+        "mean_stress_change_percent": 6.022072614047902,
+        "maximum_stress_change_percent": 9.608448168147653
+      },
+      "Sensor_1": {
+        "mean_stress_change_percent": 3.326469358447781,
+        "maximum_stress_change_percent": 2.1220740429635065
+      },
+      "Sensor_2": {
+        "mean_stress_change_percent": 8.728273735492586,
+        "maximum_stress_change_percent": 11.49532974045857
+      },
+      "Sensor_3": {
+        "mean_stress_change_percent": 6.468366413229488,
+        "maximum_stress_change_percent": 6.858786186702737
+      },
+      "Sensor_4": {
+        "mean_stress_change_percent": 6.460764963441401,
+        "maximum_stress_change_percent": 7.6960908335915175
+      },
+      "Gold_feature_1": {
+        "mean_stress_change_percent": 8.08199802009163,
+        "maximum_stress_change_percent": 6.3606377924963375
+      },
+      "RC_transmitter": {
+        "mean_stress_change_percent": 6.3933247277694,
+        "maximum_stress_change_percent": 6.724853621241634
+      },
+      "Gold_feature_2": {
+        "mean_stress_change_percent": 5.389391869750315,
+        "maximum_stress_change_percent": 0.8340118916579708
+      },
+      "ABS_feature": {
+        "mean_stress_change_percent": 2.9692577655911045,
+        "maximum_stress_change_percent": 2.713817079406744
+      },
+      "Gold_wire_1": {
+        "mean_stress_change_percent": 3.9142704443245635,
+        "maximum_stress_change_percent": 13.886438251615395
+      },
+      "Gold_wire_2": {
+        "mean_stress_change_percent": 3.981208470003761,
+        "maximum_stress_change_percent": 13.643449261704577
+      },
+      "Sensor_5": {
+        "mean_stress_change_percent": 5.952031781228328,
+        "maximum_stress_change_percent": 11.099466434408345
+      }
+    },
+    "Graded": {
+      "ABS_sensor_housing": {
+        "mean_stress_change_percent": 5.971920836290401,
+        "maximum_stress_change_percent": 9.7518567995883
+      },
+      "Sensor_1": {
+        "mean_stress_change_percent": 3.301454051992081,
+        "maximum_stress_change_percent": 1.9001878639270275
+      },
+      "Sensor_2": {
+        "mean_stress_change_percent": 8.515911096524341,
+        "maximum_stress_change_percent": 11.169555972074752
+      },
+      "Sensor_3": {
+        "mean_stress_change_percent": 7.003477418872494,
+        "maximum_stress_change_percent": 7.267940359192604
+      },
+      "Sensor_4": {
+        "mean_stress_change_percent": 6.583392163991386,
+        "maximum_stress_change_percent": 7.688044832772167
+      },
+      "Gold_feature_1": {
+        "mean_stress_change_percent": 8.663679827997727,
+        "maximum_stress_change_percent": 6.323441590272072
+      },
+      "RC_transmitter": {
+        "mean_stress_change_percent": 6.477776391813772,
+        "maximum_stress_change_percent": 6.583834521900078
+      },
+      "Gold_feature_2": {
+        "mean_stress_change_percent": 5.581902583084119,
+        "maximum_stress_change_percent": 0.9201307715515306
+      },
+      "ABS_feature": {
+        "mean_stress_change_percent": 3.5788307051917156,
+        "maximum_stress_change_percent": 3.1475466509701455
+      },
+      "Gold_wire_1": {
+        "mean_stress_change_percent": 3.745307334389125,
+        "maximum_stress_change_percent": 14.050780368742366
+      },
+      "Gold_wire_2": {
+        "mean_stress_change_percent": 3.873855788156455,
+        "maximum_stress_change_percent": 13.73135791990643
+      },
+      "Sensor_5": {
+        "mean_stress_change_percent": 5.824289961534934,
+        "maximum_stress_change_percent": 11.090643738128225
+      }
+    }
+  },
+  "finest_mesh_nodes": 583486,
+  "finest_mesh_elements": 374893,
+  "finest_mesh_dofs": 1750458,
+  "minimum_corner_volume_mm3": 1.256093835535827e-07,
+  "checks_passed": true
+}
