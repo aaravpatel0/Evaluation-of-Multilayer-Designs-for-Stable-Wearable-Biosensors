@@ -1,0 +1,75 @@
+{
+  "source_mesh": "advanced/meshes/filled/h1.7/mesh.npz",
+  "mesh_sha256": "74da2597686ada366c957a0433f68137b81330b8efa5c86cbdcb4289b1af0182",
+  "dimensions": {
+    "skin": {
+      "lower_mm": [
+        -30.0,
+        -30.0,
+        0.0
+      ],
+      "upper_mm": [
+        30.0,
+        30.0,
+        2.0
+      ],
+      "extent_mm": [
+        60.0,
+        60.0,
+        2.0
+      ]
+    },
+    "adhesive": {
+      "lower_mm": [
+        -20.0,
+        -20.0,
+        1.71
+      ],
+      "upper_mm": [
+        20.0,
+        20.0,
+        2.31
+      ],
+      "extent_mm": [
+        40.0,
+        40.0,
+        0.6000000000000001
+      ]
+    },
+    "support": {
+      "lower_mm": [
+        -19.0000002831221,
+        -19.0000002831221,
+        2.31
+      ],
+      "upper_mm": [
+        19.0000002831221,
+        19.0000002831221,
+        3.31000000592371
+      ],
+      "extent_mm": [
+        38.0000005662442,
+        38.0000005662442,
+        1.00000000592371
+      ]
+    },
+    "cover": {
+      "lower_mm": [
+        -19.0000002831221,
+        -19.0000002831221,
+        3.31
+      ],
+      "upper_mm": [
+        19.0000002831221,
+        19.0000002831221,
+        5.11000000000001
+      ],
+      "extent_mm": [
+        38.0000005662442,
+        38.0000005662442,
+        1.80000000000001
+      ]
+    }
+  },
+  "interpretation": "Bounding extents include textured features and cavities; they are not uniform layer thickness or planar contact-area measurements."
+}
