@@ -1,0 +1,9 @@
+{
+  "words": 3965,
+  "figure_count": 5,
+  "table_count": 4,
+  "references": 7,
+  "template_sha256": "ead110654087bd99d49605b107bacd12139ef9ad7eecb9f2ca45cbf085f7ead3",
+  "nominal_solved_cases": 55,
+  "control_solved_cases": 14
+}

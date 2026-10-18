@@ -1,0 +1,169 @@
+Mechanical isolation in multilayer wearable biosensors under prescribed skin deformation
+
+Joel Whaling, Aarav Patel*, Mandy Hung*, Yuancheng Fang*, Leona Cai*, Zenan Li*, Advik Raja*, Nathan Xu*, Linda Shi
+
+Institute of Engineering in Medicine, University of California San Diego, USA
+
+9500 Gilman Drive, La Jolla, CA 92093, USA
+
+*High school students participating in the IEM OPALS program
+
+Abstract - Compliant supports can reduce mechanical loading of stiff sensing elements in skin-mounted biosensors, but a graded buffer also changes overall support compliance. We compared uniform PDMS, a single soft buffer, and a two-layer graded buffer in a reproducible two-dimensional plane-strain finite-element study. Total support thickness was fixed at 0.40 mm, with identical skin, gold, and encapsulation geometry. Prescribed skin-edge motions represented axial extension, axial shortening, and transverse deformation. Selectively integrated quadrilateral elements were verified against analytical and affine benchmarks and refined from 50 to 800 elements along the span. Under 1% nominal extension, gold mean von Mises stress was 1.451, 0.534, and 0.662 MPa for uniform, single-buffer, and graded supports, respectively. Corresponding stress reductions were 63.2% and 54.3%. The single buffer also produced the lowest mean stress in the prescribed transverse case. Mean stresses changed by less than 5% between the last two mesh levels, while localized maxima remained more sensitive. A homogeneous buffer matched to the graded pair's elementary shear compliance produced a similar mean sensor stress. The results support compliance-controlled mechanical isolation and do not establish a general advantage for grading. They provide a screening basis for subsequent nonlinear, interfacial, and experimental studies; electrical drift and failure were not evaluated.
+
+Keywords: Wearable biosensors, compliant buffers, finite elements, mechanical isolation, mesh refinement.
+
+1. Introduction
+
+Skin-mounted biosensors must maintain mechanical contact while the body moves. A compliant package can follow the skin, but a stiff sensing component can still experience concentrated deformation because the mechanical properties of the component and its support differ greatly. Epidermal electronics demonstrated that careful control of material thickness and structural compliance can support intimate integration with skin [1]. More generally, stretchable electronics combines material selection with geometric design to accommodate deformation [2]. These observations motivate a component-level question: how much does a compliant support actually isolate a localized sensing region from an imposed skin displacement?
+
+The answer depends on the measured quantity. Translation of a sensor is not the same as strain within the sensor, and the largest displacement anywhere in a model may simply reproduce an imposed boundary value. A compliant layer may reduce stress in a stiff inclusion while allowing larger displacement of another part of the package. A useful numerical comparison therefore needs an explicitly defined sensor domain, a controlled geometric baseline, and separate measures of average and localized mechanical response.
+
+We investigate a simplified layered wearable sensor with three primary support architectures: uniform PDMS, one soft layer beneath PDMS, and two layers forming a soft-to-medium stiffness transition beneath PDMS. Total support thickness, gold geometry, skin thickness, and encapsulation thickness are held constant. This removes the thickness increase that otherwise accompanies the addition of a buffer. Axial extension, axial shortening, and a transverse end-displacement case are considered within small-strain plane-strain elasticity.
+
+The study has three objectives. First, it quantifies mechanical isolation using stress and strain measured only in the gold region. Second, it tests whether a graded support improves isolation relative to a single soft layer when thickness is controlled. Third, it examines whether any apparent benefit of grading persists when the graded buffer is compared with a homogeneous buffer having the same elementary through-thickness shear compliance. A reversed layer order provides an additional control. These comparisons distinguish the presence of a stiffness transition from the overall compliance of the support.
+
+The contribution is a reproducible numerical screening study rather than a prediction of clinical performance. The underlying solver, input definitions, mesh sequence, verification cases, raw fields, and extracted metrics accompany the manuscript. No electrical response, sensor drift, fatigue lifetime, or interface failure is inferred from the elastic stress calculations.
+
+2. Related work
+
+Mechanics-based design of wearable electronics spans thin films, stiff islands, compliant substrates, and stretchable interconnects. Lu and Yang discuss how the geometry of islands and serpentines interacts with polymer supports to control compliance and stretchability [3]. This literature motivates evaluating the sensing component separately from the surrounding package. The present model represents a localized stiff region; it does not resolve serpentine interconnects, patterned conductors, or a complete electronic circuit.
+
+Material calibration also matters. Johnston and colleagues experimentally characterized Sylgard 184 and documented the influence of preparation conditions on its mechanical properties [4]. A nominal PDMS modulus is therefore an input assumption, not a universal material constant. The soft and medium buffer moduli used here are deliberately specified design values, and the sensitivity study varies the soft layer and skin stiffness. No claim is made that a particular mixing ratio or curing protocol produces these values.
+
+Skin introduces additional uncertainty because it is not an isotropic elastic solid over arbitrary loading ranges. Experiments on excised human skin show dependence on orientation and specimen location [5]. The homogeneous skin layer in this work provides a controlled mechanical driver for comparing architectures. Its modulus is not fitted to a particular subject or anatomical site. This distinction limits direct translation of the computed stresses into physiological predictions.
+
+Nearly incompressible elastic layers can cause volumetric locking in low-order displacement elements. Selective integration separates the volumetric and deviatoric stiffness contributions, retaining full integration of the latter [6]. We use this approach on conforming rectangular quadrilaterals and assess both an assembled analytical benchmark and a sequence of refined meshes. Numerical equilibrium and mesh stability are evaluated independently because a small algebraic residual does not establish spatial accuracy.
+
+3. Methods
+
+3.1. Geometry and material definitions
+
+The reference configuration is a 5.00 mm long two-dimensional cross-section with unit out-of-plane width. From bottom to top, it contains 2.00 mm of skin, 0.40 mm of support, a 0.02 mm sensor-height region, and 0.10 mm of encapsulation. Gold occupies x = 0 to 1.00 mm within the sensor-height region. The remainder of that region is filled with the encapsulation material. All architectures have the same 2.52 mm total thickness. Figure 1 shows the arrangement; Table 1 gives the elastic properties.
+
+The uniform reference has 0.40 mm of PDMS. The single-buffer design replaces its lower half with a 0.20 mm soft layer, retaining 0.20 mm of PDMS above it. The graded design uses a 0.10 mm soft layer next to the skin, followed by a 0.10 mm medium layer and 0.20 mm of PDMS. All layers extend across the 5.00 mm span. Shared nodes impose perfect bonding, so no interfacial slip or separation is permitted.
+
+The gold modulus is 110,000 MPa and its Poisson ratio is 0.34. Skin, soft buffer, medium buffer, PDMS, and encapsulation have moduli of 0.20, 0.10, 0.50, 1.80, and 1.80 MPa, respectively, with Poisson ratio 0.49. These values define the nominal computational experiment. Support thickness is equalized to isolate the influence of its material architecture.
+
+Figure 1. Support architectures with true layer thicknesses and skin cropped to its upper 0.20 mm. Colors: soft green, medium orange, PDMS blue, encapsulation gray, and gold yellow. Full skin thickness is 2.00 mm.
+
+Table 1. Nominal isotropic material inputs.
+
+3.2. Formulation and boundary conditions
+
+Equilibrium is solved without body forces. Infinitesimal strain is the symmetric displacement gradient, and out-of-plane strain is zero. The isotropic constitutive relation is expressed using shear modulus mu and bulk modulus kappa. The deviatoric strain is the full three-dimensional deviatoric part, including the constrained out-of-plane component. Equations (1) and (2) summarize the governing relations.
+
+A custom Python implementation assembles bilinear four-node quadrilateral elements. Deviatoric stiffness uses a 2 by 2 Gauss rule, while volumetric stiffness uses one central Gauss point. This is selective integration, not one-point integration of the entire element. The latter would introduce unwanted zero-energy modes in a bilinear quadrilateral. The linear system is solved with SciPy's sparse direct solver [7]. The execution environment uses Python 3.12.14, NumPy 2.3.5, and SciPy 1.18.1.
+
+The left edge of the skin, x = 0 and 0 <= y <= 2 mm, is fixed in both displacement components. In extension, the right skin edge has ux = +0.050 mm and uy = 0, corresponding to 1% nominal axial strain over the 5 mm span. In shortening, ux = -0.025 mm and uy = 0, corresponding to 0.5% nominal compressive strain. In the transverse case, uy = -0.050 mm is prescribed on the right skin edge while its horizontal displacement remains free. This case is termed bending for convenience; it is not a pure-moment or three-point bending test.
+
+All package boundaries outside the loaded skin edges are traction-free. The gold and encapsulation are not directly clamped or displaced. Consequently, loading reaches the sensing region through the skin and support. A distributed skin-edge fixture makes the imposed load path explicit. The small displacements define a controlled elastic screening problem; they do not represent large skin motion or a geometrically nonlinear test.
+
+Here u is displacement, ε is strain, σ is Cauchy stress in the linearized formulation, I is the identity tensor, mu = E/[2(1 + nu)], and kappa = E/[3(1 - 2nu)].
+
+3.3. Metrics and numerical study
+
+The primary response is the gold-area-weighted mean von Mises stress. At each Gauss point, the plane-strain out-of-plane stress is included when computing the three-dimensional equivalent stress. Four Gauss-point values are averaged within each element before area-weighted averaging over gold. The 95th percentile is the area-weighted quantile of these element averages, and the reported maximum is the largest element-average value. No nodal extrapolation or cross-material stress smoothing is used.
+
+Mean absolute axial strain in gold provides a complementary isolation measure. For axial extension, the strain-transfer ratio is that quantity divided by the imposed nominal strain of 0.01. The ratio is a mechanical transfer measure, not an electrical gauge factor. Total elastic strain energy is computed as one half of the displacement vector multiplied by the global stiffness and displacement vectors; the reported value assumes unit out-of-plane width. Relative stress reduction is defined in Eq. (3).
+
+Five uniform refinement levels use 50, 100, 200, 400, and 800 elements along the span. At the coarsest level, skin has 10 elements through thickness; PDMS has four, the sensor-height region two, and encapsulation three. The single soft layer has four. The two graded layers have two each. All counts scale by the refinement factor. Interfaces and the gold termination at x = 1 mm align with mesh lines. Element counts range from 950 to 243,200 for the uniform reference and from 1,150 to 294,400 for buffered designs.
+
+A homogeneous 8 by 4 element rectangle supplies two assembled verification tests: imposed affine displacement on its boundary, and axial extension with free transverse contraction under plane strain. For the latter, the analytical axial stress is E times the axial strain divided by (1 - nu squared). Additional checks evaluate rigid rotation, free-degree-of-freedom equilibrium, and total force balance. Successive-mesh percentage changes are reported without claiming a formal continuum-error bound.
+
+Two additional tension controls use the same thickness and constituent Poisson ratio. The matched homogeneous buffer has modulus 1/6 MPa and thickness 0.20 mm; it matches the simple series shear compliance of 0.10 mm layers with moduli 0.10 and 0.50 MPa. The reversed buffer swaps those layers. This compliance equivalence is exact only for the elementary series-shear idealization, not for the complete two-dimensional displacement field. Controls are evaluated at 400 and 800 span elements.
+
+A separate material sensitivity sweep uses 400 span elements. Soft-buffer modulus is varied to 0.05 and 0.20 MPa in the single and graded designs, leaving the medium layer unchanged. Skin modulus is varied to 0.10 and 0.40 MPa in all primary designs. These deterministic perturbations test ranking robustness within the selected ranges; they are not a probability distribution or a patient population. Earlier coarse Poisson-ratio checks are retained in the data package but excluded from the principal conclusions.
+
+Here R is percentage reduction, S with subscript d is the design gold-area-weighted mean equivalent stress, and S with subscript 0 is the uniform reference mean. A positive value indicates less stress than the reference at the same prescribed motion.
+
+4. Results
+
+4.1. Verification and mesh sensitivity
+
+The assembled affine benchmark reproduced displacement with a maximum absolute error of 3.8e-17 mm. The analytical plane-strain tension benchmark gave a reaction of 0.01315963 N against 0.01315963 N analytically, a relative difference of 2.1e-14. Rigid rotation produced zero strain to the precision of the test. Across the recorded model solves, the normalized free-equilibrium residual was at most 1.1e-06. These checks support implementation consistency; they do not substitute for geometric refinement.
+
+Figure 2 separates the mesh history of the mean gold stress from that of the largest element-average stress in extension. The mean response is nonmonotonic for the uniform reference, so a monotonic Richardson extrapolation is not applied. Table 2 reports the change from 400 to 800 span elements. The same refinement halves all element dimensions, including through the gold thickness.
+
+Figure 2. Tension mesh study. Means stabilize more rapidly than maxima. Each refinement also increases through-thickness resolution; the horizontal axis alone does not state total element count.
+
+Table 2. Absolute mesh change relative to the 800-element result (%).
+
+The primary mean-stress changes are below 5%. This is a successive-mesh stability observation, not a 5% bound on the unknown continuum error. Gold mean axial strain and upper-tail stresses are less stable than mean equivalent stress. Maximum stresses are retained as diagnostic values and are not used to establish failure margins.
+
+4.2. Primary architecture comparison
+
+Table 3 summarizes the finest-mesh extension response. Uniform PDMS gave 1.451 MPa mean gold stress. The single buffer reduced this to 0.534 MPa (63.2% reduction), while grading reduced it to 0.662 MPa (54.3% reduction). The graded design therefore had 24.2% higher mean sensor stress than the single soft layer under this load. Figure 3 compares extension and transverse loading.
+
+Table 3. Gold response under 1% nominal extension at 800 span elements. Stresses are in MPa.
+
+Figure 3. Gold mean equivalent stress for the two non-proportional load cases. Transverse motion is a prescribed skin-edge displacement, not pure bending.
+
+Figure 4 shows the gold-only stress fields on a common color scale. Larger values occur on the opposing gold surfaces within the sensor span rather than uniformly across the sensing region. Both compliant supports reduce the overall magnitude relative to the uniform reference, while preserving a pronounced spatial gradient. The plots show undeformed geometry, with the sensor thickness magnified by the panel aspect ratio.
+
+Figure 4. Gold element-average equivalent stress in extension. Vertical coordinates are measured from the bottom of the gold layer. All panels use the same stress scale; no nodal stress averaging is applied.
+
+Gold mean absolute axial strains were 12.61, 4.64, and 5.76 microstrain for uniform, single-buffer, and graded supports. Relative to the imposed 10,000 microstrain nominal skin extension, the transfer ratios were 0.00126, 0.00046, and 0.00058. The very small values reflect the localized stiff gold region and the selected indirect loading path; they must not be interpreted as a universal attenuation factor for an actual wearable device.
+
+In the transverse case, gold mean stress was 0.218, 0.102, and 0.131 MPa. The single and graded buffers reduced this measure by 52.9% and 40.0%, respectively. At the 200-span-element mesh, separately solved shortening cases reproduced one half of the extension equivalent stresses, consistent with linear load scaling. No independent compression ranking is inferred beyond that identity.
+
+4.3. Compliance and material controls
+
+Figure 5 compares the nominal buffers and the two controls. The compliance-matched homogeneous buffer gave 0.661 MPa mean gold stress, a 0.16% difference from the nominal graded support. Reversing the two graded layers gave 0.671 MPa, a 1.31% difference. These effects are smaller than the single-to-graded separation and comparable to, or smaller than, the observed mean-stress mesh changes. They do not establish a robust benefit for a particular grading direction.
+
+Figure 5. Tension controls at 800 span elements. Matched denotes a homogeneous buffer with E = 0.1667 MPa and the same elementary series shear compliance as the graded pair.
+
+Table 4. Soft-layer modulus sensitivity in extension at 400 span elements. Gold mean stresses are in MPa.
+
+Within the tested modulus range, the single buffer retained a lower mean gold stress than the graded buffer. Increasing soft-layer stiffness increased transferred stress in both architectures. The skin-stiffness perturbations also retained the primary ordering: single buffer, graded buffer, then uniform PDMS in increasing mean stress. These are matched-mesh deterministic comparisons. The sweep demonstrates robustness to the stated perturbations, without establishing uncertainty bounds for fabricated devices.
+
+5. Discussion
+
+The primary comparison favors a thick soft region over the nominal graded pair for sensor isolation. With equal total thickness, replacing part of the soft layer by a medium-stiff layer makes the support less compliant. A smoother stiffness transition is therefore not sufficient by itself to ensure lower sensing-region stress. The relevant outcome depends on how that transition changes load transfer through the complete layered structure.
+
+The compliance-matched control helps interpret this result. Because all buffer constituents have the same Poisson ratio, their shear moduli are proportional to Young's modulus. The elementary series compliance of the nominal graded buffer equals that of a homogeneous 0.20 mm layer with E = 0.1667 MPa. A similar gold mean stress in these two finite-element configurations supports an interpretation in terms of effective compliance. It does not prove that their local stress fields, interface tractions, or behavior at other thicknesses are identical.
+
+Layer order changes where local deformation develops, even when an elementary series-compliance calculation remains unchanged. The reversed-buffer control is useful precisely because it preserves constituent amounts while moving the softer material closer to the PDMS. Its result should be read alongside mesh sensitivity: a small difference between graded and reversed arrangements may be numerically resolved at a chosen mesh without establishing a robust engineering advantage.
+
+The bending results concern a specific skin-edge fixture and displacement. The resulting field includes shear and axial deformation in addition to curvature. No universal relationship between extension and bending performance follows from it. A distributed pressure, a prescribed radius of curvature, or a force-controlled fixture could produce different rankings because it would change both the imposed work and the spatial load path. The reported rankings are therefore conditional on boundary conditions as well as materials.
+
+In contrast, tension and axial shortening are necessarily related in this linear model. Reversing the sign and halving the prescribed displacement reverses all stress components and halves their magnitudes; von Mises stress and mean absolute strain therefore become one half of their extension values. Energy becomes one quarter. Agreement with this relation is a useful implementation check, but the shortening calculations do not provide independent evidence about nonlinear compression, instability, or buckling resistance.
+
+A design decision based only on maximum stress would be less secure than one based on an explicitly averaged response. The gold termination and abrupt material transitions create steep gradients, and element maxima continue to change as the mesh resolves those regions. Whole-domain displacement is also unsuitable as the main isolation metric because prescribed skin motion contributes directly to its maximum. Measuring gold stress and gold strain avoids that particular ambiguity, while retaining the need to distinguish mean response from a singular or nearly singular local field.
+
+The design implication is specific: for an otherwise fixed layered patch under the tested prescribed motions, a single soft layer is the strongest candidate for minimizing the average elastic load transferred into the gold region. A graded buffer remains a useful alternative to uniform PDMS, but grading should be justified against a compliance-matched baseline. Other objectives, including adhesion, handling, process tolerance, or interfacial stress, could favor a different support; none is measured by the present objective function.
+
+6. Limitations and next steps
+
+The two-dimensional plane-strain assumption suppresses out-of-plane deformation. A finite-width patch can contract laterally, twist, or warp, so absolute stresses require a three-dimensional assessment for a specific device. The gold region is a continuous rectangular inclusion, not a patterned electrode or serpentine trace. Perfect interfaces omit adhesive compliance, sliding, peeling, and delamination. Abrupt corners are not geometrically regularized.
+
+All materials are linear elastic and isotropic. Skin anisotropy, prestretch, viscoelasticity, and site-dependent properties are excluded; PDMS hyperelasticity and time dependence are also excluded. Nominal imposed strains are small, but this does not remove local corner gradients or establish validity for arbitrary loading. Compression buckling, cyclic damage, plasticity of gold, and fracture are outside the formulation. No comparison against a universal 100 MPa failure threshold is warranted for a stack containing multiple materials and interfaces.
+
+The finest-mesh means provide a screening comparison with measured successive-mesh changes, rather than experimentally validated absolute predictions. The highest stresses are less mesh-stable. The analytical benchmark checks the implementation on a homogeneous problem; it does not validate the selected material properties or the biological boundary conditions. Material sensitivities are limited to selected independent perturbations and do not address correlated uncertainty in thickness, modulus, adhesion, or placement.
+
+Future verification should compare the same geometry and boundary conditions with an independent finite-element code, then introduce calibrated nonlinear materials and cohesive or contact interfaces. Experiments should impose measured skin or surrogate-substrate deformation while recording gold-region strain and electrical output. Only a coupled mechanical and electrical validation can establish whether the predicted stress reductions translate to lower motion artifacts or signal drift.
+
+7. Conclusion
+
+A reproducible plane-strain model of a layered wearable biosensor predicts lower mean gold stress with compliant support layers when total support thickness is controlled. Under 1% prescribed skin extension, mean sensor stress decreased by 63.2% with a single soft buffer and 54.3% with the specified graded pair relative to uniform PDMS. The single buffer also provided the lowest mean stress under the tested transverse displacement. A compliance-matched homogeneous buffer performed similarly to the graded support, indicating that overall compliance explains much of the observed isolation in this geometry.
+
+The study supports evaluating grading against equal-thickness and compliance-matched baselines, with sensor-specific metrics and explicit mesh histories. It does not establish electrical stability, fatigue resistance, or safety. The next step is independent numerical comparison and experimental calibration of the materials, interfaces, and measured skin motion.
+
+Data and code availability
+
+The accompanying reproducibility package contains Python source, nominal and control metrics in CSV format, displacement and stress fields in compressed NumPy format, verification outputs, and source-provenance notes. Figure and manuscript generation are scripted. All numerical results reported here were generated by the specified elastic model; no human or animal measurements were collected.
+
+References
+
+[1] D.-H. Kim, N. Lu, R. Ma, Y.-S. Kim, R.-H. Kim, S. Wang, J. Wu, S. M. Won, H. Tao, A. Islam, K. J. Yu, T.-i. Kim, R. Chowdhury, M. Ying, L. Xu, M. Li, H.-J. Chung, H. Keum, M. McCormick, P. Liu, Y.-W. Zhang, F. G. Omenetto, Y. Huang, T. Coleman, and J. A. Rogers, "Epidermal electronics," Science, vol. 333, no. 6044, pp. 838-843, 2011, doi: 10.1126/science.1206157.
+
+[2] J. A. Rogers, T. Someya, and Y. Huang, "Materials and mechanics for stretchable electronics," Science, vol. 327, no. 5973, pp. 1603-1607, 2010, doi: 10.1126/science.1182383.
+
+[3] N. Lu and S. Yang, "Mechanics for stretchable sensors," Current Opinion in Solid State and Materials Science, vol. 19, no. 3, pp. 149-159, 2015, doi: 10.1016/j.cossms.2014.12.007.
+
+[4] I. D. Johnston, D. K. McCluskey, C. K. L. Tan, and M. C. Tracey, "Mechanical characterization of bulk Sylgard 184 for microfluidics and microengineering," Journal of Micromechanics and Microengineering, vol. 24, no. 3, article 035017, 2014, doi: 10.1088/0960-1317/24/3/035017.
+
+[5] A. Ni Annaidh, K. Bruyere, M. Destrade, M. D. Gilchrist, and M. Ottenio, "Characterization of the anisotropic mechanical properties of excised human skin," Journal of the Mechanical Behavior of Biomedical Materials, vol. 5, no. 1, pp. 139-148, 2012, doi: 10.1016/j.jmbbm.2011.08.016.
+
+[6] A. F. Bower, Applied Mechanics of Solids, section 8.6, "Advanced element formulations." [Online]. Available: https://solidmechanics.org/Text/Chapter8_6/Chapter8_6.php. Accessed: Oct. 17, 2026.
+
+[7] The SciPy community, "scipy.sparse.linalg.spsolve," SciPy documentation. [Online]. Available: https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.spsolve.html. Accessed: Oct. 17, 2026.
