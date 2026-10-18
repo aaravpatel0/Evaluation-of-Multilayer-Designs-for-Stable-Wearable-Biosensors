@@ -54,7 +54,13 @@ python advanced/reanalyze.py
 python advanced/summarize.py
 python advanced/run_refinement.py
 python advanced/finalize_analysis.py
+python advanced/plot_geometry.py
 python advanced/plot_results.py
+# Only after complete numerical acceptance and figure review:
+python advanced/build_manuscript.py
+./advanced/normalize_word_layout.ps1
+# Review every rendered PDF page before packaging:
+python advanced/package_research.py
 ```
 
 The expanded runner first verifies the supplied-geometry direct gate, evaluates all three supplied-contact architectures at nominal materials, verifies the filled-geometry direct gate, and then evaluates its 27 material configurations with three basis loads each. Each configuration receives its own direct 45-degree mixed-load validation. This is 90 medium-mesh basis cases plus 30 direct validation cases. Verified residual-correction solves may be required in addition; they are numerical auxiliary solves, not new physical cases. Refined-mesh checks and the final new manuscript remain subsequent steps. The script stops at a remaining numerical failure; it does not silently relax acceptance to finish the matrix.

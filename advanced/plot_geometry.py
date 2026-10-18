@@ -33,7 +33,7 @@ def main():
         ax.set_xticks([-20,0,20]);ax.set_yticks([-20,0,20]);ax.tick_params(labelsize=7)
         ax.set_xlabel('x (mm)',fontsize=8)
     axes[0].set_ylabel('y (mm)',fontsize=8)
-    fig.subplots_adjust(left=.15,right=.76,bottom=.18,top=.81,wspace=.18)
+    fig.subplots_adjust(left=.15,right=.76,bottom=.18,top=.81,wspace=.35)
     colorbar=fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),cax=fig.add_axes([.81,.23,.035,.46]))
     colorbar.set_label('Shared area / projected area',fontsize=7)
     colorbar.ax.tick_params(labelsize=7)
