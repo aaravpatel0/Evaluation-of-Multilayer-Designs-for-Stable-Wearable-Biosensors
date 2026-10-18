@@ -1,0 +1,49 @@
+{
+  "failed_case": "WSL_h1.2_Filled_Uniform_S0.2_A0.1_XX",
+  "failure": "Kernel out-of-memory termination; execution returncode9 and job_finished false",
+  "retained_failed_attempt": "runs/WSL_h1.2_Filled_Uniform_S0.2_A0.1_XX/failed_memory_attempt_001",
+  "remedy": "Added12GiB temporary swapfile; no mesh, material, load, solver, or acceptance tolerance changed",
+  "swapfile": "/var/tmp/biosensor-advanced.swap",
+  "distro": "Ubuntu-22.04",
+  "cleanup": "After all solvers finish, disable and remove only this task-owned swapfile; never disable active solver swap",
+  "retry_status": "First fineXX retry completed and accepted; remaining fine loading cases continue",
+  "accepted_retry_execution": {
+    "returncode": 0,
+    "elapsed_seconds": 188.38300824165344,
+    "job_finished": true,
+    "deck_sha256": "298dc0b9b1d5ef75c1a17ea512a1052965e3a007019932b84601eb5e68f96df6",
+    "solver_environment": {
+      "OMP_NUM_THREADS": "4",
+      "CCX_NPROC_RESULTS": "4"
+    },
+    "execution_backend": "WSL",
+    "command": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--cd",
+      "/tmp/biosensor_advanced_cases/WSL_h1.2_Filled_Uniform_S0.2_A0.1_XX_298dc0b9b1d5",
+      "--",
+      "env",
+      "OMP_NUM_THREADS=4",
+      "CCX_NPROC_RESULTS=4",
+      "ccx",
+      "-i",
+      "job"
+    ],
+    "error_lines": []
+  },
+  "accepted_retry_checks": {
+    "checks_schema": 2,
+    "internal_energy_Nmm": 0.1373689460956311,
+    "external_work_Nmm": 0.1373689491234128,
+    "free_DOF_force_relative_residual": 2.51703221794214e-07,
+    "free_DOF_force_work_Nmm": -2.5593953389195077e-09,
+    "relative_energy_error": 2.2041237931528796e-08,
+    "relative_force_error": 2.901601843526623e-07,
+    "relative_moment_error": 2.1779701139765266e-07,
+    "maximum_BC_error_mm": 4.988938967498413e-08,
+    "minimum_element_volume_mm3": 1.871506232456865e-07,
+    "accepted": true
+  }
+}
