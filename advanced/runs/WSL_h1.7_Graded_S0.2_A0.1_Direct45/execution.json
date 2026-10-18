@@ -1,0 +1,26 @@
+{
+  "returncode": 0,
+  "elapsed_seconds": 88.12472820281982,
+  "job_finished": true,
+  "deck_sha256": "0c5b2fda6d3efc9e1ca816c419ef9e45909884020afedd84279ca5de7f3419b0",
+  "solver_environment": {
+    "OMP_NUM_THREADS": "4",
+    "CCX_NPROC_RESULTS": "4"
+  },
+  "execution_backend": "WSL",
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu-22.04",
+    "--cd",
+    "/tmp/biosensor_advanced_cases/WSL_h1.7_Graded_S0.2_A0.1_Direct45_0c5b2fda6d3e",
+    "--",
+    "env",
+    "OMP_NUM_THREADS=4",
+    "CCX_NPROC_RESULTS=4",
+    "ccx",
+    "-i",
+    "job"
+  ],
+  "error_lines": []
+}

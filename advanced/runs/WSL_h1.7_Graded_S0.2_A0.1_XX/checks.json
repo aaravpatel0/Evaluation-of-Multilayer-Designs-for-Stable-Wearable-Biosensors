@@ -1,0 +1,18 @@
+{
+  "checks_schema": 2,
+  "internal_energy_Nmm": 0.11598915360664677,
+  "external_work_Nmm": 0.11598915310787433,
+  "free_DOF_force_relative_residual": 1.566994182174761e-07,
+  "free_DOF_force_work_Nmm": 8.091506604526923e-10,
+  "relative_energy_error": 4.300164512386813e-09,
+  "relative_force_error": 4.663376779625069e-08,
+  "relative_moment_error": 2.1654281059156784e-07,
+  "maximum_BC_error_mm": 4.983962298421574e-08,
+  "minimum_element_volume_mm3": 1.6280405685441773e-08,
+  "accepted": true,
+  "iteration": 1,
+  "correction_load_scale": 23.47195316164203,
+  "correction_free_DOF_relative_residual": 3.6565427421788323e-06,
+  "residual_correction_steps": 1,
+  "field_construction": "Initial linear solve plus zero-prescribed-displacement residual-correction solves"
+}

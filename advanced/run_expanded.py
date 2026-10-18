@@ -1,11 +1,14 @@
 """Run the pre-specified material matrix, retaining geometric-contact comparison."""
-import itertools,json,time
+import itertools,json,time,argparse
 from model import ROOT,BASIS
 from run_study import case,direct_gate
 from postprocess import analyze
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--defer-analysis',action='store_true',help='Complete verified FE solves first, then run bare references and reanalyze.py.')
+    args=parser.parse_args()
     start=time.time()
     verified=json.loads((ROOT/'verification/independent_high_contrast.json').read_text())
     assert len(verified)==2 and all(r['accepted'] for r in verified)
@@ -16,7 +19,9 @@ def main():
         for mode in BASIS:
             dest=case(1.7,design,.2,.1,mode,geometry='Supplied')
             completed.append(dest.name)
-        analyze(design=design,geometry='Supplied')
+        direct_gate(geometry='Supplied',design=design)
+        if not args.defer_analysis:
+            analyze(design=design,geometry='Supplied')
         (ROOT/'progress_expanded.json').write_text(json.dumps(dict(
             completed_basis_cases=completed,elapsed_seconds=time.time()-start,
             phase='supplied_contact_comparison',planned_medium_mesh_basis_cases=90),indent=2))
@@ -27,7 +32,9 @@ def main():
         for mode in BASIS:
             dest=case(1.7,design,skin,adhesive,mode,geometry='Filled')
             completed.append(dest.name)
-        analyze(design=design,skin=skin,adhesive=adhesive,geometry='Filled')
+        direct_gate(geometry='Filled',design=design,skin=skin,adhesive=adhesive)
+        if not args.defer_analysis:
+            analyze(design=design,skin=skin,adhesive=adhesive,geometry='Filled')
         (ROOT/'progress_expanded.json').write_text(json.dumps(dict(
             completed_basis_cases=completed,elapsed_seconds=time.time()-start,
             phase='filled_contact_material_matrix',planned_medium_mesh_basis_cases=90),indent=2))

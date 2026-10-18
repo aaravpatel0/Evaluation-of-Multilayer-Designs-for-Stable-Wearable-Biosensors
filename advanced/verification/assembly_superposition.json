@@ -1,6 +1,8 @@
 {
   "mesh_h_mm": 1.7,
   "design": "Uniform",
+  "skin_E_MPa": 0.2,
+  "adhesive_E_MPa": 0.1,
   "geometry_scenario": "Supplied",
   "coefficients": [
     0.255,

@@ -1,0 +1,18 @@
+{
+  "accepted_solver": "CalculiX, Ubuntu package 2.17-3, SPOOLES",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "python_packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.18.1",
+    "gmsh": "4.15.2",
+    "scikit-fem": "12.0.2",
+    "matplotlib": "3.11.2",
+    "python-docx": "1.2.0",
+    "pymupdf": "1.28.2"
+  },
+  "installed_solver_packages": "calculix-ccx\t2.17-3\nlibspooles2.2:amd64\t2.2-14",
+  "ccx_sha256": "85f6961eb174eaf4daf2b053e1c3fd50874c9c597bd4e1e31b7f5cdfc4dda4c3",
+  "backend": "WSL Ubuntu-22.04, native ext4 run directory, completed output copied in bulk",
+  "accuracy_gates": "advanced/NUMERICAL_REVIEW.md",
+  "note": "Windows diagnostic solvers are not accepted substitutes for the verified backend."
+}

@@ -1,0 +1,6 @@
+{
+  "loaded_node": 233,
+  "applied_force_N": 0.001,
+  "reported_internal_force_N": 0.001,
+  "free_DOF_force_minus_applied_load_relative_error": 2.449439362651594e-15
+}

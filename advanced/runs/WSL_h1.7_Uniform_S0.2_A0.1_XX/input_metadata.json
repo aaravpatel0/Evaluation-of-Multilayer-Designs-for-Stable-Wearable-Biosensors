@@ -20,5 +20,6 @@
   "executable_name": "/usr/bin/ccx",
   "execution_backend": "WSL",
   "verification_contrast": 1.0,
+  "has_nodal_loads": false,
   "deck_sha256": "16c5736b23abcb2102bbb75d54eb8542f6b58e00daf44448d3469a3a1c71ea7d"
 }

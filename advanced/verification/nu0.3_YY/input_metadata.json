@@ -19,5 +19,7 @@
   "linear_solver": "SPOOLES",
   "executable_name": "/usr/bin/ccx",
   "execution_backend": "WSL",
+  "verification_contrast": 1.0,
+  "has_nodal_loads": false,
   "deck_sha256": "982baca9bdfa8756f13396ce5434e584bd5ac1c0554e1b94d666586cb4b731ea"
 }

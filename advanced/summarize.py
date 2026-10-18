@@ -13,6 +13,8 @@ def summarize():
     for design,skin,adhesive in expected:
         path=ROOT/'output'/f'WSL_h1.7_Filled_{design}_S{skin:g}_A{adhesive:g}_responses.json'
         assert path.exists(),f'Missing planned configuration: {path.name}'
+        diagnostics=json.loads(path.with_name(path.name.replace('_responses.json','_diagnostics.json')).read_text())
+        assert diagnostics.get('skin_reference')=='bare_skin_FEM','Reanalyze against matched bare-skin FE references before final tradeoff selection.'
         responses=json.loads(path.read_text())
         assert len(responses)==38
         assert {r['angle_deg'] for r in responses if r['angle_deg'] is not None}==set(range(0,180,5))

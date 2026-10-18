@@ -23,3 +23,11 @@ The solver's NALL force output can include residuals on free DOFs. Summing one h
 6. Interface pointwise tractions are diagnostic unless interface recovery and refinement justify quantitative conclusions. Material calibration, electrical behavior, adhesion strength, comfort, and clinical outcomes remain outside the proven results.
 
 The current pilot uses the SPOOLES solver in Ubuntu 22.04's CalculiX 2.17 package under WSL. Both official Windows SPOOLES executables crashed on the full assembly (exit code 3221225477), despite passing the small benchmarks. They are not accepted assembly results. All eight homogeneous/direct-mixed verification cases pass the revised energy and free-DOF residual checks with the Linux solver. Independent scikit-fem comparisons also pass for elastic contrasts 10 and 392500 at nu=0.49. Full-assembly acceptance must be established from its own outputs; a running solver is not a passed test.
+
+## Verified linear defect correction
+
+The Linux backend passed the Uniform and Single supplied-contact basis cases and their direct mixed-load comparisons, but the Graded XX case initially had free-DOF relative residual 0.0426040. A zero-prescribed-displacement correction with negative residual nodal loads reduced the residual to 1.56699e-7 in one solve; the revised energy check is 4.30e-9. This numerical correction preserves the original linear FE equations and physical inputs. It does not relax any acceptance threshold.
+
+`residual_refinement.py` retains the initial fields/checks and correction input decks, logs, and field-construction history. `verify_refinement.py` labels its injected perturbation as a manufactured numerical-error verification problem, not research data: verified cube fields plus 0.02 times a separately solved point-load field. One correction recovers displacement, force, stress, and strain to relative error below 9e-10. A separate point-load cube confirms that the reported free-node force equals internal force, including the applied load, as required for the field-sum correction.
+
+The batch invokes up to three correction steps on a failed local-equilibrium case, stops on divergence or a remaining failure, and directly validates mixed loading for every material configuration. Corrected fields are identified explicitly in their checks and retained alongside uncorrected outputs.

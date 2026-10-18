@@ -1,0 +1,46 @@
+[
+  {
+    "scenario": "Supplied",
+    "h_mm": 1.7,
+    "nodes": 436391,
+    "elements": 272194,
+    "connected_components": 1,
+    "minimum_mesher_Jacobian": 9.768243411158711e-08,
+    "minimum_SICN_quality": 0.015570348736116056,
+    "minimum_signed_corner_volume_mm3": 1.6280405685441773e-08,
+    "maximum_edge_midpoint_error_mm": 0.0
+  },
+  {
+    "scenario": "Supplied",
+    "h_mm": 1.2,
+    "nodes": 583486,
+    "elements": 374893,
+    "connected_components": 1,
+    "minimum_mesher_Jacobian": 7.536563013201796e-07,
+    "minimum_SICN_quality": 0.026326192731949433,
+    "minimum_signed_corner_volume_mm3": 1.256093835535825e-07,
+    "maximum_edge_midpoint_error_mm": 0.0
+  },
+  {
+    "scenario": "Filled",
+    "h_mm": 1.7,
+    "nodes": 412220,
+    "elements": 267146,
+    "connected_components": 1,
+    "minimum_mesher_Jacobian": 1.2915479816959684e-06,
+    "minimum_SICN_quality": 0.006892595637956104,
+    "minimum_signed_corner_volume_mm3": 2.1525799694967467e-07,
+    "maximum_edge_midpoint_error_mm": 0.0
+  },
+  {
+    "scenario": "Filled",
+    "h_mm": 1.2,
+    "nodes": 556536,
+    "elements": 370387,
+    "connected_components": 1,
+    "minimum_mesher_Jacobian": 1.1229037394715962e-06,
+    "minimum_SICN_quality": 0.01053609823481561,
+    "minimum_signed_corner_volume_mm3": 1.871506232456865e-07,
+    "maximum_edge_midpoint_error_mm": 0.0
+  }
+]

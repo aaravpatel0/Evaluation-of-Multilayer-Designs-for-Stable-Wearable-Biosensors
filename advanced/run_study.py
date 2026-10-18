@@ -13,7 +13,15 @@ def case(h, design, skin, adhesive, mode, loading=None, geometry='Supplied'):
                design=design, skin_E=skin, adhesive_E=adhesive,geometry_scenario=geometry)
     fresh=execute(dest)
     if fresh or not (dest/'fields.npz').exists() or not (dest/'checks.json').exists():
-        parse_and_check(dest)
+        try:
+            parse_and_check(dest)
+        except AssertionError:
+            failed=json.loads((dest/'checks.json').read_text())
+            assert failed['maximum_BC_error_mm']<1e-6 and failed['minimum_element_volume_mm3']>0
+            proof=json.loads((ROOT/'verification/residual_refinement_verification.json').read_text())
+            assert max(proof['recovery_relative_errors'].values())<2e-5
+            from residual_refinement import refine
+            refine(dest)
     checks = json.loads((dest/'checks.json').read_text())
     if checks.get('checks_schema')!=2:
         checks=parse_and_check(dest)
@@ -23,21 +31,24 @@ def case(h, design, skin, adhesive, mode, loading=None, geometry='Supplied'):
     return dest
 
 
-def direct_gate(h=1.7,geometry='Supplied'):
-    basis = [case(h, 'Uniform', .2, .1, mode,geometry=geometry) for mode in BASIS]
+def direct_gate(h=1.7,geometry='Supplied',design='Uniform',skin=.2,adhesive=.1):
+    basis = [case(h, design, skin, adhesive, mode,geometry=geometry) for mode in BASIS]
     coef = np.array([.255, .255, 1.49])
-    direct = case(h, 'Uniform', .2, .1, 'Direct45', .01*coef,geometry=geometry)
+    direct = case(h, design, skin, adhesive, 'Direct45', .01*coef,geometry=geometry)
     data = np.load(direct/'fields.npz')
     errors = {}
     for key in ['displacement', 'forces', 'stress', 'strain']:
         prediction = sum(a*np.load(path/'fields.npz')[key] for a,path in zip(coef,basis))
         target = data[key]
         errors[key] = float(np.linalg.norm(prediction-target)/np.linalg.norm(target))
-    report = dict(mesh_h_mm=h, design='Uniform',geometry_scenario=geometry, coefficients=coef.tolist(),
+    report = dict(mesh_h_mm=h, design=design,skin_E_MPa=skin,adhesive_E_MPa=adhesive,geometry_scenario=geometry, coefficients=coef.tolist(),
                   relative_field_errors=errors, tolerance=2e-5,precision='double',execution_backend=BACKEND)
     report['accepted']=bool(max(errors.values()) < report['tolerance'])
-    name='assembly_superposition.json' if geometry=='Supplied' else f'assembly_superposition_{geometry}.json'
-    (ROOT/'verification'/name).write_text(json.dumps(report, indent=2))
+    name=f'superposition_h{h:g}_{geometry}_{design}_S{skin:g}_A{adhesive:g}.json'
+    (ROOT/'verification'/name).write_text(json.dumps(report,indent=2))
+    if design=='Uniform' and skin==.2 and adhesive==.1:
+        alias='assembly_superposition.json' if geometry=='Supplied' else f'assembly_superposition_{geometry}.json'
+        (ROOT/'verification'/alias).write_text(json.dumps(report,indent=2))
     assert max(errors.values()) < report['tolerance'], report
     print('ASSEMBLY SUPERPOSITION GATE PASSED', json.dumps(report), flush=True)
 

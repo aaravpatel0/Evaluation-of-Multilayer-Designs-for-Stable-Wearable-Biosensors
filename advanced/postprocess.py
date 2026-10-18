@@ -35,7 +35,7 @@ def coefficients(angle,nu=.49):
 
 
 def analyze(h=1.7,design='Uniform',skin=.2,adhesive=.1,geometry='Supplied'):
-    gate='assembly_superposition.json' if geometry=='Supplied' else f'assembly_superposition_{geometry}.json'
+    gate=f'superposition_h{h:g}_{geometry}_{design}_S{skin:g}_A{adhesive:g}.json'
     validation=json.loads((ROOT/'verification'/gate).read_text())
     assert validation.get('accepted') and validation.get('execution_backend')==BACKEND
     prefix='' if geometry=='Supplied' else f'{geometry}_'
@@ -64,10 +64,12 @@ def analyze(h=1.7,design='Uniform',skin=.2,adhesive=.1,geometry='Supplied'):
     deltas=[];ta=[];ts=[];adh_s=[];adh_e=[]
     adhesive_mask=r==2
     aw=np.repeat(volume[adhesive_mask]/4,4)
-    nu=.49
-    ref=np.array([[.01,0,-.01*nu/(1-nu),0,0,0],
-                  [0,.01,-.01*nu/(1-nu),0,0,0],[0,0,0,.005,0,0]])
+    references=[ROOT/'references'/f'{geometry}_h{h:g}_{mode}' for mode in BASIS]
+    for path in references:
+        assert json.loads((path/'checks.json').read_text())['accepted']
+    ref=[np.load(path/'fields.npz')['strain'].reshape(-1,6) for path in references]
     for i,f in enumerate(fields):
+        assert f['strain'][skin_mask].reshape(-1,6).shape==ref[i].shape
         deltas.append(f['strain'][skin_mask].reshape(-1,6)-ref[i])
         adh_s.append(f['stress'][adhesive_mask].reshape(-1,6))
         adh_e.append(f['strain'][adhesive_mask].reshape(-1,6))
@@ -126,7 +128,7 @@ def analyze(h=1.7,design='Uniform',skin=.2,adhesive=.1,geometry='Supplied'):
     with (out/f'{stem}_responses.csv').open('w',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=rows[0]);writer.writeheader();writer.writerows(rows)
     (out/f'{stem}_responses.json').write_text(json.dumps(rows,indent=2))
-    diagnostics=dict(configuration=stem,skin_perturbation_Gram_matrix=Q.tolist(),
+    diagnostics=dict(configuration=stem,skin_reference='bare_skin_FEM',skin_reference_cases=[str(path.relative_to(ROOT)) for path in references],skin_perturbation_Gram_matrix=Q.tolist(),
                      adhesive_energy_Gram_matrix_Nmm=adhesive_energy.tolist(),
                      adhesive_deviatoric_strain_Gram_matrix=adhesive_distortion.tolist(),
                      interface_area_mm2=float(area.sum()),wire_GP_count=len(weight),

@@ -1,0 +1,13 @@
+{
+  "checks_schema": 2,
+  "internal_energy_Nmm": 0.11692599985660818,
+  "external_work_Nmm": 0.11692599952413818,
+  "free_DOF_force_relative_residual": 1.6274850410194904e-07,
+  "free_DOF_force_work_Nmm": 2.12378208180031e-10,
+  "relative_energy_error": 2.8434223126715475e-09,
+  "relative_force_error": 1.0635561702400014e-07,
+  "relative_moment_error": 1.781518878414921e-07,
+  "maximum_BC_error_mm": 4.995753880021603e-08,
+  "minimum_element_volume_mm3": 1.6280405685441773e-08,
+  "accepted": true
+}

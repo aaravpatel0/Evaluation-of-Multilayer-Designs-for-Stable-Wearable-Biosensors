@@ -41,13 +41,28 @@ Install the Python packages in `requirements.txt`. The accepted backend addition
 ```powershell
 python advanced/verify_basis.py
 python advanced/verify_independent.py
+python advanced/verify_refinement.py
+python detailed/mesh_assembly.py --h 1.7 --wire .14
+python detailed/mesh_assembly.py --h 1.2 --wire .10
 python advanced/mesh_contact.py --h 1.7 --wire .14
 python advanced/mesh_contact.py --h 1.2 --wire .10
+python advanced/verify_meshes.py
+python advanced/bare_skin_reference.py
 python advanced/run_study.py --phase pilot
 python advanced/run_expanded.py
+python advanced/reanalyze.py
 python advanced/summarize.py
+python advanced/run_refinement.py
+python advanced/finalize_analysis.py
+python advanced/plot_results.py
 ```
 
-The expanded runner first verifies the supplied-geometry direct gate, evaluates all three supplied-contact architectures at nominal materials, verifies the filled-geometry direct gate, and then evaluates its 27 material configurations with three basis loads each. This is 90 medium-mesh basis solves plus separate direct validation cases. Refined-mesh checks and the final new manuscript remain subsequent steps. The script stops at a failed numerical gate; it does not silently relax acceptance to finish the matrix.
+The expanded runner first verifies the supplied-geometry direct gate, evaluates all three supplied-contact architectures at nominal materials, verifies the filled-geometry direct gate, and then evaluates its 27 material configurations with three basis loads each. Each configuration receives its own direct 45-degree mixed-load validation. This is 90 medium-mesh basis cases plus 30 direct validation cases. Verified residual-correction solves may be required in addition; they are numerical auxiliary solves, not new physical cases. Refined-mesh checks and the final new manuscript remain subsequent steps. The script stops at a remaining numerical failure; it does not silently relax acceptance to finish the matrix.
+
+The residual-correction path is documented in [NUMERICAL_REVIEW.md](NUMERICAL_REVIEW.md) and tested by `verify_refinement.py`, which includes the point-load semantics test. Run that verification after `verify_basis.py` before a fresh extended batch. No manufactured verification data are used as biosensor-study results.
+
+The skin-disturbance metric in the final analysis uses a device-free finite-element reference on exactly the same textured skin elements and quadrature points. A homogeneous affine reference alone would also include effects of the textured geometry. `bare_skin_reference.py` builds the matched references, and `reanalyze.py` rebuilds all medium-mesh response profiles. The final summarizer rejects the earlier affine-reference profiles. Since Poisson ratio is fixed and reference loading is purely prescribed displacement, multiplying the homogeneous bare-skin modulus by a scalar leaves its strain field unchanged; the reference therefore serves every effective skin modulus in the grid.
+
+For a compute-first resume, `run_expanded.py --defer-analysis` completes verified FE cases without response-profile generation. Follow it with `bare_skin_reference.py` and `reanalyze.py`, then the refinement and finalization stages above. Do not launch a second driver while an existing study process is live.
 
 The proposed scope remains a computational mechanical design study. Material calibration, hidden chip internals, electrical drift, fatigue, and human outcomes are not invented. Advanced here means stronger questions, multiaxial boundary conditions, uncertainty exploration, and better verification; a favorable design result is not guaranteed.

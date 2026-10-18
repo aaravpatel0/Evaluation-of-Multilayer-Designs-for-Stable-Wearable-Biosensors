@@ -1,0 +1,25 @@
+{
+  "mesh_path": "advanced\\meshes\\filled\\h1.7\\mesh.npz",
+  "design": "Uniform",
+  "geometry_scenario": "Filled",
+  "loading": [
+    0.0,
+    0.01,
+    0.0
+  ],
+  "skin_E_MPa": 0.2,
+  "adhesive_E_MPa": 0.1,
+  "homogeneous": false,
+  "nu": 0.49,
+  "nodes": 412220,
+  "elements": 267146,
+  "perimeter_nodes": 3167,
+  "z_reference_node": 20958,
+  "mesh_sha256": "74da2597686ada366c957a0433f68137b81330b8efa5c86cbdcb4289b1af0182",
+  "linear_solver": "SPOOLES",
+  "executable_name": "/usr/bin/ccx",
+  "execution_backend": "WSL",
+  "verification_contrast": 1.0,
+  "has_nodal_loads": false,
+  "deck_sha256": "ffd5ada2f1fa73237265aae57423f999ab74d65e4f0d9bb3587768b522a145aa"
+}

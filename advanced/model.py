@@ -52,7 +52,7 @@ def boundary_nodes(points, cells, regions):
 
 
 def write_deck(dest, mesh_path, loading, design='Uniform', skin_E=.2, adhesive_E=.1,
-               homogeneous=False, nu=.49, geometry_scenario='Supplied',verification_contrast=1.):
+               homogeneous=False, nu=.49, geometry_scenario='Supplied',verification_contrast=1.,nodal_loads=None):
     dest = Path(dest); dest.mkdir(parents=True, exist_ok=True)
     mesh_path = Path(mesh_path).resolve()
     mesh = np.load(mesh_path)
@@ -69,6 +69,7 @@ def write_deck(dest, mesh_path, loading, design='Uniform', skin_E=.2, adhesive_E
                 executable_name='/usr/bin/ccx' if BACKEND=='WSL' else CCX_ADVANCED.name)
     meta['execution_backend']=BACKEND
     meta['verification_contrast']=verification_contrast
+    meta['has_nodal_loads']=nodal_loads is not None
     with (dest/'job.inp').open('w') as f:
         f.write('*HEADING\nAffine skin perimeter, mm N MPa, linear screening study\n*NODE,NSET=NALL\n')
         for i, xyz in enumerate(p, 1):
@@ -88,6 +89,11 @@ def write_deck(dest, mesh_path, loading, design='Uniform', skin_E=.2, adhesive_E
             for axis in range(2):
                 f.write(f'{i+1},{axis+1},{axis+1},{prescribed[i,axis]:.12g}\n')
         f.write(f'{pin+1},3,3,0.\n')
+        if nodal_loads is not None:
+            assert nodal_loads.shape==p.shape
+            f.write('*CLOAD\n')
+            for node,axis in np.argwhere(nodal_loads!=0):
+                f.write(f'{node+1},{axis+1},{nodal_loads[node,axis]:.12g}\n')
         f.write('*NODE PRINT,NSET=NALL\nU,RF\n*EL PRINT,ELSET=ALL\nS,E\n*END STEP\n')
     meta['deck_sha256'] = hashlib.sha256((dest/'job.inp').read_bytes()).hexdigest()
     (dest/'input_metadata.json').write_text(json.dumps(meta, indent=2))
@@ -99,7 +105,7 @@ def execute(dest):
     expected = json.loads((dest/'input_metadata.json').read_text())['deck_sha256']
     if (dest/'execution.json').exists():
         old = json.loads((dest/'execution.json').read_text())
-        if old.get('job_finished') and old.get('deck_sha256') == expected and old.get('solver_environment') == SOLVER_CONFIG and old.get('execution_backend')==BACKEND and (dest/'fields.npz').exists():
+        if old.get('job_finished') and old.get('deck_sha256') == expected and old.get('solver_environment') == SOLVER_CONFIG and old.get('execution_backend')==BACKEND and ((dest/'fields.npz').exists() or (dest/'job.dat').exists()):
             return False
     env = os.environ.copy()
     env.update(SOLVER_CONFIG)
@@ -133,7 +139,7 @@ def execute(dest):
     return True
 
 
-def parse_and_check(dest):
+def read_fields(dest):
     dest = Path(dest)
     meta = json.loads((dest/'input_metadata.json').read_text())
     mesh = np.load(PROJECT/meta['mesh_path'])
@@ -158,6 +164,12 @@ def parse_and_check(dest):
     assert np.array_equal(displacement[:, 0], np.arange(1, len(p)+1))
     assert np.array_equal(force[:, 0], displacement[:, 0])
     u, reaction = displacement[:, 1:], force[:, 1:]
+    return dict(displacement=u,forces=reaction,stress=s,strain=e)
+
+
+def check_fields(mesh,meta,fields):
+    p,c=mesh['points'],mesh['cells']
+    u,reaction,s,e=[fields[k] for k in ['displacement','forces','stress','strain']]
     vertices = p[c[:, :4]]
     vol = np.abs(np.linalg.det(vertices[:, 1:]-vertices[:, :1]))/6
     assert min(vol) > 0 and all(np.isfinite(a).all() for a in [s,e,u,reaction])
@@ -183,8 +195,16 @@ def parse_and_check(dest):
                   relative_moment_error=float(moment_error), maximum_BC_error_mm=bc_error,
                   minimum_element_volume_mm3=float(min(vol)))
     checks['accepted']=bool(energy_error < 5e-4 and free_residual < 1e-5 and force_error < 1e-4 and moment_error < 1e-4 and bc_error < 1e-6)
-    (dest/'checks.json').write_text(json.dumps(checks, indent=2))
-    assert energy_error < 5e-4, checks
-    assert free_residual < 1e-5 and force_error < 1e-4 and moment_error < 1e-4 and bc_error < 1e-6, checks
-    np.savez_compressed(dest/'fields.npz', displacement=u, forces=reaction, stress=s, strain=e)
+    return checks
+
+
+def parse_and_check(dest):
+    dest=Path(dest)
+    meta=json.loads((dest/'input_metadata.json').read_text())
+    mesh=np.load(PROJECT/meta['mesh_path'])
+    fields=read_fields(dest)
+    checks=check_fields(mesh,meta,fields)
+    (dest/'checks.json').write_text(json.dumps(checks,indent=2))
+    assert checks['accepted'],checks
+    np.savez_compressed(dest/'fields.npz',**fields)
     return checks
