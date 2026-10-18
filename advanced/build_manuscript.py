@@ -23,22 +23,27 @@ def refs():
     spec=importlib.util.spec_from_file_location('earlier_reference_text',PROJECT/'manuscript_content.py')
     old=importlib.util.module_from_spec(spec);spec.loader.exec_module(old)
     metadata={r['role']:r for r in json.loads((ROOT/'sources/reference_metadata.json').read_text(encoding='utf-8'))}
+    metadata['epidermal']=json.loads((ROOT/'sources/epidermal_electronics_crossref.json').read_text(encoding='utf-8'))['metadata']
     def citation(role):
         a=metadata[role]
         authors=[]
-        for name in a['author'][:3]:
-            initials=''.join(word[0]+'.' for word in name.get('given','').split() if word)
+        for name in a['author']:
+            initials=' '.join('-'.join(part[0]+'.' for part in word.split('-') if part)
+                              for word in name.get('given','').split() if word)
             authors.append(initials+' '+name.get('family',''))
-        author=', '.join(authors)+(', et al.' if len(a['author'])>3 else '')
+        author=authors[0] if len(authors)==1 else (' and '.join(authors) if len(authors)==2 else ', '.join(authors[:-1])+', and '+authors[-1])
         year=a['published']['date-parts'][0][0]
-        locator=a.get('page') or a.get('article-number')
-        return f'{author}, "{a["title"][0]}," {a["container-title"][0]}, vol. {a.get("volume", "")}, {locator}, {year}, doi: {a["DOI"]}.'
-    return ['D.-H. Kim, N. Lu, R. Ma, et al., "Epidermal electronics," Science, vol. 333, no. 6044, pp. 838-843, 2011, doi: 10.1126/science.1206157.',old.REFERENCES[2],citation('soft_interlayer'),citation('motion_artifacts'),
+        page=a.get('page')
+        locator='article '+a['article-number'] if a.get('article-number') else (
+            ('pp. ' if '-' in page else 'article ' if page.startswith('0') else 'p. ')+page)
+        issue=', no. '+a['issue'] if a.get('issue') else ''
+        return f'{author}, "{a["title"][0]}," {a["container-title"][0]}, vol. {a["volume"]}{issue}, {locator}, {year}, doi: {a["DOI"]}.'
+    return [citation('epidermal'),old.REFERENCES[2],citation('soft_interlayer'),citation('motion_artifacts'),
             citation('PDMS'),citation('skin_anisotropy'),
+            'Goodfellow, "Gold pellets," bulk material-property data. [Online]. Available: https://www.goodfellow.com/usa/gold-pellets-group. Accessed: Oct. 18, 2026.',
             'C. Geuzaine and J.-F. Remacle, "Gmsh: A 3-D finite element mesh generator with built-in pre- and post-processing facilities," International Journal for Numerical Methods in Engineering, vol. 79, pp. 1309-1331, 2009, doi: 10.1002/nme.2579.',
             'G. Dhondt, CalculiX: A Three-Dimensional Structural Finite Element Program, version 2.17 (Ubuntu package 2.17-3). [Online]. Available: https://www.dhondt.de/. Accessed: Oct. 18, 2026.',
-            'T. Gustafsson and G. D. McBain, "scikit-fem: A Python package for finite element assembly," Journal of Open Source Software, vol. 5, article 2369, 2020, doi: 10.21105/joss.02369.',
-            'Goodfellow, "Gold pellets," bulk material-property data. [Online]. Available: https://www.goodfellow.com/usa/gold-pellets-group. Accessed: Oct. 18, 2026.']
+            'T. Gustafsson and G. D. McBain, "scikit-fem: A Python package for finite element assembly," Journal of Open Source Software, vol. 5, article 2369, 2020, doi: 10.21105/joss.02369.']
 
 
 def main():
@@ -82,7 +87,7 @@ def main():
     figure('Contact_Geometry','Figure 1. Actual shared skin–adhesive facets in the medium meshes, accumulated in 1 mm² projected bins. Colors show geometric surface-area density, not pressure or adhesion strength. White bins contain no shared facets. Nonplanar surface area can exceed projected area. The supplied and filled scenarios are kept separate.')
     h('2.2. Material and motion variables',True);paragraphs(text.MATERIALS)
     table('Table 1. Isotropic inputs. Unidentified fixed properties are surrogates; no manufactured grade is established.',['Region','E (MPa)','ν'],[
-        ['Skin','0.10, 0.20, 0.50','0.49'],['Adhesive','0.05, 0.10, 0.50','0.49'],['PDMS / cover','1.80','0.49'],['Soft region','0.10','0.49'],['Medium region','0.50','0.49'],['ABS','2,300','0.35'],['Sensor packages','10,000','0.30'],['Transmitter','20,000','0.30'],['Gold-labeled solids','78,500 [10]','0.42']])
+        ['Skin','0.10, 0.20, 0.50','0.49'],['Adhesive','0.05, 0.10, 0.50','0.49'],['PDMS / cover','1.80','0.49'],['Soft region','0.10','0.49'],['Medium region','0.50','0.49'],['ABS','2,300','0.35'],['Sensor packages','10,000','0.30'],['Transmitter','20,000','0.30'],['Gold-labeled solids','78,500 [7]','0.42']])
     paragraphs(text.LOADING)
     for expression in ['c₁ = cos²θ − ν sin²θ','c₂ = sin²θ − ν cos²θ','c₃ = 2(1 + ν) sinθ cosθ']:
         p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.first_line_indent=Pt(0)
