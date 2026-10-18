@@ -7,6 +7,7 @@ $pdfPath=Join-Path $folder ($stem+'.pdf')
 $wordStudy=New-Object -ComObject Word.Application
 $wordStudy.Visible=$false
 $wordStudy.DisplayAlerts=0
+$paper=$null
 try {
     $paper=$wordStudy.Documents.Open($sourcePath,$false,$true)
     if ($paper.Sections.Count -ge 2) { $paper.Sections.Item(2).PageSetup.SectionStart=0 }
@@ -27,8 +28,10 @@ try {
     $paper.ExportAsFixedFormat($pdfPath,17)
     $pages=$paper.ComputeStatistics(2)
     Write-Output ('Title page: '+$titlePage+'; abstract page: '+$abstractPage+'; pages: '+$pages)
-    $paper.Close(0)
 } finally {
+    if ($null -ne $paper) {
+        try { $paper.Close(0) } catch { Write-Warning 'Could not close the study document after export.' }
+    }
     if ($wordStudy.Documents.Count -eq 0) { $wordStudy.Quit() }
     [System.Runtime.InteropServices.Marshal]::ReleaseComObject($wordStudy) | Out-Null
 }

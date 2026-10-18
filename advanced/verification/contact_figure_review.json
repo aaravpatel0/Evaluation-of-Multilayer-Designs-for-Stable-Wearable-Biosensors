@@ -1,0 +1,11 @@
+{
+  "figure": "advanced\\output\\figures\\Contact_Geometry.png",
+  "sha256": "ae3286a2adc338871921ef76779d0ab16cd81323fddeed91d99a064389625540",
+  "visually_inspected": true,
+  "checks": [
+    "Both contact scenarios use the same area-density color scale",
+    "Endpoint tick labels are separated after increasing panel spacing",
+    "Areas and units remain legible at column width",
+    "Geometric shared area is explicitly distinguished from simulated pressure"
+  ]
+}
