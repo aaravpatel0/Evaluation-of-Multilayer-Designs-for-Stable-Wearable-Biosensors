@@ -1,0 +1,18 @@
+{
+  "scope": "Assembly_On_Skin only; other final figures and manuscript remain pending",
+  "image_sha256": "de44b36741323a044a56342a37d55465ea17c08f9f82433b81d44d3c6ba6679b",
+  "source_gate": "superposition_h1.2_Filled_Uniform_S0.2_A0.1.json",
+  "checks": [
+    "Rendered actual accepted fine-mesh fields",
+    "Both panels visually inspected",
+    "World-coordinate triad and extension arrow match camera projection",
+    "Sensor/gold/transmitter legend clear",
+    "Stress units and 5MPa saturation identified",
+    "10x displacement enlargement disclosed",
+    "No visible clipping or overlapping annotations"
+  ],
+  "remaining": [
+    "Inspect final directional and tradeoff figures after full matrix",
+    "Inspect actual final manuscript pages"
+  ]
+}

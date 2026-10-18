@@ -7,11 +7,14 @@ import matplotlib.pyplot as plt
 from matplotlib.collections import PolyCollection
 from matplotlib.colors import Normalize,to_rgba
 from matplotlib.cm import ScalarMappable
+from matplotlib.patches import Patch
 from model import ROOT,PROJECT,BASIS
 from postprocess import coefficients,von_mises
 from interface import interface_geometry
 
 COLORS={'Uniform':'#374b67','Single':'#157b8c','Graded':'#b55f30'}
+LINESTYLES={'Uniform':'-','Single':'--','Graded':'-.'}
+FILLSTYLES={'Uniform':'full','Single':'none','Graded':'left'}
 MATERIAL={1:'#d6b49a',2:'#c9be94',31:'#94cec4',32:'#b0c5df',33:'#9cb5d5',4:'#485567',5:'#2c9890',6:'#2c9890',7:'#2c9890',8:'#2c9890',9:'#d7a521',10:'#76678f',11:'#d7a521',12:'#697282',13:'#e3b52e',14:'#f0c33e',15:'#237e82'}
 OUT=ROOT/'output/figures'
 
@@ -33,7 +36,7 @@ def directional():
         angles=np.arange(0,181,5)
         a=np.array(profiles);a=np.column_stack((a,a[:,0]))
         ax.fill_between(angles,a.min(axis=0),a.max(axis=0),color=color,alpha=.15,linewidth=0)
-        ax.plot(angles,a[1],color=color,label=design,lw=1.4)
+        ax.plot(angles,a[1],color=color,label=design,lw=1.4,linestyle=LINESTYLES[design])
     ax.set(xlabel='Extension direction θ (degrees)',ylabel='Wire strain, 95th percentile (%)',xticks=[0,45,90,135,180])
     ax.legend(frameon=False,ncol=3,loc='upper center',fontsize=7)
     fig.tight_layout(pad=.7);save(fig,'Directional_Wire_Strain')
@@ -43,16 +46,19 @@ def tradeoffs(summary):
     marker={.05:'o',.1:'s',.5:'^'}
     fig,axes=plt.subplots(2,1,figsize=(3.6,3.6),sharex=True)
     for option in summary['options']:
-        kwargs=dict(marker=marker[option['adhesive_E_MPa']],s=42,
-                    facecolors=COLORS[option['design']],edgecolors='black' if option['sampled_Pareto_nondominated'] else '#bbbbbb',
-                    linewidths=1.1 if option['sampled_Pareto_nondominated'] else .5)
-        axes[0].scatter(100*option['worst_wire'],option['worst_skin'],**kwargs)
-        axes[1].scatter(100*option['worst_wire'],100*option['worst_adhesive'],**kwargs)
+        kwargs=dict(marker=marker[option['adhesive_E_MPa']],markersize=6.5,linestyle='none',
+                    markerfacecolor=COLORS[option['design']],markerfacecoloralt='white',
+                    fillstyle=FILLSTYLES[option['design']],
+                    markeredgecolor='black' if option['sampled_Pareto_nondominated'] else '#999999',
+                    markeredgewidth=1.1 if option['sampled_Pareto_nondominated'] else .5)
+        axes[0].plot(100*option['worst_wire'],option['worst_skin'],**kwargs)
+        axes[1].plot(100*option['worst_wire'],100*option['worst_adhesive'],**kwargs)
     axes[0].set_ylabel('Worst skin disturbance / 1%')
     axes[1].set_ylabel('Worst adhesive distortion (%)')
     axes[1].set_xlabel('Worst wire strain, 95th percentile (%)')
     for design,color in COLORS.items():
-        axes[0].plot([],[],marker='o',linestyle='none',color=color,label=design)
+        axes[0].plot([],[],marker='o',linestyle='none',color=color,label=design,
+                     fillstyle=FILLSTYLES[design],markerfacecoloralt='white')
     axes[0].legend(frameon=False,ncol=3,fontsize=7)
     for E,m in marker.items():
         axes[1].plot([],[],marker=m,linestyle='none',color='#777777',label=f'{E:g} MPa')
@@ -88,18 +94,43 @@ def assembly():
         ax.add_collection(PolyCollection(tri[order,:,:2],facecolors=colors[order],edgecolors='none',antialiased=False,rasterized=True))
         xy=tri[:,:,:2].reshape(-1,2)
         ax.set(xlim=(xy[:,0].min()-1,xy[:,0].max()+1),ylim=(xy[:,1].min()-1,xy[:,1].max()+1),aspect='equal')
+        # Coordinates and loading arrows use the same camera as the actual mesh.
+        # The triad is projected rather than a screen-aligned decorative symbol.
+        origin=xy.min(axis=0)+np.array([4.,3.])
+        if panel:
+            theta=np.deg2rad(worst['angle_deg'])
+            direction=camera[:2]@np.array([np.cos(theta),np.sin(theta),0.])
+            center=origin+np.array([4.,2.])
+            ax.annotate('',xy=center+5*direction,xytext=center-5*direction,
+                        arrowprops=dict(arrowstyle='<->',lw=.8,color='#333333'))
+            ax.text(*(center+np.array([-4.,-3.])), 'Extension',fontsize=6,color='#333333')
         ax.set_axis_off()
+    triad=fig.add_axes([.02,.565,.13,.12])
+    triad.set(xlim=(-.25,1.15),ylim=(-.45,1.15),aspect='equal')
+    for axis,label in enumerate(['x','y','z']):
+        endpoint=camera[:2,axis]
+        triad.annotate('',xy=endpoint,xytext=(0,0),
+                       arrowprops=dict(arrowstyle='->',lw=.55,color='#333333'))
+        triad.text(*(endpoint+.06),label,fontsize=6,color='#333333')
+    triad.set_axis_off()
     fig.text(.02,.965,'(a) Sensor on the modeled skin; cover hidden',fontsize=8)
     fig.text(.02,.50,f'(b) 1% directional extension, θ = {worst["angle_deg"]:g}°',fontsize=8)
+    fig.legend(handles=[Patch(color=MATERIAL[5],label='Sensor bodies'),
+                        Patch(color=MATERIAL[13],label='Gold features/wires'),
+                        Patch(color=MATERIAL[10],label='Transmitter')],
+               loc='lower center',bbox_to_anchor=(.45,.535),ncol=3,
+               fontsize=6,frameon=False,columnspacing=.7,handlelength=.8)
     fig.text(.02,.015,'Displacement enlarged ×10; skin/supports retain material colors',fontsize=6.6)
-    cb=fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),cax=fig.add_axes([.86,.15,.025,.22]),extend='max')
+    cb=fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),cax=fig.add_axes([.86,.15,.025,.22]),extend='max',ticks=[0,2.5,5])
     cb.set_label('von Mises stress (MPa)',fontsize=7);cb.ax.tick_params(labelsize=7)
     save(fig,'Assembly_On_Skin')
     (OUT/'Assembly_On_Skin_Provenance.json').write_text(json.dumps(dict(
         scenario='Filled',mesh_h_mm=1.2,design='Uniform',skin_E_MPa=.2,adhesive_E_MPa=.1,
         angle_deg=worst['angle_deg'],displacement_scale=10,stress_range_MPa=[0,5],
         stress_measure='Element mean integration-point von Mises stress after tensor superposition',
-        hidden_regions=[16],source_cases=[str(path.relative_to(PROJECT)) for path in paths]),indent=2))
+        coordinate_triad='World xyz projected with the same camera as the mesh',
+        extension_arrow='World in-plane extension axis at the reported theta; schematic arrow length',
+        hidden_regions=[16],source_cases=[path.relative_to(PROJECT).as_posix() for path in paths]),indent=2))
 
 
 def main():

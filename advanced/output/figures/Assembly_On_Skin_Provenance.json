@@ -1,0 +1,24 @@
+{
+  "scenario": "Filled",
+  "mesh_h_mm": 1.2,
+  "design": "Uniform",
+  "skin_E_MPa": 0.2,
+  "adhesive_E_MPa": 0.1,
+  "angle_deg": 175.0,
+  "displacement_scale": 10,
+  "stress_range_MPa": [
+    0,
+    5
+  ],
+  "stress_measure": "Element mean integration-point von Mises stress after tensor superposition",
+  "coordinate_triad": "World xyz projected with the same camera as the mesh",
+  "extension_arrow": "World in-plane extension axis at the reported theta; schematic arrow length",
+  "hidden_regions": [
+    16
+  ],
+  "source_cases": [
+    "advanced/runs/WSL_h1.2_Filled_Uniform_S0.2_A0.1_XX/fields.npz",
+    "advanced/runs/WSL_h1.2_Filled_Uniform_S0.2_A0.1_YY/fields.npz",
+    "advanced/runs/WSL_h1.2_Filled_Uniform_S0.2_A0.1_XY/fields.npz"
+  ]
+}
