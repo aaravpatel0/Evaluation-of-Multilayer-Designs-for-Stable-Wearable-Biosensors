@@ -22,7 +22,8 @@ def main():
                           np.array([indices[2][lookup[pin]]])])
     reports=[]
     nu=.49;loading=(.00255,.00255,.0149)
-    for contrast in [10.,392500.]:
+    # Include the largest bulk-gold / soft-adhesive modulus ratio in the grid.
+    for contrast in [10.,392500.,1570000.]:
         dest=ROOT/'verification'/f'independent_contrast_{contrast:g}'
         write_deck(dest,mesh_path,loading,homogeneous=True,skin_E=.2,nu=nu,verification_contrast=contrast)
         execute(dest);checks=parse_and_check(dest)

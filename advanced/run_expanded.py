@@ -11,7 +11,8 @@ def main():
     args=parser.parse_args()
     start=time.time()
     verified=json.loads((ROOT/'verification/independent_high_contrast.json').read_text())
-    assert len(verified)==2 and all(r['accepted'] for r in verified)
+    assert {r['contrast'] for r in verified}=={10.,392500.,1570000.}
+    assert all(r['accepted'] and r['independent_displacement_relative_error']<2e-5 for r in verified)
     # Refresh the accepted direct gate using the current checker and cached solves.
     direct_gate(geometry='Supplied')
     completed=[]

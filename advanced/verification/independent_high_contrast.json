@@ -32,5 +32,22 @@
     "maximum_BC_error_mm": 4.953399851750917e-10,
     "minimum_element_volume_mm3": 0.002540206944868426,
     "accepted": true
+  },
+  {
+    "contrast": 1570000.0,
+    "nu": 0.49,
+    "independent_displacement_relative_error": 1.1272874232448181e-07,
+    "displacement_max_absolute_error_mm": 9.916238407660372e-10,
+    "checks_schema": 2,
+    "internal_energy_Nmm": 4.751808257343617,
+    "external_work_Nmm": 4.751808452146356,
+    "free_DOF_force_relative_residual": 4.86148870671303e-14,
+    "free_DOF_force_work_Nmm": -4.848957772687508e-14,
+    "relative_energy_error": 4.09954949225422e-08,
+    "relative_force_error": 5.1898408784952914e-08,
+    "relative_moment_error": 8.184984034606459e-08,
+    "maximum_BC_error_mm": 4.953399851750917e-10,
+    "minimum_element_volume_mm3": 0.002540206944868426,
+    "accepted": true
   }
 ]
