@@ -1,9 +1,11 @@
 """Package a completed study in verified, size-limited research archives.
 
 All accepted-case input decks and numerical records are retained. Field arrays
-are selected explicitly: the fine nominal filled Uniform assembly and all bare
-skin controls. Other assembly fields remain reproducible from the retained
-decks, correction inputs, and source, but are not silently claimed as bundled.
+are selected explicitly: the fine nominal filled Uniform assembly, all bare
+skin controls, and initial/accepted fields for every corrected assembly case.
+Raw correction DAT files support inspection of the field sums. Other assembly
+fields remain reproducible from retained decks and source, but are not silently
+claimed as bundled.
 """
 import hashlib
 import itertools
@@ -61,6 +63,12 @@ def collect(summary):
                 if correction.is_dir():
                     for name in ['job.inp', 'input_metadata.json', 'execution.json', 'solver.log']:
                         records.add(required(correction/name))
+            if (directory/'residual_refinement_history.json').is_file():
+                fields.add(required(directory/'initial_fields.npz'))
+                fields.add(required(directory/'fields.npz'))
+                for correction in directory.glob('correction_*'):
+                    if correction.is_dir():
+                        fields.add(required(correction/'job.dat'))
             for attempt in directory.glob('failed_memory_attempt_*'):
                 records.update(p for p in attempt.rglob('*') if p.is_file())
             if h == 1.2 and geometry == 'Filled' and design == 'Uniform' and skin == .2 and adhesive == .1:
@@ -108,8 +116,8 @@ def main():
         assert 'Abstract' in pdf[0].get_text()
     groups = collect(summary)
     index = dict(scope='Completed computational mechanical study; original properties remain explicit surrogates',
-                 selected_field_scope='Fine nominal Filled Uniform XX, YY, XY, Direct45; all12 matched bare-skin references; four full and four bare meshes',
-                 omitted_fields='Other assembly NPZ arrays and bulk DAT/FRD outputs are not included. Their case and correction decks plus records are included for reruns.',
+                 selected_field_scope='Fine nominal Filled Uniform XX, YY, XY, Direct45; all12 matched bare-skin references; four full and four bare meshes; initial and accepted NPZ fields plus raw correction DAT for every corrected assembly case',
+                 omitted_fields='Other assembly NPZ arrays and base DAT/FRD outputs are not included. All case decks and numerical records are retained for reruns.',
                  archives=[])
     for kind, paths in groups.items():
         for number, batch in enumerate(shards(paths), 1):
