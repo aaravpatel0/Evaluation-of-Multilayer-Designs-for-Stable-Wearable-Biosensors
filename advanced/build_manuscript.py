@@ -1,5 +1,5 @@
 """New proceeding; refuses incomplete or unrefined study summaries."""
-import ast,json,importlib.util
+import ast,json,importlib.util,re
 from copy import deepcopy
 from pathlib import Path
 from docx import Document
@@ -167,7 +167,7 @@ def main():
     h('References')
     references=refs()
     for i,s in enumerate(references,1):
-        p=para(f'[{i}] {s}',10,indent=False);p.paragraph_format.left_indent=Cm(.55);p.paragraph_format.first_line_indent=Cm(-.55);p.paragraph_format.space_after=Pt(3);p.alignment=WD_ALIGN_PARAGRAPH.LEFT
+        p=para(f'[{i}] {s}',10,indent=False);p.paragraph_format.left_indent=Cm(.55);p.paragraph_format.first_line_indent=Cm(-.55);p.paragraph_format.space_after=Pt(3);p.paragraph_format.keep_together=True;p.alignment=WD_ALIGN_PARAGRAPH.LEFT
     for section in doc.sections:
         section.different_first_page_header_footer=False
         for hf in [section.header,section.first_page_header,section.even_page_header,section.footer,section.first_page_footer,section.even_page_footer]:
@@ -176,7 +176,11 @@ def main():
         p=section.footer.paragraphs[0];p.alignment=WD_ALIGN_PARAGRAPH.CENTER
         field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');p._p.append(field)
     # Keep prose hyphens portable while preserving native mathematical minus signs.
-    clean=lambda value:value.translate({0x2010:'-',0x2011:'-',0x2012:'-',0x2013:'-',0x2014:'-'})
+    def clean(value):
+        value=value.translate({0x2010:'-',0x2011:'-',0x2012:'-',0x2013:'-',0x2014:'-'})
+        superscript=str.maketrans('-0123456789','⁻⁰¹²³⁴⁵⁶⁷⁸⁹')
+        return re.sub(r'\b(\d+(?:\.\d+)?)e([+-]?\d+)\b',
+                      lambda m:m[1]+'×10'+str(int(m[2])).translate(superscript),value)
     all_paragraphs=list(doc.paragraphs)
     all_paragraphs.extend(p for table in doc.tables for row in table.rows for cell in row.cells for p in cell.paragraphs)
     for p in all_paragraphs:

@@ -1,0 +1,50 @@
+{
+  "accepted": true,
+  "pages": 7,
+  "all_latest_page_images_visually_inspected": true,
+  "title_page": 1,
+  "abstract_page": 1,
+  "figures": 4,
+  "tables": 3,
+  "references": 10,
+  "pdf_sha256": "546a567063729c74c534cdef50f70d4feae880792f90b87482e9a162b3b5c59c",
+  "docx_sha256": "a7f50ca1bb1faa01dc0f5c090d5ca2228d0b46942247f84af14c2546a5237aed",
+  "page_png_sha256": {
+    "page-1.png": "a81203cff91bfe50a51ba720535b04893d95cbf85ca210a7a9ec9022178b42e2",
+    "page-2.png": "2d7a5126b2e610b4923221ea629abce9685821fc69566565ae04ce070211f9cc",
+    "page-3.png": "a5bfcd6e62d59494fbbfd473ae1fe8df64334efeb3286b5090cfc0b14b44754e",
+    "page-4.png": "52f2d57a2f2be63a48060f2f5b0693b31358b219f7830284a943827dede535d6",
+    "page-5.png": "08785d41f26b30ee91b109b16ee788597ccf6c5ebae4966290d57024024de5dc",
+    "page-6.png": "475941b20dabcdd45d2a88c957b256784a471f7135315c7562f955a2093016da",
+    "page-7.png": "a2bccf8ae9d7635d98e1439d71e0adbd7cb72005e9a7b5102e085e85655a99cf"
+  },
+  "rendering": "Microsoft Word native PDF export; Poppler 150 dpi page PNGs",
+  "packaged_renderer_diagnostic": "render_docx.py --verbose failed: LibreOffice soffice.exe missing from PATH; native Word and Poppler fallback succeeded",
+  "visual_findings": [
+    "No clipped or overlapping content",
+    "Scientific exponents stay together and render correctly",
+    "Individual references remain within one column",
+    "Graphs and on-skin geometry/stress figure readable",
+    "Title and abstract share page 1",
+    "Page numbers 1-7 and continuous two-column flow checked"
+  ],
+  "pdf_repository_uri": "https://github.com/aaravpatel0/Evaluation-of-Multilayer-Designs-for-Stable-Wearable-Biosensors/tree/codex/advanced-biosensor-study",
+  "template_sha256": "ead110654087bd99d49605b107bacd12139ef9ad7eecb9f2ca45cbf085f7ead3",
+  "removed_template_sample_parts": [
+    "word/footer2.xml",
+    "word/footer3.xml",
+    "word/header1.xml",
+    "word/header2.xml",
+    "word/header3.xml",
+    "word/media/image1.wmf"
+  ],
+  "part_review": "Only unused sample publisher headers/footers and WMF example removed; retained font, theme, style, numbering and settings parts checked",
+  "fonts": [
+    "BCDEEE+Cambria",
+    "BCDFEE+Cambria-Bold",
+    "BCDGEE+Cambria-Bold",
+    "BCDHEE+Cambria-Italic",
+    "BCDIEE+Cambria",
+    "BCDJEE+CambriaMath"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "removed_task_file": "/var/tmp/biosensor-advanced.swap",
+  "bytes": 12884901888,
+  "no_active_ccx_at_cleanup": true,
+  "swap_before": [
+    "/dev/sdc",
+    "/var/tmp/biosensor-advanced.swap"
+  ],
+  "swap_after": [
+    "/dev/sdc"
+  ],
+  "scope": "Only task-owned temporary 12 GiB file disabled and removed; existing swap retained"
+}

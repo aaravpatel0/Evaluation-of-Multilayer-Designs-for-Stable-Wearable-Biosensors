@@ -1,50 +1,44 @@
 # Evaluation of Multilayer Designs for Stable Wearable Biosensors
 
-Three-dimensional finite-element evaluation of a sixteen-body wearable biosensor assembly under prescribed skin motion. Gmsh generates quadratic tetrahedral meshes; CalculiX CrunchiX performs the structural solves; Python prepares inputs, checks numerical consistency, and produces component metrics, figures, and the manuscript.
+Completed three-dimensional mechanical study of the supplied sixteen-body wearable biosensor CAD. Gmsh 4.15.2 meshes the assembly; CalculiX 2.17 (Ubuntu package 2.17-3), using SPOOLES under WSL Ubuntu 22.04, solves it. Python reconstructs tensor fields, checks the results, and builds the figures and manuscript. ANSYS was not used for these results.
 
-**Validation review in progress:** the [advanced extension](advanced/README.md) adds local free-DOF equilibrium and direct tensor-superposition checks. Its read-only audit identified earlier assembly cases that require verified reruns. Treat the earlier manuscript and design rankings below as provisional while that review is completed. The old files are preserved for traceability and are not silently replaced.
+## Manuscript and data
 
-## Read and view
+- [Seven-page proceeding, PDF](advanced/output/Biosensor_Advanced_Proceeding.pdf)
+- [Editable Word manuscript](advanced/output/Biosensor_Advanced_Proceeding.docx)
+- [Main response table, CSV](advanced/output/All_Directional_Responses.csv)
+- [Final numerical and refinement summary](advanced/output/Final_Study_Summary.json)
+- [Research archive index and checksums](advanced/output/Research_Package_Index.json)
+- [Detailed methods and reproduction commands](advanced/README.md)
 
-- [Eight-page manuscript (PDF)](detailed/output/Biosensor_Proceeding_3D.pdf)
-- [Editable manuscript (Word)](detailed/output/Biosensor_Proceeding_3D_Layout_Checked.docx)
-- [Detailed methods, material assumptions, and reproduction instructions](detailed/README.md)
-- [Component results for all 19 converged linear cases](detailed/output/All_Component_Results.csv)
-- [Numerical audit](detailed/output/Study_Audit.json)
-- [Sensor on skin and simulated stress diagram](detailed/output/figures/Sensor_On_Skin_3D.png)
+The title and abstract share page 1. All seven exported pages were rendered and visually inspected. The manuscript contains four figures, three tables, ten references, and the supplied author/affiliation information.
 
-Download `detailed/output/Biosensor_3D_Viewer.html` and open it locally for an interactive view of the CAD bodies. The Word file uses a continuous section break below the title; some browser previews paginate it differently. The PDF preserves the checked eight-page layout.
+![Actual refined assembly on modeled skin, before loading and under extension](advanced/output/figures/Assembly_On_Skin.png)
 
-![Sensor assembly on skin, before loading and under prescribed extension](detailed/output/figures/Sensor_On_Skin_3D.png)
+## What was simulated
 
-## Scope and principal finding
+The main filled-contact grid compares three support architectures, three adhesive moduli, and three effective skin moduli: 27 material configurations. Three independent linear basis solutions per configuration reconstruct 36 sampled extension directions, giving 972 directional responses. Equal biaxial extension and shear add 54 responses. These reconstructed states are not 1,026 independent solver runs.
 
-The model includes the supplied skin, adhesive, support and cover, ABS bodies, five sensor components, transmitter, patterned gold features, and two routed gold wires. The largest mesh has 374,893 quadratic tetrahedra and 1,750,458 displacement degrees of freedom. Nineteen linear assembly cases examine three support designs, mesh refinement, skin loading, and assumed material stiffness.
+Three nominal supplied-contact configurations preserve the original CAD attachment as a separate sensitivity comparison. Seven selected configurations have finer-mesh comparisons, including all nominal architectures and the main grid's worst wire, skin, and adhesive cases.
 
-For the specified 1% skin extension, finest-mesh combined wire mean von Mises stresses are 3.344 MPa (uniform PDMS), 4.155 MPa (single compliant buffer), and 4.084 MPa (graded buffer). The buffered designs increase this wire metric in this assembly. Component-specific tradeoffs matter; the small single-to-graded difference is below the measured last-refinement change.
+The accepted study contains **148 distinct assembly load cases**, **8 auxiliary numerical correction solves**, and **12 matched bare-skin reference solves**. Independent high-contrast comparisons, analytical cubes, free-DOF equilibrium, constrained-reaction energy checks, and a direct mixed-load comparison for every configuration support numerical acceptance. See [the numerical review](advanced/NUMERICAL_REVIEW.md) and [the final summary](advanced/output/Final_Study_Summary.json).
 
-These are conditional linear-elastic screening results. Unidentified component properties are explicit surrogates, all interfaces are perfectly bonded, and physical calibration is absent. Exploratory full-assembly nonlinear attempts did not converge and are excluded from reported stress results. No electrical performance, fatigue life, clinical safety, or ANSYS-equivalent accuracy is claimed. ANSYS was not used for the reported simulations.
+## Findings and interpretation
 
-## Reproduce
+At nominal materials, the wire strain percentile varies about 2.6-fold with extension direction. Both compliant architectures have higher sampled maximum wire strain than uniform support in this assembly. The small graded-versus-single difference is below their observed refinement changes and is not treated as resolved design superiority.
 
-Use Python 3.12 and install `detailed/requirements_3d.txt`. Install CalculiX 2.23 separately as described in [the detailed instructions](detailed/README.md#reproduce). The full sequence there rebuilds the mesh, benchmarks, 19 cases, visualizations, and Word manuscript. Solver runs require substantial memory and should run sequentially. PDF export and Word normalization require Microsoft Word on Windows.
+The main comparison retains wire strain, disturbance relative to matched bare skin, and adhesive distortion as separate objectives. Six options are sampled nondominated under these explicit metrics and sensitivity levels. The original CAD has a 10 micrometre broad-plane skin/adhesive gap; the specified gap-filled alternative is kept distinct and is not asserted to represent manufactured contact.
 
-```powershell
-python -m pip install -r detailed/requirements_3d.txt
-# Follow detailed/README.md to install CalculiX and run the full study.
-# With the archived mesh and field files restored:
-python detailed/build_detailed_paper.py
-./detailed/normalize_word_layout.ps1
-```
+These are conditional linear-elastic screening results. Unidentified package and material properties are explicit surrogates, bonding is idealized, and physical calibration is absent. Hidden chip internals, electrical response, fatigue, comfort, and clinical outcomes are outside the simulated scope. Numerical agreement is not a claim of ANSYS-equivalent physical accuracy.
 
-The Git repository contains source code, original STEP geometry, retained manuscript template, scalar results, execution records, figures, and manuscripts. Large generated meshes, field arrays, solver decks, and solver binaries are excluded from Git. The `research-v1` release asset `Biosensor_3D_Research_Package.zip` includes accepted meshes, selected finest-mesh fields and decks, and execution records. Extract it into the repository root, preserving `detailed/`, to restore those inputs. The separately installed solver is not bundled.
+## Reproduce and inspect
 
-## Earlier two-dimensional work
+Follow [advanced/README.md](advanced/README.md). The retained environment records identify the actual solver binary and pinned Python packages. Large solves run sequentially. Fine meshes exceeded the default WSL RAM/swap allocation during an early attempt; the resource recovery and subsequent cleanup are recorded. Provide adequate RAM/swap for fresh fine-mesh runs. Native Word export in this workflow requires Microsoft Word on Windows.
 
-The root-level simulation scripts and `results/` retain the earlier simplified 2D study. [README_2D.md](README_2D.md) documents its different geometry and assumptions. Its stress reductions must not be interpreted as results for the detailed 3D assembly. The current manuscript and figures are under `detailed/output/`; earlier artifacts are under `output/`.
+Git retains the original STEP file, source code, scalar data, verification evidence, figures, and the new manuscript. Large solver decks, arrays, and archives are excluded from Git. The local research archives contain all accepted-case inputs and records plus explicitly selected field arrays; [the index](advanced/output/Research_Package_Index.json) documents the selection and omissions. Per-file SHA256 manifests are verified by reading every archived file back.
 
-## Authors and review status
+## Earlier work
 
-Joel Whaling, Aarav Patel, Mandy Hung, Yuancheng Fang, Leona Cai, Zenan Li, Advik Raja, Nathan Xu, and Linda Shi. Affiliation: Institute of Engineering in Medicine, University of California San Diego, USA. The manuscript identifies the participating IEM OPALS high school students.
+The earlier [detailed study](detailed/README.md) and [two-dimensional study](README_2D.md) are preserved for traceability. The earlier nineteen-case manuscript is provisional: later free-DOF and direct-field checks identified numerical problems. Its old rankings must not be substituted for the verified `advanced/` study above.
 
-The corresponding author, email, and final venue requirements remain for author confirmation. Authors should independently review the assumptions, implementation, results, and manuscript. AI assistance was used in implementing the workflow and drafting the document. The manuscript has not been submitted through this project.
+Joel Whaling, Aarav Patel, Mandy Hung, Yuancheng Fang, Leona Cai, Zenan Li, Advik Raja, Nathan Xu, and Linda Shi. Institute of Engineering in Medicine, University of California San Diego, USA; the manuscript marks IEM OPALS high school participants as supplied. Corresponding email can be added when provided. The manuscript has not been submitted through this project.

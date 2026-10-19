@@ -62,6 +62,8 @@ def main():
                 rechecked=check_fields(load_mesh(PROJECT/meta['mesh_path']),meta,fields)
             assert rechecked['accepted'],(directory,rechecked)
             checks.append(rechecked)
+            if len(checks)%10==0 or len(checks)==4*len(required):
+                print('ASSEMBLY FIELD AUDIT',len(checks),'of',4*len(required),flush=True)
             for correction in directory.glob('correction_*/execution.json'):
                 status=json.loads(correction.read_text())
                 assert status['job_finished'] and status['returncode']==0
@@ -80,6 +82,7 @@ def main():
                     rechecked=check_fields(load_mesh(PROJECT/meta['mesh_path']),meta,fields)
                 assert rechecked['accepted'],(directory,rechecked)
                 reference_checks.append(rechecked)
+    print('BARE-SKIN FIELD AUDIT',len(reference_checks),'of 12',flush=True)
     for gate in ['assembly_superposition.json','assembly_superposition_Filled.json']:
         record=json.loads((ROOT/'verification'/gate).read_text())
         assert record.get('accepted') and record['execution_backend']=='WSL'

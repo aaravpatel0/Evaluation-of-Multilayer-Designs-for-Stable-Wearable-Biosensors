@@ -34,3 +34,7 @@ advanced/meshes/
 advanced/cache/
 advanced/verification/
 advanced/references/
+# Runtime progress, the rejected pre-WSL pilot, and a duplicate local Word copy.
+advanced/progress*.json
+advanced/output/h1.7_*
+advanced/output/*_Layout_Checked.docx

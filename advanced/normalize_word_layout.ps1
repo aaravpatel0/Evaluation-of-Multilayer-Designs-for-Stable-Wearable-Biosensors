@@ -25,7 +25,7 @@ try {
     }
     if ($titlePage -ne 1 -or $abstractPage -ne 1) { throw 'Title and abstract must share page 1.' }
     $paper.SaveAs2($checkedPath,16)
-    $paper.ExportAsFixedFormat($pdfPath,17)
+    $paper.ExportAsFixedFormat($pdfPath,17,$false,0,0,1,1,0,$true)
     $pages=$paper.ComputeStatistics(2)
     Write-Output ('Title page: '+$titlePage+'; abstract page: '+$abstractPage+'; pages: '+$pages)
 } finally {

@@ -1,0 +1,63 @@
+{
+  "scope": "Completed computational mechanical study; original properties remain explicit surrogates",
+  "selected_field_scope": "Fine nominal Filled Uniform XX, YY, XY, Direct45; all12 matched bare-skin references; four full and four bare meshes; initial and accepted NPZ fields plus raw correction DAT for every corrected assembly case",
+  "omitted_fields": "Other assembly NPZ arrays and base DAT/FRD outputs are not included. All case decks and numerical records are retained for reruns.",
+  "archives": [
+    {
+      "name": "Biosensor_Advanced_records_01.zip",
+      "bytes": 692806000,
+      "sha256": "3b483ef27a70db5709af97c1ccc6f82d2b54ce80747067316423a317485b40fe",
+      "files": 399,
+      "kind": "records"
+    },
+    {
+      "name": "Biosensor_Advanced_records_02.zip",
+      "bytes": 689523476,
+      "sha256": "7d71be3e3fe2107f996759f58845da83ef41254f15ac5af12d42a368f2489abe",
+      "files": 283,
+      "kind": "records"
+    },
+    {
+      "name": "Biosensor_Advanced_records_03.zip",
+      "bytes": 681913876,
+      "sha256": "0a6c4f5f920903e92675190e58d1a21d17ddbc0149ddf9fa9914e75d3df7eb2c",
+      "files": 273,
+      "kind": "records"
+    },
+    {
+      "name": "Biosensor_Advanced_records_04.zip",
+      "bytes": 678819314,
+      "sha256": "90f18f82946f71697293c39c94baa31318b88564ba8fc06b7ceaf0b35a9aed6c",
+      "files": 286,
+      "kind": "records"
+    },
+    {
+      "name": "Biosensor_Advanced_records_05.zip",
+      "bytes": 133951734,
+      "sha256": "46be7a3c2493b29b7aa78f976e6e485ff3e92c46950dd706baa6ad1e5dcd4b5c",
+      "files": 302,
+      "kind": "records"
+    },
+    {
+      "name": "Biosensor_Advanced_selected_fields_01.zip",
+      "bytes": 1562478150,
+      "sha256": "97dfea5637f7aca4b0cae6f36cc2274637658db5f2eac8a708da611dd5c3e846",
+      "files": 23,
+      "kind": "selected_fields"
+    },
+    {
+      "name": "Biosensor_Advanced_selected_fields_02.zip",
+      "bytes": 1069107337,
+      "sha256": "74540a9719154a7a11bd3fd32d2e416ed64cf011fbe0fc3d6907a2d2e1303918",
+      "files": 10,
+      "kind": "selected_fields"
+    },
+    {
+      "name": "Biosensor_Advanced_selected_fields_03.zip",
+      "bytes": 1023771871,
+      "sha256": "c5221c9b16d1f943c07f4685201a945ebbca72ce55ae2d7f59bf9affdc12d357",
+      "files": 11,
+      "kind": "selected_fields"
+    }
+  ]
+}
